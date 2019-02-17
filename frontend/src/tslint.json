@@ -1,17 +1,18 @@
 {
     "extends": "../tslint.json",
     "rules": {
-        "directive-selector": [
+        "directive-selector": [true, "attribute", "tse", "camelCase"],
+        "component-selector": [true, "element", "tse", "kebab-case"],
+        "trailing-comma": [
             true,
-            "attribute",
-            "app",
-            "camelCase"
+            {
+                "multiline": {
+                    "objects": "always",
+                    "arrays": "always",
+                    "typeLiterals": "ignore"
+                }
+            }
         ],
-        "component-selector": [
-            true,
-            "element",
-            "app",
-            "kebab-case"
-        ]
+        "no-console": [true, "debug", "info", "time", "timeEnd", "trace", "log"]
     }
 }
