@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <ob-block>
+        <div class="login-container">
+            <div class="title">OfficeBooking</div>
+            <div class="form-container">
+                <input
+                    class="form-item"
+                    type="text"
+                    placeholder="Email"
+                    (change)="handleChange($event, 'email')"
+                />
+                <input
+                    class="form-item"
+                    type="password"
+                    placeholder="Password"
+                    (change)="handleChange($event, 'password')"
+                />
+            </div>
+            <div class="actions">
+                <a href="#">Register</a>
+                <button (click)="login()">Login</button>
+            </div>
+        </div>
+    </ob-block>
+</div>

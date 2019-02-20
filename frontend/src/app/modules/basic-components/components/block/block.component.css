@@ -1,0 +1,22 @@
+.block {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.3rem;
+    background-color: var(--color-surface);
+    box-sizing: border-box;
+    box-shadow: 0 0.4rem 0.4rem var(--color-shadow);
+}
+
+.header {
+    display: grid;
+    height: 3.2rem;
+    justify-content: center;
+    align-content: center;
+    border-bottom: 0.1rem solid var(--color-border);
+}
+
+.body {
+    padding: 1.6rem;
+}

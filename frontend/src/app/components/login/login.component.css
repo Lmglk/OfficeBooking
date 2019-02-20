@@ -1,0 +1,42 @@
+.wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-gap: 2rem;
+    width: 30rem;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    justify-self: center;
+}
+
+.form-container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-gap: 1rem;
+}
+
+.form-item {
+    height: 2.4rem;
+    border-radius: 0.3rem;
+    padding-left: 1rem;
+    border: 0.1rem solid var(--color-border);
+}
+
+.actions {
+    display: grid;
+    grid-gap: 1rem;
+    grid-auto-flow: column;
+    justify-self: end;
+}
+
+a {
+}
