@@ -16,6 +16,7 @@
     font-size: 1.6rem;
     font-weight: bold;
     justify-self: center;
+    color: var(--color-accent);
 }
 
 .form-container {
@@ -25,9 +26,10 @@
 }
 
 .form-item {
-    height: 2.4rem;
+    height: 3.2rem;
+    font-size: 1.4rem;
     border-radius: 0.3rem;
-    padding-left: 1rem;
+    padding-left: 1.5rem;
     border: 0.1rem solid var(--color-border);
 }
 
@@ -39,4 +41,12 @@
 }
 
 a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
 }

@@ -7,9 +7,19 @@ import { BasicComponentsModule } from './modules/basic-components/basic-componen
 import { RouterModule } from '@angular/router';
 import { routes } from './configs/router.config';
 import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, HomeComponent],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        HomeComponent,
+        HeaderComponent,
+        LogoComponent,
+        UserMenuComponent,
+    ],
     imports: [
         BrowserModule,
         RouterModule.forRoot(routes),
