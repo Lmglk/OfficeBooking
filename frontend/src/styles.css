@@ -5,9 +5,14 @@
     --color-border: #e0e0e0;
     --color-text: #616161;
     --color-accent: #6295dd;
-    --color-accent-hover: #ffcdd2;
+    --color-accent-hover: #789ddd;
+    --color-accent-focus: #4487dd;
+
+    --color-disable: #ebebeb;
 
     --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-accent-shadow: rgba(98, 149, 221, 0.25);
+    --color-accent-shadow-hover: rgba(98, 149, 221, 0.4);
 }
 
 @font-face {
