@@ -11,6 +11,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { userReducer } from './store/reducers/user.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../../environments/environment';
+import { AppState } from './types/AppState';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({
     declarations: [
@@ -25,6 +32,14 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserModule,
         HttpClientModule,
         RouterModule.forRoot(routes),
+        StoreModule.forRoot({
+            userState: userReducer,
+        } as ActionReducerMap<AppState>),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+        EffectsModule.forRoot([UserEffects]),
         BasicComponentsModule,
     ],
     providers: [],

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AppState } from '../../types/AppState';
+import { Store } from '@ngrx/store';
+import { TryToLoginAction } from '../../store/actions/TryToLoginAction';
 
 interface LoginData {
     email: string;
@@ -17,11 +19,11 @@ export class LoginComponent {
         password: '',
     };
 
-    constructor(public readonly router: Router) {}
+    constructor(public readonly store: Store<AppState>) {}
 
     public login() {
         if (this.loginData.email && this.loginData.password) {
-            this.router.navigate(['home']);
+            this.store.dispatch(new TryToLoginAction(this.loginData));
         }
     }
 
