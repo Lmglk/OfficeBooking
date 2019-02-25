@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sameOrigin().disable()
             .authorizeRequests()
             //Allow login pages
-            .antMatchers("/api/dto/login", "/api/dto", "/login", "/api/dto/registration", "/registration",
+            .antMatchers("/api/user/login", "/api/user", "/login", "/api/user/registration", "/registration",
                 "/changePassword*").permitAll()
             //Allow js and css
             .antMatchers("/assets/**/*",
