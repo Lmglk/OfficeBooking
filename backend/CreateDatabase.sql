@@ -1,0 +1,3 @@
+CREATE DATABASE officebooking;
+CREATE ROLE office WITH LOGIN PASSWORD 'office';
+GRANT ALL PRIVILEGES ON DATABASE officebooking to office;
