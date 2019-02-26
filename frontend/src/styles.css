@@ -5,7 +5,7 @@
     --color-border: #e0e0e0;
     --color-text: #616161;
     --color-accent: #6295dd;
-    --color-accent-hover: #789ddd;
+    --color-accent-hover: rgba(98, 149, 221, 0.8);
     --color-accent-focus: #4487dd;
 
     --color-disable: #ebebeb;

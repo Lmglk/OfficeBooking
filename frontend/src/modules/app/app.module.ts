@@ -18,6 +18,10 @@ import { environment } from '../../environments/environment';
 import { AppState } from './types/AppState';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
+import { roomReducer } from './store/reducers/room.reducer';
+import { RoomListComponent } from './components/room-list/room-list.component';
+import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
+import { RoomInfoComponent } from './components/room-info/room-info.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +31,9 @@ import { UserEffects } from './store/effects/user.effects';
         HeaderComponent,
         LogoComponent,
         UserMenuComponent,
+        RoomListComponent,
+        RoomListContainerComponent,
+        RoomInfoComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,6 +41,7 @@ import { UserEffects } from './store/effects/user.effects';
         RouterModule.forRoot(routes),
         StoreModule.forRoot({
             userState: userReducer,
+            roomState: roomReducer,
         } as ActionReducerMap<AppState>),
         StoreDevtoolsModule.instrument({
             maxAge: 25,

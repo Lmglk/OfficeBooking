@@ -1,0 +1,23 @@
+.list-container {
+    height: 100%;
+    border: 0.1rem solid var(--color-border);
+    border-radius: 3px;
+}
+
+.item {
+    display: grid;
+    padding: 8px;
+    align-items: center;
+    transition: all 0.1s ease;
+}
+
+.item:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-surface);
+}
+
+.selected,
+.selected:hover {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}
