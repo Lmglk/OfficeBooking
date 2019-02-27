@@ -1,4 +1,4 @@
-package com.vvt.officebooking.repository.user.room;
+package com.vvt.officebooking.repository.room;
 
 import com.vvt.officebooking.model.entity.user.room.RoomEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
