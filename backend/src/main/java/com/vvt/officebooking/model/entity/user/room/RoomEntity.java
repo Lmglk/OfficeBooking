@@ -35,6 +35,7 @@ public class RoomEntity {
     @NotNull
     private Integer height;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
     private Set<PlaceEntity> places;
 }

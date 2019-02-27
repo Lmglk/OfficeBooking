@@ -37,14 +37,13 @@ public class PlaceEntity {
 
     @Column
     @NotNull
-    private Integer width;
+    private Integer x;
 
     @Column
     @NotNull
-    private Integer height;
+    private Integer y;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id")
     @JsonIgnore
     private RoomEntity room;
 }
