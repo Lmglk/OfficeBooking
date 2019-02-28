@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
-import { AppState } from '../../types/AppState';
+import { selectUser } from './selectUser';
 
 export const selectUserName = createSelector(
-    (state: AppState) => state.userState,
-    userState => (userState.user ? userState.user.name : '')
+    selectUser,
+    user => (user ? user.name : '')
 );
