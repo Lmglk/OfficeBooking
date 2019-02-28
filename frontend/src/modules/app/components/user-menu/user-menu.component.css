@@ -15,8 +15,7 @@
 .avatar {
     width: 3.2rem;
     height: 3.2rem;
-    border-radius: 50%;
-    background-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 .name {

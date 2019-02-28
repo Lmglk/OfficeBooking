@@ -6,6 +6,7 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
 import { userReducer } from '../../store/reducers/user.reducer';
 import { AppState } from '../../types/AppState';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -20,6 +21,7 @@ describe('HeaderComponent', () => {
                     userState: userReducer,
                 } as ActionReducerMap<AppState>),
             ],
+            schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
 
         store = TestBed.get(Store);

@@ -24,6 +24,7 @@ import { RoomListContainerComponent } from './containers/room-list-container/roo
 import { RoomInfoComponent } from './components/room-info/room-info.component';
 import { RoomInfoContainerComponent } from './containers/room-info-container/room-info-container.component';
 import { SectionComponent } from './components/section/section.component';
+import { IconsModule } from '../icons/icons.module';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { SectionComponent } from './components/section/section.component';
         }),
         EffectsModule.forRoot([UserEffects]),
         BasicComponentsModule,
+        IconsModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
