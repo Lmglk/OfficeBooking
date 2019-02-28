@@ -9,10 +9,3 @@
     color: var(--color-accent);
     margin: 1rem 0;
 }
-
-.section-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--color-accent);
-}

@@ -2,18 +2,16 @@
     <div class="grid" *ngIf="room">
         <div class="title">{{ room.name }}</div>
 
-        <div class="section">
-            <div class="section-title">Metrics</div>
+        <ob-section name="Metrics">
             <div>Total places: {{ room.placesList.length }}</div>
             <div>Used places at the moment: {{ usedPlaces }}</div>
             <div>
                 Available places for booking: {{ availablePlacesForBooking }}
             </div>
-        </div>
+        </ob-section>
 
-        <div class="section">
-            <div class="section-title">Description</div>
+        <ob-section name="Description">
             <div>{{ room.description }}</div>
-        </div>
+        </ob-section>
     </div>
 </ob-block>

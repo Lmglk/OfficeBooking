@@ -23,6 +23,7 @@ import { RoomListComponent } from './components/room-list/room-list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
 import { RoomInfoComponent } from './components/room-info/room-info.component';
 import { RoomInfoContainerComponent } from './containers/room-info-container/room-info-container.component';
+import { SectionComponent } from './components/section/section.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { RoomInfoContainerComponent } from './containers/room-info-container/roo
         RoomListContainerComponent,
         RoomInfoComponent,
         RoomInfoContainerComponent,
+        SectionComponent,
     ],
     imports: [
         BrowserModule,
