@@ -9,6 +9,8 @@
     padding: 8px;
     align-items: center;
     transition: all 0.1s ease;
+    cursor: pointer;
+    user-select: none;
 }
 
 .item:hover {

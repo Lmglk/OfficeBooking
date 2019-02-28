@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Room } from '../../types/Room';
 import { selectRooms } from '../../store/selectors/selectRooms';
-import { selectSelectedRoomId } from '../../store/selectors/selectSelectedRoomId';
+import { selectCurrentRoomId } from '../../store/selectors/selectCurrentRoomId';
 
 @Component({
     selector: 'ob-room-list-container',
@@ -21,6 +21,6 @@ export class RoomListContainerComponent {
 
     constructor(private readonly store: Store<AppState>) {
         this.rooms$ = this.store.pipe(select(selectRooms));
-        this.selectedRoomId$ = this.store.pipe(select(selectSelectedRoomId));
+        this.selectedRoomId$ = this.store.pipe(select(selectCurrentRoomId));
     }
 }

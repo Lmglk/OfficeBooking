@@ -5,7 +5,7 @@ export interface Place {
     name: string;
     equipment: Equipment[];
     description: string;
-    isUser: boolean;
+    isUsed: boolean;
     isAvailableForBooking: boolean;
     x: number;
     y: number;

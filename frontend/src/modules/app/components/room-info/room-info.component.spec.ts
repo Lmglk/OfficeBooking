@@ -17,6 +17,16 @@ describe('RoomInfoComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(RoomInfoComponent);
         component = fixture.componentInstance;
+        component.room = {
+            id: 1,
+            name: 'Room_test',
+            placesList: [],
+            description: '',
+            width: 0,
+            height: 0,
+        };
+        component.usedPlaces = 0;
+        component.availablePlacesForBooking = 0;
         fixture.detectChanges();
     });
 

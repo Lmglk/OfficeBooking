@@ -22,6 +22,7 @@ import { roomReducer } from './store/reducers/room.reducer';
 import { RoomListComponent } from './components/room-list/room-list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
 import { RoomInfoComponent } from './components/room-info/room-info.component';
+import { RoomInfoContainerComponent } from './containers/room-info-container/room-info-container.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { RoomInfoComponent } from './components/room-info/room-info.component';
         RoomListComponent,
         RoomListContainerComponent,
         RoomInfoComponent,
+        RoomInfoContainerComponent,
     ],
     imports: [
         BrowserModule,
