@@ -1,0 +1,36 @@
+.button {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 2rem;
+    padding: 1rem 2rem;
+    border: 0.1rem solid var(--color-border);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.button:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0.4rem 0.4rem var(--color-shadow);
+}
+
+.button:active {
+    box-shadow: none;
+}
+
+.icon-container {
+    height: 3.2rem;
+    width: 3.2rem;
+    color: var(--color-accent);
+    align-self: center;
+}
+
+.title {
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.description {
+    font-size: 1.2rem;
+}

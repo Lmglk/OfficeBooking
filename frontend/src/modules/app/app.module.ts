@@ -25,6 +25,7 @@ import { RoomInfoComponent } from './components/room-info/room-info.component';
 import { RoomInfoContainerComponent } from './containers/room-info-container/room-info-container.component';
 import { SectionComponent } from './components/section/section.component';
 import { IconsModule } from '../icons/icons.module';
+import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { IconsModule } from '../icons/icons.module';
         RoomInfoComponent,
         RoomInfoContainerComponent,
         SectionComponent,
+        ButtonPlateComponent,
     ],
     imports: [
         BrowserModule,

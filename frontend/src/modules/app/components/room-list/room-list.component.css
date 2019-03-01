@@ -1,12 +1,12 @@
 .list-container {
     height: 100%;
     border: 0.1rem solid var(--color-border);
-    border-radius: 3px;
+    border-radius: 0.3rem;
 }
 
 .item {
     display: grid;
-    padding: 8px;
+    padding: 0.8rem 1.6rem;
     align-items: center;
     transition: all 0.1s ease;
     cursor: pointer;

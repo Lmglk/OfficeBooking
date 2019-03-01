@@ -1,12 +1,10 @@
-<ob-block name="Rooms">
-    <div class="list-container">
-        <div
-            class="item"
-            *ngFor="let room of rooms"
-            [class.selected]="room.id === selectedRoomId"
-            (click)="handleSelect(room.id)"
-        >
-            {{ room.name }}
-        </div>
+<div class="list-container">
+    <div
+        class="item"
+        *ngFor="let room of rooms"
+        [class.selected]="room.id === selectedRoomId"
+        (click)="handleSelect(room.id)"
+    >
+        {{ room.name }}
     </div>
-</ob-block>
+</div>

@@ -1,17 +1,13 @@
-<ob-block name="Room information">
-    <div class="grid" *ngIf="room">
-        <div class="title">{{ room.name }}</div>
+<div class="grid" *ngIf="room">
+    <div class="title">{{ room.name }}</div>
 
-        <ob-section name="Metrics">
-            <div>Total places: {{ room.placesList.length }}</div>
-            <div>Used places at the moment: {{ usedPlaces }}</div>
-            <div>
-                Available places for booking: {{ availablePlacesForBooking }}
-            </div>
-        </ob-section>
+    <ob-section name="Metrics">
+        <div>Total places: {{ room.placesList.length }}</div>
+        <div>Used places at the moment: {{ usedPlaces }}</div>
+        <div>Available places for booking: {{ availablePlacesForBooking }}</div>
+    </ob-section>
 
-        <ob-section name="Description">
-            <div>{{ room.description }}</div>
-        </ob-section>
-    </div>
-</ob-block>
+    <ob-section name="Description">
+        <div>{{ room.description }}</div>
+    </ob-section>
+</div>
