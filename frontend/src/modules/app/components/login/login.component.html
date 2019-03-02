@@ -3,18 +3,16 @@
         <div class="login-container">
             <div class="title">OfficeBooking</div>
             <div class="form-container">
-                <input
-                    class="form-item"
+                <ob-input
                     type="text"
-                    placeholder="Email"
-                    (change)="handleChange($event, 'email')"
-                />
-                <input
-                    class="form-item"
+                    label="Email"
+                    (onchange)="handleChange($event, 'email')"
+                ></ob-input>
+                <ob-input
                     type="password"
-                    placeholder="Password"
-                    (change)="handleChange($event, 'password')"
-                />
+                    label="Password"
+                    (onchange)="handleChange($event, 'password')"
+                ></ob-input>
             </div>
             <div class="actions">
                 <a href="#">Register</a>

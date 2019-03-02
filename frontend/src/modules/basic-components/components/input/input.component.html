@@ -1,0 +1,16 @@
+<div class="input">
+    <div class="label" [class.active]="isFocus" [class.disabled]="disabled">
+        {{ label }}
+    </div>
+    <input
+        [type]="type"
+        [value]="value"
+        [step]="step"
+        [min]="min"
+        [max]="max"
+        [disabled]="disabled"
+        (input)="handleChange($event)"
+        (focus)="handleFocus()"
+        (blur)="handleBlur()"
+    />
+</div>

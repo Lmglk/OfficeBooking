@@ -27,10 +27,10 @@ export class LoginComponent {
         }
     }
 
-    public handleChange(event: Event, fieldName: keyof LoginData) {
+    public handleChange(value: string, fieldName: keyof LoginData) {
         this.loginData = {
             ...this.loginData,
-            [fieldName]: (event.target as HTMLInputElement).value,
+            [fieldName]: value,
         };
     }
 }
