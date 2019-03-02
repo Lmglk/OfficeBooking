@@ -1,4 +1,4 @@
-<div class="input">
+<div class="textarea">
     <div
         class="label"
         [class.active]="isFocus"
@@ -7,15 +7,14 @@
     >
         {{ label }}
     </div>
-    <input
-        [type]="type"
+    <textarea
         [value]="value"
-        [step]="step"
-        [min]="min"
-        [max]="max"
+        [rows]="rows"
+        [cols]="cols"
         [disabled]="disabled"
+        [readOnly]="readonly"
         (input)="handleChange($event)"
         (focus)="handleFocus()"
         (blur)="handleBlur()"
-    />
+    ></textarea>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputType } from '../../enums/InputType';
 
 @Component({
@@ -6,7 +6,7 @@ import { InputType } from '../../enums/InputType';
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.css'],
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
     @Input() public value: string | number = '';
     @Input() public label: string;
     @Input() public type = InputType.TEXT;
@@ -18,13 +18,6 @@ export class InputComponent implements OnInit {
     @Output() onchange: EventEmitter<string | number> = new EventEmitter();
 
     public isFocus: boolean;
-    private prevValue: number;
-
-    public ngOnInit(): void {
-        if (this.type === InputType.NUMBER) {
-            this.prevValue = this.value as number;
-        }
-    }
 
     public handleChange(event: Event) {
         const element = event.target as HTMLInputElement;
