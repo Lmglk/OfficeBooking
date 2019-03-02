@@ -26,6 +26,9 @@ import { RoomInfoContainerComponent } from './containers/room-info-container/roo
 import { SectionComponent } from './components/section/section.component';
 import { IconsModule } from '../icons/icons.module';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
+import { ModalModule } from '../modal/modal.module';
+import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
+import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +44,10 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
         RoomInfoContainerComponent,
         SectionComponent,
         ButtonPlateComponent,
+        AddRoomModalContainerComponent,
+        AddRoomModalContentComponent,
     ],
+    entryComponents: [AddRoomModalContainerComponent],
     imports: [
         BrowserModule,
         HttpClientModule,
@@ -56,6 +62,7 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
         }),
         EffectsModule.forRoot([UserEffects]),
         BasicComponentsModule,
+        ModalModule,
         IconsModule,
     ],
     providers: [],

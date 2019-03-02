@@ -7,6 +7,7 @@
                 <ob-button-plate
                     label="Create room"
                     description="Create new room"
+                    (click)="handleCreateRoom()"
                 >
                     <ng-container icon>
                         <ob-place-icon></ob-place-icon>
@@ -15,7 +16,7 @@
             </div>
         </ob-block>
 
-        <ob-block name="Rooms">
+        <ob-block name="Room information">
             <ob-room-info-container></ob-room-info-container>
         </ob-block>
     </div>
