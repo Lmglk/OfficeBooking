@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -28,5 +29,9 @@ public class BookingService {
 
     public void remove(BookingEntity place) {
         bookingRepository.delete(place);
+    }
+
+    public List<BookingEntity> list() {
+        return bookingRepository.findAll();
     }
 }

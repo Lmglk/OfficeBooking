@@ -30,7 +30,7 @@ public class PlaceService {
         placeRepository.delete(place);
     }
 
-    public List<PlaceEntity> list() throws EntityNotFoundException {
+    public List<PlaceEntity> list() {
         return placeRepository.findAll();
     }
 }
