@@ -1,11 +1,11 @@
 {
     "name": "officebookingfrontend",
-    "version": "0.0.0",
+    "version": "0.0.3",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
-        "prod": "ng build --prod",
+        "prod": "ng build --prod --output-hashing none",
         "test": "ng test",
         "coverage": "ng test --coverage",
         "mock": "mockserver -p 9000 -m mockserver",
