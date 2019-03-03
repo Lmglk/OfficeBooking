@@ -1,7 +1,7 @@
-package com.vvt.officebooking.model.entity.user.place;
+package com.vvt.officebooking.model.entity.place;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vvt.officebooking.model.entity.user.room.RoomEntity;
+import com.vvt.officebooking.model.entity.room.RoomEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

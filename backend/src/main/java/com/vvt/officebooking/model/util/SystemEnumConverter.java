@@ -1,4 +1,4 @@
-package com.vvt.officebooking.model.helpers;
+package com.vvt.officebooking.model.util;
 
 import com.vvt.officebooking.model.entity.user.SystemEnum;
 

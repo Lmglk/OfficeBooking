@@ -1,7 +1,7 @@
 package com.vvt.officebooking.controller.room;
 
 import com.vvt.officebooking.controller.messages.RequestMessage;
-import com.vvt.officebooking.model.entity.user.room.RoomEntity;
+import com.vvt.officebooking.model.entity.room.RoomEntity;
 import com.vvt.officebooking.service.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

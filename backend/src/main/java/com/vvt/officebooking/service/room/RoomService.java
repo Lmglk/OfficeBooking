@@ -1,6 +1,6 @@
 package com.vvt.officebooking.service.room;
 
-import com.vvt.officebooking.model.entity.user.room.RoomEntity;
+import com.vvt.officebooking.model.entity.room.RoomEntity;
 import com.vvt.officebooking.repository.room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

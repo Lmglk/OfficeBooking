@@ -1,6 +1,6 @@
 package com.vvt.officebooking.model.entity.user;
 
-import com.vvt.officebooking.model.helpers.UserRoleConverter;
+import com.vvt.officebooking.model.util.UserRoleConverter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Convert;

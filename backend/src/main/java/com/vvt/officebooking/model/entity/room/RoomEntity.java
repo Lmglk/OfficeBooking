@@ -1,6 +1,6 @@
-package com.vvt.officebooking.model.entity.user.room;
+package com.vvt.officebooking.model.entity.room;
 
-import com.vvt.officebooking.model.entity.user.place.PlaceEntity;
+import com.vvt.officebooking.model.entity.place.PlaceEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
