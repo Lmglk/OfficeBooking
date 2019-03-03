@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/place", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,5 +51,11 @@ public class PlaceController {
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping(value = "/list")
+    public ResponseEntity<List<PlaceEntity>> list() {
+        List<PlaceEntity> items = placeService.list();
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class PlaceService {
@@ -27,5 +28,9 @@ public class PlaceService {
 
     public void remove(PlaceEntity place) {
         placeRepository.delete(place);
+    }
+
+    public List<PlaceEntity> list() throws EntityNotFoundException {
+        return placeRepository.findAll();
     }
 }
