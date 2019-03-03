@@ -4,13 +4,13 @@
             <div class="title">OfficeBooking</div>
             <div class="form-container">
                 <ob-input
-                    type="text"
                     label="Email"
+                    [type]="inputType.TEXT"
                     (onchange)="handleChange($event, 'email')"
                 ></ob-input>
                 <ob-input
-                    type="password"
                     label="Password"
+                    [type]="inputType.PASSWORD"
                     (onchange)="handleChange($event, 'password')"
                 ></ob-input>
             </div>

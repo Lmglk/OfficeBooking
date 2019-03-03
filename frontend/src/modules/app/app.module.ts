@@ -29,6 +29,7 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
 import { ModalModule } from '../modal/modal.module';
 import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
 import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
+import { RoomEffects } from './store/effects/room.effects';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,7 @@ import { AddRoomModalContentComponent } from './components/add-room-modal-conten
             maxAge: 25,
             logOnly: environment.production,
         }),
-        EffectsModule.forRoot([UserEffects]),
+        EffectsModule.forRoot([UserEffects, RoomEffects]),
         BasicComponentsModule,
         ModalModule,
         IconsModule,

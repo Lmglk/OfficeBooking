@@ -1,0 +1,24 @@
+.grid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-areas:
+        'name name'
+        'width height'
+        'description description';
+}
+
+.name {
+    grid-area: name;
+}
+
+.width {
+    grid-area: width;
+}
+
+.height {
+    grid-area: height;
+}
+
+.description {
+    grid-area: description;
+}

@@ -1,3 +1,8 @@
-<button class="main" (click)="handleClick($event)" [disabled]="disabled">
+<button
+    [class.main]="!bordered"
+    [disabled]="disabled"
+    [class.bordered]="bordered"
+    (click)="handleClick($event)"
+>
     {{ name }}
 </button>
