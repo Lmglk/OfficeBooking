@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginParameters } from '../types/LoginParameters';
-import { Person } from '../types/Person';
+import { User } from '../types/User';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
     constructor(public readonly http: HttpClient) {}
 
-    public login(loginParams: LoginParameters): Observable<Person> {
-        return this.http.post<Person>('api/person/login', loginParams);
+    public login(loginParams: LoginParameters): Observable<User> {
+        return this.http.post<User>('api/user/login', loginParams);
     }
 }
