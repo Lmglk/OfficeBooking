@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/room", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +40,12 @@ public class RoomController {
     @Transactional
     public void remove(@RequestBody @Valid RoomEntity room) {
         roomService.remove(room);
+    }
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<RoomEntity>> list() {
+        List<RoomEntity> items = roomService.list();
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
     private ResponseEntity getRoom(RoomEntity newRoom) {

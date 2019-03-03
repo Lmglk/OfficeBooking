@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class RoomService {
@@ -18,7 +19,7 @@ public class RoomService {
 
     public RoomEntity get(Long id) throws EntityNotFoundException {
         return roomRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("id not found"));
+                .orElseThrow(() -> new EntityNotFoundException("id not found"));
     }
 
     public RoomEntity save(RoomEntity room) {
@@ -27,5 +28,10 @@ public class RoomService {
 
     public void remove(RoomEntity room) {
         roomRepository.delete(room);
+    }
+
+
+    public List<RoomEntity> list() {
+        return roomRepository.findAll();
     }
 }
