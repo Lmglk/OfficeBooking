@@ -1,8 +1,8 @@
-package com.vvt.officebooking.controller.room;
+package com.vvt.officebooking.controller.booking;
 
 import com.vvt.officebooking.controller.messages.RequestMessage;
-import com.vvt.officebooking.model.entity.place.PlaceEntity;
-import com.vvt.officebooking.service.room.PlaceService;
+import com.vvt.officebooking.model.entity.booking.BookingEntity;
+import com.vvt.officebooking.service.booking.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,35 +16,35 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/place", produces = MediaType.APPLICATION_JSON_VALUE)
-public class PlaceController {
-    private PlaceService placeService;
+@RequestMapping(value = "/api/booking", produces = MediaType.APPLICATION_JSON_VALUE)
+public class BookingController {
+    private BookingService bookingService;
 
     @Autowired
-    public PlaceController(PlaceService placeService) {
-        this.placeService = placeService;
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
     }
 
     @PostMapping(value = "/get")
     public ResponseEntity get(@RequestBody @Valid RequestMessage idRequest) {
-        PlaceEntity item = placeService.get(idRequest.getId());
+        BookingEntity item = bookingService.get(idRequest.getId());
         return getItem(item);
     }
 
     @PostMapping(value = "/save")
     @Transactional
-    public ResponseEntity save(@RequestBody @Valid PlaceEntity item) {
-        PlaceEntity newItem = placeService.save(item);
+    public ResponseEntity save(@RequestBody @Valid BookingEntity item) {
+        BookingEntity newItem = bookingService.save(item);
         return getItem(newItem);
     }
 
     @PostMapping(value = "/remove")
     @Transactional
-    public void remove(@RequestBody @Valid PlaceEntity item) {
-        placeService.remove(item);
+    public void remove(@RequestBody @Valid BookingEntity item) {
+        bookingService.remove(item);
     }
 
-    private ResponseEntity getItem(PlaceEntity newItem) {
+    private ResponseEntity getItem(BookingEntity newItem) {
         if (newItem.getId() != null) {
             return new ResponseEntity<>(newItem, HttpStatus.OK);
         } else {

@@ -1,7 +1,7 @@
-package com.vvt.officebooking.service.room;
+package com.vvt.officebooking.service.place;
 
 import com.vvt.officebooking.model.entity.place.PlaceEntity;
-import com.vvt.officebooking.repository.room.PlaceRepository;
+import com.vvt.officebooking.repository.place.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class PlaceService {
 
     public PlaceEntity get(Long id) throws EntityNotFoundException {
         return placeRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("id not found"));
+                .orElseThrow(() -> new EntityNotFoundException("id not found"));
     }
 
     public PlaceEntity save(PlaceEntity place) {

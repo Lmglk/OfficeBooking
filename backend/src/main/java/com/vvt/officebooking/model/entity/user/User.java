@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "users", indexes = {@Index(name = "idx_email", columnList = "email")})
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -27,6 +28,14 @@ public class User {
     private String email;
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
+
+/*    public User(Long id, String name, String password, String email, Set<UserRole> roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.roles = roles;
+    }*/
 
     public String getDisplayName() {
         return name;
