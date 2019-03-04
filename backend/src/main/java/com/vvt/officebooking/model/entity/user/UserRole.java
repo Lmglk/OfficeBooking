@@ -39,22 +39,6 @@ public enum UserRole implements SystemEnum, GrantedAuthority {
         return null;
     }
 
-    public static UserRole getSuitableRole(Set<UserRole> userRoles) {
-        if (userRoles == null) {
-            return null;
-        }
-
-        if (userRoles.size() == 1) {
-            return (UserRole) userRoles.toArray()[0];
-        }
-
-        if (userRoles.contains(ADMIN)) {
-            return ADMIN;
-        }
-
-        return null;
-    }
-
     public String getCode() {
         return code;
     }

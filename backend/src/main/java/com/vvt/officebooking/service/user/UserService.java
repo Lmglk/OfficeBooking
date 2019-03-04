@@ -53,9 +53,8 @@ public class UserService {
 
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         newUser.setEmail(newUser.getEmail().toLowerCase());
-        HashSet<UserRole> roles = new HashSet<>();
 
-        newUser.setRoles(roles);
+        newUser.setRole(UserRole.USER);
 
         newUser = userRepository.save(newUser);
 
@@ -85,30 +84,6 @@ public class UserService {
         User user = userRepository.findByIdExact(cud.getId());
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
-    }
-
-    @Transactional
-    public void setRolesByStringNames(Long userId, List<String> roleCodes) {
-        Set<UserRole> roleSet = roleCodes.stream().map(r -> {
-            UserRole ur = UserRole.resolveByCode(r);
-            if (ur != null && ur.isAvailable()) {
-                return ur;
-            } else {
-                return null;
-            }
-        }).collect(Collectors.toSet());
-
-        roleSet.remove(null);
-
-        User u = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found id: " + userId));
-
-
-        if (getCurrentUser().getId().equals(userId) && u.getRoles().contains(UserRole.ADMIN)) {
-            roleSet.add(UserRole.ADMIN);
-        }
-        u.setRoles(roleSet);
-        userRepository.save(u);
     }
 
     public static class CreateUserException extends RuntimeException {

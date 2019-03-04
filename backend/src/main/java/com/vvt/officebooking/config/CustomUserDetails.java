@@ -17,7 +17,7 @@ public class CustomUserDetails extends User implements UserDetails {
 
     public CustomUserDetails(User user) {
         super(user.getId(), user.getName(), user.getPassword(),
-                user.getEmail(), user.getRoles(), user.getBooking());
+                user.getEmail(), user.getRole(), user.getBooking());
     }
 
     @Override
@@ -42,12 +42,11 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roles = StringUtils.collectionToCommaDelimitedString(getRoles());
-        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(getRole().toString());
     }
 
-    public Set<UserRole> getUserRoles() {
-        return getRoles();
+    public UserRole getUserRoles() {
+        return getRole();
     }
 
     @Override

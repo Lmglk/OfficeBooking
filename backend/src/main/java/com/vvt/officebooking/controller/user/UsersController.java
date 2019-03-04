@@ -25,8 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static com.vvt.officebooking.model.entity.user.UserRole.getSuitableRole;
-
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,7 +53,7 @@ public class UsersController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             return new ResponseEntity<>(new UserDto(cud,
-                    getRedirectUrlByRole(getSuitableRole(cud.getUserRoles()))),
+                    getRedirectUrlByRole(cud.getRole())),
                     HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

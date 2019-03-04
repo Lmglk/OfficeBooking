@@ -28,26 +28,11 @@ public class User implements Serializable {
     private String password;
     @Column(nullable = false, unique = true)
     private String email;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<UserRole> roles;
+    @Column
+    private UserRole role;
 
     public String getDisplayName() {
         return name;
-    }
-
-    public void addRole(UserRole userRole) {
-        roles.add(userRole);
-    }
-
-    public void removeRole(UserRole userRole) {
-        roles.remove(userRole);
-    }
-
-    public Set<UserRole> getRoles() {
-        if (roles == null) {
-            return Collections.emptySet();
-        }
-        return roles;
     }
 
 
