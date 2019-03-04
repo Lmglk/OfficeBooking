@@ -5,7 +5,7 @@ export const selectUsedPlaces = createSelector(
     selectCurrentRoom,
     room =>
         room
-            ? room.placesList.reduce(
+            ? room.places.reduce(
                   (acc, curr) => (curr.isUsed ? acc + 1 : acc),
                   0
               )

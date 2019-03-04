@@ -24,7 +24,7 @@ function createRooms() {
             {
                 id: i,
                 name: `Room ${i}`,
-                placesList: cretePlaces(roomWidth, roomHeight),
+                places: cretePlaces(roomWidth, roomHeight),
                 description: faker.lorem.paragraph(),
                 width: roomWidth,
                 height: roomHeight,

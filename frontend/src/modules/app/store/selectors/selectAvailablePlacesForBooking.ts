@@ -5,7 +5,7 @@ export const selectAvailablePlacesForBooking = createSelector(
     selectCurrentRoom,
     room =>
         room
-            ? room.placesList.reduce(
+            ? room.places.reduce(
                   (acc, curr) => (curr.isAvailableForBooking ? acc + 1 : 0),
                   0
               )

@@ -3,7 +3,7 @@ import { Place } from './Place';
 export interface Room {
     id: number;
     name: string;
-    placesList: Place[];
+    places: Place[];
     description: string;
     width: number;
     height: number;
