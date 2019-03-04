@@ -22,7 +22,7 @@ describe('RoomInfoComponent', () => {
         component.room = {
             id: 1,
             name: 'Room_test',
-            placesList: [],
+            places: [],
             description: '',
             width: 0,
             height: 0,
