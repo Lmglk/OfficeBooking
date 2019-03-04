@@ -17,7 +17,7 @@ public class CustomUserDetails extends User implements UserDetails {
 
     public CustomUserDetails(User user) {
         super(user.getId(), user.getName(), user.getPassword(),
-            user.getEmail(), user.getRoles());
+                user.getEmail(), user.getRoles(), user.getBooking());
     }
 
     @Override

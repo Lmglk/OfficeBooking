@@ -1,9 +1,12 @@
 package com.vvt.officebooking.model.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vvt.officebooking.model.entity.booking.BookingEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
 
@@ -15,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "users", indexes = {@Index(name = "idx_email", columnList = "email")})
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -46,4 +49,9 @@ public class User {
         }
         return roles;
     }
+
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private BookingEntity booking;
 }

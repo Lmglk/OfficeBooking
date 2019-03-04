@@ -101,7 +101,7 @@ public class UserService {
         roleSet.remove(null);
 
         User u = userRepository.findById(userId)
-            .orElseThrow(() -> new IllegalArgumentException("User not found id: " + userId));
+                .orElseThrow(() -> new IllegalArgumentException("User not found id: " + userId));
 
 
         if (getCurrentUser().getId().equals(userId) && u.getRoles().contains(UserRole.ADMIN)) {
@@ -115,5 +115,9 @@ public class UserService {
         public CreateUserException(String s) {
             super(s);
         }
+    }
+
+    public List<User> list() {
+        return userRepository.findAll();
     }
 }

@@ -1,6 +1,7 @@
 package com.vvt.officebooking.model.entity.place;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vvt.officebooking.model.entity.booking.BookingEntity;
 import com.vvt.officebooking.model.entity.room.RoomEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +10,14 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "places")
-public class PlaceEntity {
+public class PlaceEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
@@ -46,4 +48,8 @@ public class PlaceEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private RoomEntity room;
+
+    @OneToOne(mappedBy = "place")
+    @JsonIgnore
+    private BookingEntity booking;
 }

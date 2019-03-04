@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import static com.vvt.officebooking.model.entity.user.UserRole.getSuitableRole;
 
@@ -54,8 +55,8 @@ public class UsersController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             return new ResponseEntity<>(new UserDto(cud,
-                getRedirectUrlByRole(getSuitableRole(cud.getUserRoles()))),
-                HttpStatus.OK);
+                    getRedirectUrlByRole(getSuitableRole(cud.getUserRoles()))),
+                    HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
@@ -101,9 +102,9 @@ public class UsersController {
 
     private void authenticateUser(String login, String password) {
         UsernamePasswordAuthenticationToken authentication =
-            new UsernamePasswordAuthenticationToken(login, password);
+                new UsernamePasswordAuthenticationToken(login, password);
         SecurityContextHolder.getContext()
-            .setAuthentication(authenticationManager.authenticate(authentication));
+                .setAuthentication(authenticationManager.authenticate(authentication));
     }
 
     private void addUserToSession(HttpServletRequest request, Object userPrincipal) {
@@ -124,5 +125,11 @@ public class UsersController {
     @PostMapping(value = "/resetPassword")
     public void resetPassword(@RequestBody ResetPasswordDto resetPasswordDto) {
 //    userService.resetPassword(resetPasswordDto.getToken(), resetPasswordDto.getPassword());
+    }
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<User>> list() {
+        List<User> items = userService.list();
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 }
