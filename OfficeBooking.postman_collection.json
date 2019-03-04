@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "8dfc1466-1cb2-471a-9a80-50b84ab709ed",
+		"name": "OfficeBooking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user/registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"andrey\",\n    \"password\": \"qwerty\",\n    \"email\": \"andrey1@ved.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"qwerty\",\n    \"email\": \"andrey1@ved.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room/save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"3\",\n    \"description\": \"Гавно\",\n    \"width\": 60,\n    \"height\": 80,\n    \"places\": [\n        {\n            \"name\": \"3\",\n            \"description\": \"У окна\",\n            \"isUsed\": false,\n            \"isAvailableForBooking\": true,\n            \"x\": 10,\n            \"y\": 2\n        },\n             {\n            \"name\": \"4\",\n            \"description\": \"У окна\",\n            \"isUsed\": false,\n            \"isAvailableForBooking\": true,\n            \"x\": 10,\n            \"y\": 2\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/room/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"room",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room/save update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 51,\n    \"name\": \"3\",\n    \"description\": \"Гавно\",\n    \"width\": 60,\n    \"height\": 80,\n    \"places\": [\n        {\n            \"name\": \"3\",\n            \"description\": \"У окна\",\n            \"isUsed\": true,\n            \"isAvailableForBooking\": true,\n            \"x\": 10,\n            \"y\": 2\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/room/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"room",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room/get",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 553\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/room/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"room",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "place/save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"1\",\n    \"description\": \"У окна\",\n    \"isUsed\": false,\n    \"isAvailableForBooking\": true,\n    \"width\": 10,\n    \"height\": 2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/place/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"place",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room/remove",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"id\": 62,\n    \"fromDate\": null,\n    \"toDate\": null,\n    \"approved\": true,\n    \"isExpired\": false,\n      \"place\": {\n        \"id\": 50\n      }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/booking/remove",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"booking",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking/save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"from\": \"2016-12-18\",\n    \"to\":\"2016-12-23\",\n    \"approved\": true,\n    \"isExpired\": false,\n\t\"place\":{\n\t\t\"id\": 50\n\t},\n\t\"user\":{\n\t\t\"id\": 55\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/booking/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"booking",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking/get",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 62\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/booking/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"booking",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/booking/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"booking",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "place/list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/place/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"place",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/room/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"room",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
