@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppState } from '../../types/AppState';
 import { Store } from '@ngrx/store';
 import { TryToLoginAction } from '../../store/actions/TryToLoginAction';
+import { InputType } from '../../../basic-components/enums/InputType';
 
 interface LoginData {
     email: string;
@@ -14,6 +15,8 @@ interface LoginData {
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+    public readonly inputType = InputType;
+
     public loginData = {
         email: '',
         password: '',
@@ -27,10 +30,10 @@ export class LoginComponent {
         }
     }
 
-    public handleChange(value: string, fieldName: keyof LoginData) {
+    public handleChange(event: Event, fieldName: keyof LoginData) {
         this.loginData = {
             ...this.loginData,
-            [fieldName]: value,
+            [fieldName]: (event.target as HTMLInputElement).value,
         };
     }
 }

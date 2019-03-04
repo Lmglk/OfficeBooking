@@ -1,0 +1,53 @@
+.wrapper {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-gap: 2rem;
+    width: 40rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    justify-self: center;
+    color: var(--color-accent);
+}
+
+.content {
+    display: grid;
+    grid-template-areas:
+        'name name'
+        'email email'
+        'password confirm-password';
+    grid-gap: 1rem;
+    width: 40rem;
+}
+
+.name {
+    grid-area: name;
+}
+
+.email {
+    grid-area: email;
+}
+
+.password {
+    grid-area: password;
+}
+
+.confirm-password {
+    grid-area: confirm-password;
+}
+
+.actions {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+    justify-self: end;
+}

@@ -10,6 +10,23 @@ button {
     color: var(--color-accent);
     transition: background-color 0.2s ease, color 0.2s ease;
     outline-color: var(--color-accent);
+    outline-width: 0.2rem;
+}
+
+.bordered {
+    background-color: none;
+    color: var(--color-accent);
+    border: 0.1rem solid var(--color-accent);
+}
+
+.bordered:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-surface);
+}
+
+.bordered:active {
+    background-color: var(--color-accent-focus);
+    color: var(--color-surface);
 }
 
 .main {
@@ -29,9 +46,19 @@ button {
     box-shadow: none;
 }
 
+.bordered:disabled,
+.bordered:disabled:hover,
+.bordered:disabled:active {
+    background: transparent;
+    border: 0.1rem solid var(--color-disable);
+    color: var(--color-disable);
+    box-shadow: none;
+}
+
 .main:disabled,
 .main:disabled:hover,
 .main:disabled:active {
     background: var(--color-disable);
+    border: 0.1rem solid var(--color-disable);
     box-shadow: none;
 }

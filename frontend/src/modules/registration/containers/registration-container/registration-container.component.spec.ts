@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddRoomModalContainerComponent } from './add-room-modal-container.component';
+import { RegistrationContainerComponent } from './registration-container.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
-import { AppState } from '../../types/AppState';
-import { userReducer } from '../../store/reducers/user.reducer';
-import { roomReducer } from '../../store/reducers/room.reducer';
+import { AppState } from '../../../app/types/AppState';
+import { userReducer } from '../../../app/store/reducers/user.reducer';
+import { roomReducer } from '../../../app/store/reducers/room.reducer';
 
-describe('AddRoomModalContainerComponent', () => {
-    let component: AddRoomModalContainerComponent;
-    let fixture: ComponentFixture<AddRoomModalContainerComponent>;
+describe('RegistrationContainerComponent', () => {
+    let component: RegistrationContainerComponent;
+    let fixture: ComponentFixture<RegistrationContainerComponent>;
     let store: Store<AppState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AddRoomModalContainerComponent],
+            declarations: [RegistrationContainerComponent],
             imports: [
                 StoreModule.forRoot({
                     userState: userReducer,
@@ -26,7 +26,7 @@ describe('AddRoomModalContainerComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AddRoomModalContainerComponent);
+        fixture = TestBed.createComponent(RegistrationContainerComponent);
         store = TestBed.get(Store);
 
         spyOn(store, 'dispatch').and.callThrough();

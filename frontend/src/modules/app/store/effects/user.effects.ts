@@ -8,12 +8,23 @@ import { of } from 'rxjs';
 import { SetUserAction } from '../actions/SetUserAction';
 import { Router } from '@angular/router';
 import { TryToLoadRoomsAction } from '../actions/TryToLoadRoomsAction';
-import { RoomService } from '../../services/room.service';
-import { SetRoomsAction } from '../actions/SetRoomsAction';
-import { RejectLoadRoom } from '../actions/RejectLoadRoom';
+import { TryToUserRegister } from '../../../registration/actions/TryToUserRegister';
+import { SuccessUserRegistration } from '../../../registration/actions/SuccessUserRegistration';
+import { RejectUserrRegistration } from '../../../registration/actions/RejectUserrRegistration';
 
 @Injectable()
 export class UserEffects {
+    @Effect()
+    public register$ = this.actions$.pipe(
+        ofType<TryToUserRegister>(TryToUserRegister.type),
+        switchMap(action =>
+            this.userService.register(action.payload).pipe(
+                map(() => new SuccessUserRegistration()),
+                catchError(() => of(new RejectUserrRegistration()))
+            )
+        )
+    );
+
     @Effect()
     public login$ = this.actions$.pipe(
         ofType<TryToLoginAction>(TryToLoginAction.type),
@@ -34,24 +45,9 @@ export class UserEffects {
         )
     );
 
-    @Effect()
-    public loadRoom$ = this.actions$.pipe(
-        ofType<TryToLoadRoomsAction>(TryToLoadRoomsAction.type),
-        switchMap(action =>
-            this.roomService.getRoomList().pipe(
-                map(rooms => new SetRoomsAction(rooms)),
-                catchError(() => {
-                    console.error('Room load failed');
-                    return of(new RejectLoadRoom());
-                })
-            )
-        )
-    );
-
     constructor(
         private readonly actions$: Actions,
         private readonly router: Router,
-        private readonly userService: UserService,
-        private readonly roomService: RoomService
+        private readonly userService: UserService
     ) {}
 }

@@ -1,0 +1,32 @@
+<div class="grid">
+    <ob-input
+        class="name"
+        label="Room name"
+        [type]="inputType.TEXT"
+        [value]="parameters.name"
+        (onchange)="handleNameChange($event)"
+    ></ob-input>
+    <ob-input
+        class="width"
+        label="Width"
+        [type]="inputType.NUMBER"
+        [value]="parameters.width"
+        [min]="1"
+        (onchange)="handleWidthChange($event)"
+    ></ob-input>
+    <ob-input
+        class="height"
+        label="Height"
+        [type]="inputType.NUMBER"
+        [value]="parameters.height"
+        [min]="1"
+        (onchange)="handleHeightChange($event)"
+    ></ob-input>
+    <ob-textarea
+        class="description"
+        label="Description"
+        [value]="parameters.description"
+        [rows]="3"
+        (onchange)="handleDescriptionChange($event)"
+    ></ob-textarea>
+</div>

@@ -1,5 +1,5 @@
-import { Person } from './Person';
+import { User } from './User';
 
 export interface UserState {
-    user: Person | null;
+    user: User | null;
 }

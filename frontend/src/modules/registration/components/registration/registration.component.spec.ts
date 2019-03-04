@@ -1,27 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddRoomModalContentComponent } from './add-room-modal-content.component';
+import { RegistrationComponent } from './registration.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('AddRoomModalContentComponent', () => {
-    let component: AddRoomModalContentComponent;
-    let fixture: ComponentFixture<AddRoomModalContentComponent>;
+describe('RegistrationComponent', () => {
+    let component: RegistrationComponent;
+    let fixture: ComponentFixture<RegistrationComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AddRoomModalContentComponent],
+            declarations: [RegistrationComponent],
             schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AddRoomModalContentComponent);
+        fixture = TestBed.createComponent(RegistrationComponent);
         component = fixture.componentInstance;
         component.parameters = {
             name: '',
-            width: 0,
-            height: 0,
-            description: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
         };
         fixture.detectChanges();
     });

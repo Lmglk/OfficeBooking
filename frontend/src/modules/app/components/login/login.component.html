@@ -1,21 +1,21 @@
 <div class="wrapper">
-    <ob-block class="login-block">
+    <ob-block>
         <div class="login-container">
             <div class="title">OfficeBooking</div>
             <div class="form-container">
                 <ob-input
-                    type="text"
                     label="Email"
+                    [type]="inputType.TEXT"
                     (onchange)="handleChange($event, 'email')"
                 ></ob-input>
                 <ob-input
-                    type="password"
                     label="Password"
+                    [type]="inputType.PASSWORD"
                     (onchange)="handleChange($event, 'password')"
                 ></ob-input>
             </div>
             <div class="actions">
-                <a href="#">Register</a>
+                <a [routerLink]="'/registration'">Register</a>
                 <ob-button (click)="login()" name="Login"></ob-button>
             </div>
         </div>

@@ -13,12 +13,12 @@ export class TextareaComponent {
     @Input() cols: number;
     @Input() readonly: boolean;
 
-    @Output() onchange: EventEmitter<string> = new EventEmitter();
+    @Output() onchange: EventEmitter<Event> = new EventEmitter();
 
     public isFocus: boolean;
 
     public handleChange(event: Event) {
-        this.onchange.emit((event.target as HTMLTextAreaElement).value);
+        this.onchange.emit(event);
     }
 
     public handleFocus() {

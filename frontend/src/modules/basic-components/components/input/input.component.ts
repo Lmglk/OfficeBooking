@@ -15,19 +15,12 @@ export class InputComponent {
     @Input() public max: number;
     @Input() public disabled: boolean;
 
-    @Output() onchange: EventEmitter<string | number> = new EventEmitter();
+    @Output() onchange: EventEmitter<Event> = new EventEmitter();
 
     public isFocus: boolean;
 
     public handleChange(event: Event) {
-        const element = event.target as HTMLInputElement;
-
-        if (this.type === InputType.NUMBER) {
-            const value = element.valueAsNumber;
-            this.onchange.emit(isNaN(value) ? 0 : value);
-        } else {
-            this.onchange.emit(element.value);
-        }
+        this.onchange.emit(event);
     }
 
     public handleFocus() {
