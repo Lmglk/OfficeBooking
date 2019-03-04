@@ -42,7 +42,7 @@ public class RoomController {
         roomService.remove(room);
     }
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<RoomEntity>> list() {
         List<RoomEntity> items = roomService.list();
         return new ResponseEntity<>(items, HttpStatus.OK);

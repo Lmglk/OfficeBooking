@@ -50,7 +50,7 @@ public class BookingController {
         }
     }
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<BookingEntity>> list() {
         List<BookingEntity> items = bookingService.list();
         return new ResponseEntity<>(items, HttpStatus.OK);

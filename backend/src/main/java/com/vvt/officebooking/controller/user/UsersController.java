@@ -127,7 +127,7 @@ public class UsersController {
 //    userService.resetPassword(resetPasswordDto.getToken(), resetPasswordDto.getPassword());
     }
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<User>> list() {
         List<User> items = userService.list();
         return new ResponseEntity<>(items, HttpStatus.OK);

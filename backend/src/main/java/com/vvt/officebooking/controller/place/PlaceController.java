@@ -50,7 +50,7 @@ public class PlaceController {
         }
     }
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<PlaceEntity>> list() {
         List<PlaceEntity> items = placeService.list();
         return new ResponseEntity<>(items, HttpStatus.OK);
