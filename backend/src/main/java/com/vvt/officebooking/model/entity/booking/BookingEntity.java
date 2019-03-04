@@ -1,6 +1,7 @@
 package com.vvt.officebooking.model.entity.booking;
 
 import com.vvt.officebooking.model.entity.place.PlaceEntity;
+import com.vvt.officebooking.model.entity.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,4 +36,8 @@ public class BookingEntity implements Serializable {
     @OneToOne(fetch = FetchType.EAGER)
     @NotNull
     private PlaceEntity place;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @NotNull
+    private User user;
 }

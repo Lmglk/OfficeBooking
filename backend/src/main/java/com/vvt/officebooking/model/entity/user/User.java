@@ -1,6 +1,8 @@
 package com.vvt.officebooking.model.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vvt.officebooking.model.entity.booking.BookingEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,14 +31,6 @@ public class User implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 
-/*    public User(Long id, String name, String password, String email, Set<UserRole> roles) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        this.roles = roles;
-    }*/
-
     public String getDisplayName() {
         return name;
     }
@@ -55,4 +49,9 @@ public class User implements Serializable {
         }
         return roles;
     }
+
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private BookingEntity booking;
 }
