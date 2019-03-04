@@ -30,6 +30,7 @@ import { ModalModule } from '../modal/modal.module';
 import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
 import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
 import { RoomEffects } from './store/effects/room.effects';
+import { RegistrationModule } from '../registration/registration.module';
 
 @NgModule({
     declarations: [
@@ -65,6 +66,7 @@ import { RoomEffects } from './store/effects/room.effects';
         BasicComponentsModule,
         ModalModule,
         IconsModule,
+        RegistrationModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

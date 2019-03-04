@@ -6,9 +6,26 @@ import { RoomService } from '../../services/room.service';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { of } from 'rxjs';
 import { RejectSaveRoomAction } from '../actions/RejectSaveRoomAction';
+import { TryToLoadRoomsAction } from '../actions/TryToLoadRoomsAction';
+import { SetRoomsAction } from '../actions/SetRoomsAction';
+import { RejectLoadRoom } from '../actions/RejectLoadRoom';
 
 @Injectable()
 export class RoomEffects {
+    @Effect()
+    public loadRoom$ = this.actions$.pipe(
+        ofType<TryToLoadRoomsAction>(TryToLoadRoomsAction.type),
+        switchMap(() =>
+            this.roomService.getRoomList().pipe(
+                map(rooms => new SetRoomsAction(rooms)),
+                catchError(() => {
+                    console.error('Room load failed');
+                    return of(new RejectLoadRoom());
+                })
+            )
+        )
+    );
+
     @Effect()
     public saveRoom$ = this.actions$.pipe(
         ofType<TryToSaveRoomAction>(TryToSaveRoomAction.type),

@@ -1,0 +1,44 @@
+<div class="wrapper">
+    <ob-block>
+        <div class="grid">
+            <div class="title">Registration</div>
+            <div class="content">
+                <ob-input
+                    class="name"
+                    label="Name"
+                    [type]="inputType.TEXT"
+                    [value]="parameters.name"
+                    (change)="handleChange($event, 'name')"
+                ></ob-input>
+                <ob-input
+                    class="email"
+                    label="Email"
+                    [type]="inputType.TEXT"
+                    [value]="parameters.email"
+                    (change)="handleChange($event, 'email')"
+                ></ob-input>
+                <ob-input
+                    class="password"
+                    label="Password"
+                    [type]="inputType.PASSWORD"
+                    [value]="parameters.password"
+                    (change)="handleChange($event, 'password')"
+                ></ob-input>
+                <ob-input
+                    class="confirm-password"
+                    label="Confirm password"
+                    [type]="inputType.PASSWORD"
+                    [value]="parameters.confirmPassword"
+                    (change)="handleChange($event, 'confirmPassword')"
+                ></ob-input>
+            </div>
+            <div class="actions">
+                <ob-button name="Back" [routerLink]="'/login'"></ob-button>
+                <ob-button
+                    name="Register"
+                    (click)="handleRegister()"
+                ></ob-button>
+            </div>
+        </div>
+    </ob-block>
+</div>
