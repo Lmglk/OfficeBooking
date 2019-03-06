@@ -18,7 +18,7 @@ import { AppState } from './types/AppState';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { roomReducer } from './store/reducers/room.reducer';
-import { RoomListComponent } from './components/room-list/room-list.component';
+import { ListComponent } from '../basic-components/components/list/list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
 import { IconsModule } from '../icons/icons.module';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
@@ -36,7 +36,6 @@ import { RoomInfoModule } from '../room-info/room-info.module';
         HeaderComponent,
         LogoComponent,
         UserMenuComponent,
-        RoomListComponent,
         RoomListContainerComponent,
         ButtonPlateComponent,
         AddRoomModalContainerComponent,

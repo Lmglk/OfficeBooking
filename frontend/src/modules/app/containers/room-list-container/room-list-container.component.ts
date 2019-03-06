@@ -10,11 +10,12 @@ import { SetSelectRoomIdAction } from '../../store/actions/SetSelectRoomIdAction
 @Component({
     selector: 'ob-room-list-container',
     template: `
-        <ob-room-list
-            [rooms]="rooms$ | async"
-            [selectedRoomId]="selectedRoomId$ | async"
+        <ob-list
+            [data]="rooms$ | async"
+            [bindField]="'name'"
+            [selectedValue]="selectedRoomId$ | async"
             (selected)="selectRoom($event)"
-        ></ob-room-list>
+        ></ob-list>
     `,
 })
 export class RoomListContainerComponent {
@@ -26,7 +27,7 @@ export class RoomListContainerComponent {
         this.selectedRoomId$ = this.store.pipe(select(selectCurrentRoomId));
     }
 
-    public selectRoom(id: number): void {
-        this.store.dispatch(new SetSelectRoomIdAction(id));
+    public selectRoom(room: Room): void {
+        this.store.dispatch(new SetSelectRoomIdAction(room.id));
     }
 }

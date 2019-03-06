@@ -1,0 +1,10 @@
+<div class="list-container">
+    <div
+        class="item"
+        *ngFor="let item of data"
+        [class.selected]="selectedValue && selectedValue.id === item.id"
+        (click)="handleSelect(item)"
+    >
+        {{ item[bindField] }}
+    </div>
+</div>
