@@ -6,6 +6,7 @@ import { Room } from '../../types/Room';
 import { selectCurrentRoom } from '../../store/selectors/selectCurrentRoom';
 import { selectUsedPlaces } from '../../store/selectors/selectUsedPlaces';
 import { selectAvailablePlacesForBooking } from '../../store/selectors/selectAvailablePlacesForBooking';
+import { TryToRemoveRoomAction } from '../../store/actions/TryToRemoveRoomAction';
 
 @Component({
     selector: 'ob-room-info-container',
@@ -14,6 +15,7 @@ import { selectAvailablePlacesForBooking } from '../../store/selectors/selectAva
             [room]="room$ | async"
             [usedPlaces]="usedPlaces$ | async"
             [availablePlacesForBooking]="availablePlacesForBooking$ | async"
+            (remove)="removeRoom($event)"
         ></ob-room-info>
     `,
 })
@@ -28,5 +30,9 @@ export class RoomInfoContainerComponent {
         this.availablePlacesForBooking$ = this.store.pipe(
             select(selectAvailablePlacesForBooking)
         );
+    }
+
+    public removeRoom(room: Room): void {
+        this.store.dispatch(new TryToRemoveRoomAction(room));
     }
 }

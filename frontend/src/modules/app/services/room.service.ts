@@ -17,4 +17,8 @@ export class RoomService {
     public save(parameters: RoomParameters): Observable<Room> {
         return this.http.post<Room>('/api/room/save', parameters);
     }
+
+    public remove(room: Room): Observable<void> {
+        return this.http.post<void>('/api/room/remove', room);
+    }
 }

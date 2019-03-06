@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TryToLoginAction } from '../actions/TryToLoginAction';
 import { UserService } from '../../services/user.service';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { RejectLoginAction } from '../actions/RejectLoginAction';
+import { RejectLoginActionAction } from '../actions/RejectLoginActionAction';
 import { of } from 'rxjs';
 import { SetUserAction } from '../actions/SetUserAction';
 import { Router } from '@angular/router';
@@ -39,7 +39,7 @@ export class UserEffects {
                 }),
                 catchError(() => {
                     console.error('User load failed');
-                    return of(new RejectLoginAction());
+                    return of(new RejectLoginActionAction());
                 })
             )
         )
