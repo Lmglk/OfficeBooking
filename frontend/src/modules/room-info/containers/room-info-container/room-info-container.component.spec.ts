@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomInfoContainerComponent } from './room-info-container.component';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
-import { AppState } from '../../types/AppState';
+import { AppState } from '../../../app/types/AppState';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { userReducer } from '../../store/reducers/user.reducer';
-import { roomReducer } from '../../store/reducers/room.reducer';
+import { userReducer } from '../../../app/store/reducers/user.reducer';
+import { roomReducer } from '../../../app/store/reducers/room.reducer';
 
 describe('RoomInfoContainerComponent', () => {
     let component: RoomInfoContainerComponent;

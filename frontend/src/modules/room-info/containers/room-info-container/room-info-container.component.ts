@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { AppState } from '../../types/AppState';
+import { AppState } from '../../../app/types/AppState';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Room } from '../../types/Room';
-import { selectCurrentRoom } from '../../store/selectors/selectCurrentRoom';
-import { selectUsedPlaces } from '../../store/selectors/selectUsedPlaces';
-import { selectAvailablePlacesForBooking } from '../../store/selectors/selectAvailablePlacesForBooking';
-import { TryToRemoveRoomAction } from '../../store/actions/TryToRemoveRoomAction';
+import { Room } from '../../../app/types/Room';
+import { selectCurrentRoom } from '../../../app/store/selectors/selectCurrentRoom';
+import { selectUsedPlaces } from '../../../app/store/selectors/selectUsedPlaces';
+import { selectAvailablePlacesForBooking } from '../../../app/store/selectors/selectAvailablePlacesForBooking';
+import { TryToRemoveRoomAction } from '../../actions/TryToRemoveRoomAction';
 
 @Component({
     selector: 'ob-room-info-container',

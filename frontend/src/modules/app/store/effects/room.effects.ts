@@ -9,9 +9,9 @@ import { RejectSaveRoomAction } from '../actions/RejectSaveRoomAction';
 import { TryToLoadRoomsAction } from '../actions/TryToLoadRoomsAction';
 import { SetRoomsAction } from '../actions/SetRoomsAction';
 import { RejectLoadRoomAction } from '../actions/RejectLoadRoomAction';
-import { TryToRemoveRoomAction } from '../actions/TryToRemoveRoomAction';
-import { RejectRemoveRoomAction } from '../actions/RejectRemoveRoomAction';
-import { RemoveRoomAction } from '../actions/RemoveRoomAction';
+import { TryToRemoveRoomAction } from '../../../room-info/actions/TryToRemoveRoomAction';
+import { RejectRemoveRoomAction } from '../../../room-info/actions/RejectRemoveRoomAction';
+import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 
 @Injectable()
 export class RoomEffects {

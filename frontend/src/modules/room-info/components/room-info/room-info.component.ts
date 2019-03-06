@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Room } from '../../types/Room';
+import { Room } from '../../../app/types/Room';
 
 @Component({
     selector: 'ob-room-info',

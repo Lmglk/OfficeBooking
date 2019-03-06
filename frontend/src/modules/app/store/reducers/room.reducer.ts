@@ -5,7 +5,7 @@ import { SetSelectRoomIdAction } from '../actions/SetSelectRoomIdAction';
 import { ResetSelectRoomIdAction } from '../actions/ResetSelectRoomIdAction';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { Room } from '../../types/Room';
-import { RemoveRoomAction } from '../actions/RemoveRoomAction';
+import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 
 const initialState: RoomState = {
     rooms: [],
