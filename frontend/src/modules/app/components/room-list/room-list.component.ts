@@ -1,8 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Room } from '../../types/Room';
-import { AppState } from '../../types/AppState';
-import { Store } from '@ngrx/store';
-import { SetSelectRoomIdAction } from '../../store/actions/SetSelectRoomIdAction';
 
 @Component({
     selector: 'ob-room-list',
@@ -13,9 +10,9 @@ export class RoomListComponent {
     @Input() rooms: Room[];
     @Input() selectedRoomId: number | null;
 
-    constructor(public readonly store: Store<AppState>) {}
+    @Output() selected: EventEmitter<number | null> = new EventEmitter();
 
     public handleSelect(id: Room['id']) {
-        this.store.dispatch(new SetSelectRoomIdAction(id));
+        this.selected.emit(id);
     }
 }
