@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { ApiRoomService } from './api-room.service';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('UserService', () => {
+describe('ApiRoomService', () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
             imports: [HttpClientModule],
@@ -11,7 +11,7 @@ describe('UserService', () => {
     );
 
     it('should be created', () => {
-        const service: UserService = TestBed.get(UserService);
+        const service: ApiRoomService = TestBed.get(ApiRoomService);
         expect(service).toBeTruthy();
     });
 });

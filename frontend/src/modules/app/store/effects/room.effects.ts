@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TryToSaveRoomAction } from '../actions/TryToSaveRoomAction';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { RoomService } from '../../services/room.service';
+import { ApiRoomService } from '../../services/api-room.service';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { of } from 'rxjs';
 import { RejectSaveRoomAction } from '../actions/RejectSaveRoomAction';
@@ -53,6 +53,6 @@ export class RoomEffects {
 
     constructor(
         private readonly actions$: Actions,
-        private readonly roomService: RoomService
+        private readonly roomService: ApiRoomService
     ) {}
 }

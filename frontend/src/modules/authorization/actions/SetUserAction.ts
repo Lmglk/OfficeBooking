@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User } from '../../types/User';
+import { User } from '../../app/types/User';
 
 export class SetUserAction implements Action {
     public static readonly type = '[Login] Set user';

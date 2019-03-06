@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { LoginParameters } from '../../types/LoginParameters';
+import { LoginParameters } from '../types/LoginParameters';
 
 export class TryToLoginAction implements Action {
     public static readonly type = '[Login] Try to login';

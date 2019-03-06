@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginParameters } from '../types/LoginParameters';
+import { LoginParameters } from '../../authorization/types/LoginParameters';
 import { User } from '../types/User';
 import { Observable } from 'rxjs';
-import { SendUserParameters } from '../../registration/types/SendUserParameters';
+import { SendUserParameters } from '../../authorization/types/SendUserParameters';
 
 @Injectable({
     providedIn: 'root',
 })
-export class UserService {
+export class ApiAuthService {
     constructor(public readonly http: HttpClient) {}
 
     public login(loginParams: LoginParameters): Observable<User> {
@@ -16,6 +16,6 @@ export class UserService {
     }
 
     public register(parameters: SendUserParameters): Observable<void> {
-        return this.http.post<void>('api/user/registration', parameters);
+        return this.http.post<void>('api/user/authorization', parameters);
     }
 }

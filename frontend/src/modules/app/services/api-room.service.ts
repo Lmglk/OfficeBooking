@@ -7,7 +7,7 @@ import { RoomParameters } from '../types/RoomParameters';
 @Injectable({
     providedIn: 'root',
 })
-export class RoomService {
+export class ApiRoomService {
     constructor(private readonly http: HttpClient) {}
 
     public getRoomList(): Observable<Room[]> {

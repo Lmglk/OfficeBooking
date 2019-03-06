@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './components/app/app.component';
-import { LoginComponent } from './components/login/login.component';
 import { BasicComponentsModule } from '../basic-components/basic-components.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './configs/router.config';
@@ -30,12 +29,11 @@ import { ModalModule } from '../modal/modal.module';
 import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
 import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
 import { RoomEffects } from './store/effects/room.effects';
-import { RegistrationModule } from '../registration/registration.module';
+import { AuthorizationModule } from '../authorization/authorization.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
         HomeComponent,
         HeaderComponent,
         LogoComponent,
@@ -66,7 +64,7 @@ import { RegistrationModule } from '../registration/registration.module';
         BasicComponentsModule,
         ModalModule,
         IconsModule,
-        RegistrationModule,
+        AuthorizationModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

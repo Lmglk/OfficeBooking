@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { TryToLoginAction } from '../actions/TryToLoginAction';
-import { UserService } from '../../services/user.service';
+import { TryToLoginAction } from '../../../authorization/actions/TryToLoginAction';
+import { ApiAuthService } from '../../services/api-auth.service';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { RejectLoginActionAction } from '../actions/RejectLoginActionAction';
+import { RejectLoginActionAction } from '../../../authorization/actions/RejectLoginActionAction';
 import { of } from 'rxjs';
-import { SetUserAction } from '../actions/SetUserAction';
+import { SetUserAction } from '../../../authorization/actions/SetUserAction';
 import { Router } from '@angular/router';
 import { TryToLoadRoomsAction } from '../actions/TryToLoadRoomsAction';
-import { TryToUserRegister } from '../../../registration/actions/TryToUserRegister';
-import { SuccessUserRegistration } from '../../../registration/actions/SuccessUserRegistration';
-import { RejectUserrRegistration } from '../../../registration/actions/RejectUserrRegistration';
+import { TryToUserRegister } from '../../../authorization/actions/TryToUserRegister';
+import { SuccessUserRegistration } from '../../../authorization/actions/SuccessUserRegistration';
+import { RejectUserRegistration } from '../../../authorization/actions/RejectUserRegistration';
 
 @Injectable()
 export class UserEffects {
@@ -20,7 +20,7 @@ export class UserEffects {
         switchMap(action =>
             this.userService.register(action.payload).pipe(
                 map(() => new SuccessUserRegistration()),
-                catchError(() => of(new RejectUserrRegistration()))
+                catchError(() => of(new RejectUserRegistration()))
             )
         )
     );
@@ -48,6 +48,6 @@ export class UserEffects {
     constructor(
         private readonly actions$: Actions,
         private readonly router: Router,
-        private readonly userService: UserService
+        private readonly userService: ApiAuthService
     ) {}
 }

@@ -1,4 +1,4 @@
-import { SetUserAction } from '../actions/SetUserAction';
+import { SetUserAction } from '../../../authorization/actions/SetUserAction';
 import { ResetUserAction } from '../actions/ResetUserAction';
 import { UserState } from '../../types/UserState';
 
