@@ -9,6 +9,9 @@ import { of } from 'rxjs';
 import { AppState } from '../../types/AppState';
 import { select, Store } from '@ngrx/store';
 import { selectCurrentRoomId } from '../selectors/selectCurrentRoomId';
+import { TryToRemovePlaceAction } from '../../../place-info/actions/TryToRemovePlaceAction';
+import { RemovePlaceAction } from '../../../place-info/actions/RemovePlaceAction';
+import { RejectRemovePlaceAction } from '../../../place-info/actions/RejectRemovePlaceAction';
 
 @Injectable()
 export class PlaceEffects {
@@ -29,6 +32,28 @@ export class PlaceEffects {
                 catchError(() => {
                     console.error('Place save failed');
                     return of(new RejectSavePlaceAction());
+                })
+            )
+        )
+    );
+
+    @Effect()
+    public removePlace$ = this.actions$.pipe(
+        ofType<TryToRemovePlaceAction>(TryToRemovePlaceAction.type),
+        withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
+        switchMap(([action, roomId]) =>
+            this.placeService.remove(action.payload).pipe(
+                map(
+                    () =>
+                        roomId &&
+                        new RemovePlaceAction({
+                            roomId: roomId,
+                            placeId: action.payload.id,
+                        })
+                ),
+                catchError(() => {
+                    console.error('Place remove failed');
+                    return of(new RejectRemovePlaceAction());
                 })
             )
         )

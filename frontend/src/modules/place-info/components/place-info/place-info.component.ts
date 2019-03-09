@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Place } from '../../../app/types/Place';
 
 @Component({
@@ -8,4 +8,10 @@ import { Place } from '../../../app/types/Place';
 })
 export class PlaceInfoComponent {
     @Input() place: Place;
+
+    @Output() remove: EventEmitter<Place> = new EventEmitter();
+
+    public handleRemovePlace() {
+        this.remove.emit(this.place);
+    }
 }

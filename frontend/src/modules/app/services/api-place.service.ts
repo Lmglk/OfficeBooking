@@ -13,4 +13,8 @@ export class ApiPlaceService {
     public save(parameters: PlaceParameters): Observable<Place> {
         return this.http.post<Place>('api/place/save', parameters);
     }
+
+    public remove(place: Place): Observable<void> {
+        return this.http.post<void>('api/place/remove', place);
+    }
 }

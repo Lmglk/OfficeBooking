@@ -9,6 +9,7 @@ import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 import { SetSelectPlaceIdAction } from '../actions/SetSelectPlaceIdAction';
 import { ResetSelectPlaceIdAction } from '../actions/ResetSelectPlaceIdAction';
 import { AddPlaceAction } from '../actions/AddPlaceAction';
+import { RemovePlaceAction } from '../../../place-info/actions/RemovePlaceAction';
 
 const initialState: RoomState = {
     rooms: [],
@@ -25,7 +26,8 @@ type Action =
     | RemoveRoomAction
     | SetSelectPlaceIdAction
     | ResetSelectPlaceIdAction
-    | AddPlaceAction;
+    | AddPlaceAction
+    | RemovePlaceAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -80,7 +82,7 @@ export function roomReducer(
                 selectedPlaceId: null,
             };
 
-        case AddPlaceAction.type: {
+        case AddPlaceAction.type:
             return {
                 ...state,
                 rooms: state.rooms.map(room => {
@@ -94,7 +96,23 @@ export function roomReducer(
                     }
                 }),
             };
-        }
+
+        case RemovePlaceAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.map(room => {
+                    if (room.id === action.payload.roomId) {
+                        return {
+                            ...room,
+                            places: room.places.filter(
+                                place => place.id !== action.payload.placeId
+                            ),
+                        };
+                    } else {
+                        return room;
+                    }
+                }),
+            };
 
         default:
             return state;
