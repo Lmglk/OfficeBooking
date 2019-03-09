@@ -9,3 +9,10 @@
     color: var(--color-accent);
     margin: 1rem 0;
 }
+
+.actions {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    grid-gap: 2rem;
+}

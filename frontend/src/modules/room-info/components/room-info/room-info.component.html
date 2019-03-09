@@ -11,5 +11,8 @@
         <div>{{ room.description }}</div>
     </ob-section>
 
-    <ob-button name="Remove" (click)="handleRemoveRoom()"></ob-button>
+    <div class="actions">
+        <ob-button name="Remove" (click)="handleRemoveRoom()"></ob-button>
+        <ob-button name="Go to room" (click)="goToRoom()"></ob-button>
+    </div>
 </div>

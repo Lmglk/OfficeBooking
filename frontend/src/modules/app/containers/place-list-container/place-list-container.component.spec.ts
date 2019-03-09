@@ -1,34 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomInfoContainerComponent } from './room-info-container.component';
+import { PlaceListContainerComponent } from './place-list-container.component';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
-import { AppState } from '../../../app/types/AppState';
+import { AppState } from '../../types/AppState';
+import { userReducer } from '../../store/reducers/user.reducer';
+import { roomReducer } from '../../store/reducers/room.reducer';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { userReducer } from '../../../app/store/reducers/user.reducer';
-import { roomReducer } from '../../../app/store/reducers/room.reducer';
-import { RouterTestingModule } from '@angular/router/testing';
 
-describe('RoomInfoContainerComponent', () => {
-    let component: RoomInfoContainerComponent;
-    let fixture: ComponentFixture<RoomInfoContainerComponent>;
+describe('PlaceListContainerComponent', () => {
+    let component: PlaceListContainerComponent;
+    let fixture: ComponentFixture<PlaceListContainerComponent>;
     let store: Store<AppState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                RouterTestingModule,
                 StoreModule.forRoot({
                     userState: userReducer,
                     roomState: roomReducer,
                 } as ActionReducerMap<AppState>),
             ],
             schemas: [NO_ERRORS_SCHEMA],
-            declarations: [RoomInfoContainerComponent],
+            declarations: [PlaceListContainerComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RoomInfoContainerComponent);
+        fixture = TestBed.createComponent(PlaceListContainerComponent);
         store = TestBed.get(Store);
 
         spyOn(store, 'dispatch').and.callThrough();

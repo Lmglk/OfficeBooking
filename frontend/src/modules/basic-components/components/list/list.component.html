@@ -2,7 +2,7 @@
     <div
         class="item"
         *ngFor="let item of data"
-        [class.selected]="selectedValue && selectedValue.id === item.id"
+        [class.selected]="selectedValueId && selectedValueId === item.id"
         (click)="handleSelect(item)"
     >
         {{ item[bindField] }}

@@ -6,10 +6,13 @@ import { ResetSelectRoomIdAction } from '../actions/ResetSelectRoomIdAction';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { Room } from '../../types/Room';
 import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
+import { SetSelectPlaceIdAction } from '../actions/SetSelectPlaceIdAction';
+import { ResetSelectPlaceIdAction } from '../actions/ResetSelectPlaceIdAction';
 
 const initialState: RoomState = {
     rooms: [],
     selectedRoomId: null,
+    selectedPlaceId: null,
 };
 
 type Action =
@@ -18,7 +21,9 @@ type Action =
     | SetSelectRoomIdAction
     | ResetSelectRoomIdAction
     | AddRoomAction
-    | RemoveRoomAction;
+    | RemoveRoomAction
+    | SetSelectPlaceIdAction
+    | ResetSelectPlaceIdAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -59,6 +64,18 @@ export function roomReducer(
             return {
                 ...state,
                 rooms: state.rooms.filter(room => room.id !== action.payload),
+            };
+
+        case SetSelectPlaceIdAction.type:
+            return {
+                ...state,
+                selectedPlaceId: action.payload,
+            };
+
+        case ResetSelectPlaceIdAction.type:
+            return {
+                ...state,
+                selectedPlaceId: null,
             };
 
         default:

@@ -18,7 +18,6 @@ import { AppState } from './types/AppState';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { roomReducer } from './store/reducers/room.reducer';
-import { ListComponent } from '../basic-components/components/list/list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
 import { IconsModule } from '../icons/icons.module';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
@@ -28,6 +27,9 @@ import { AddRoomModalContentComponent } from './components/add-room-modal-conten
 import { RoomEffects } from './store/effects/room.effects';
 import { AuthorizationModule } from '../authorization/authorization.module';
 import { RoomInfoModule } from '../room-info/room-info.module';
+import { RoomComponent } from './components/room/room.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +42,9 @@ import { RoomInfoModule } from '../room-info/room-info.module';
         ButtonPlateComponent,
         AddRoomModalContainerComponent,
         AddRoomModalContentComponent,
+        RoomComponent,
+        LayoutComponent,
+        PlaceListContainerComponent,
     ],
     entryComponents: [AddRoomModalContainerComponent],
     imports: [
