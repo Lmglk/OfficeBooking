@@ -33,6 +33,7 @@ import { PlaceListContainerComponent } from './containers/place-list-container/p
 import { AddPlaceModalContainerComponent } from './containers/add-place-modal-container/add-place-modal-container.component';
 import { AddPlaceModalContentComponent } from './components/add-place-modal-content/add-place-modal-content.component';
 import { PlaceEffects } from './store/effects/place.effects';
+import { PlaceInfoModule } from '../place-info/place-info.module';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import { PlaceEffects } from './store/effects/place.effects';
         IconsModule,
         AuthorizationModule,
         RoomInfoModule,
+        PlaceInfoModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
