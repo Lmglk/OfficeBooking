@@ -1,0 +1,62 @@
+<div class="grid">
+    <ob-input
+        class="name"
+        label="Place name"
+        [type]="inputType.TEXT"
+        [value]="parameters.name"
+        (onchange)="handleChangeName($event)"
+    ></ob-input>
+
+    <div class="equipment">
+        <div class="title-group">Equipment</div>
+        <div class="group">
+            <ob-checkbox
+                [label]="equipment.COMPUTER"
+                (oncheck)="handleChangeEquipment($event, equipment.COMPUTER)"
+            ></ob-checkbox>
+            <ob-checkbox
+                [label]="equipment.PHONE"
+                (oncheck)="handleChangeEquipment($event, equipment.PHONE)"
+            ></ob-checkbox>
+            <ob-checkbox
+                [label]="equipment.LAN"
+                (oncheck)="handleChangeEquipment($event, equipment.LAN)"
+            ></ob-checkbox>
+        </div>
+    </div>
+
+    <ob-input
+        class="positionX"
+        label="X position"
+        [type]="inputType.NUMBER"
+        [min]="1"
+        [step]="1"
+        [value]="parameters.x"
+        (onchange)="handleChangePosition($event, 'x')"
+    ></ob-input>
+
+    <ob-input
+        class="positionY"
+        label="Y position"
+        [type]="inputType.NUMBER"
+        [min]="1"
+        [step]="1"
+        [value]="parameters.y"
+        (onchange)="handleChangePosition($event, 'y')"
+    ></ob-input>
+
+    <ob-checkbox
+        class="booking-available"
+        label="Available for booking"
+        [checked]="parameters.isAvailableForBooking"
+        (oncheck)="handleChangeAvailableForBooking($event)"
+    ></ob-checkbox>
+
+    <ob-textarea
+        class="description"
+        label="Description"
+        [value]="parameters.description"
+        [rows]="3"
+        (onchange)="handleChangeDescription($event)"
+    ></ob-textarea>
+</div>

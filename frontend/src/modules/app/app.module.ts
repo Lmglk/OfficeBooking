@@ -30,6 +30,9 @@ import { RoomInfoModule } from '../room-info/room-info.module';
 import { RoomComponent } from './components/room/room.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
+import { AddPlaceModalContainerComponent } from './containers/add-place-modal-container/add-place-modal-container.component';
+import { AddPlaceModalContentComponent } from './components/add-place-modal-content/add-place-modal-content.component';
+import { PlaceEffects } from './store/effects/place.effects';
 
 @NgModule({
     declarations: [
@@ -45,8 +48,13 @@ import { PlaceListContainerComponent } from './containers/place-list-container/p
         RoomComponent,
         LayoutComponent,
         PlaceListContainerComponent,
+        AddPlaceModalContainerComponent,
+        AddPlaceModalContentComponent,
     ],
-    entryComponents: [AddRoomModalContainerComponent],
+    entryComponents: [
+        AddRoomModalContainerComponent,
+        AddPlaceModalContainerComponent,
+    ],
     imports: [
         BrowserModule,
         HttpClientModule,
@@ -59,7 +67,7 @@ import { PlaceListContainerComponent } from './containers/place-list-container/p
             maxAge: 25,
             logOnly: environment.production,
         }),
-        EffectsModule.forRoot([UserEffects, RoomEffects]),
+        EffectsModule.forRoot([UserEffects, RoomEffects, PlaceEffects]),
         BasicComponentsModule,
         ModalModule,
         IconsModule,

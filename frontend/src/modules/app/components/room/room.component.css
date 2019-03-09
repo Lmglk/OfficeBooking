@@ -4,3 +4,10 @@
     grid-gap: 2rem;
     height: 100%;
 }
+
+.block-content {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+    grid-gap: 2rem;
+}

@@ -8,6 +8,7 @@ import { Room } from '../../types/Room';
 import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 import { SetSelectPlaceIdAction } from '../actions/SetSelectPlaceIdAction';
 import { ResetSelectPlaceIdAction } from '../actions/ResetSelectPlaceIdAction';
+import { AddPlaceAction } from '../actions/AddPlaceAction';
 
 const initialState: RoomState = {
     rooms: [],
@@ -23,7 +24,8 @@ type Action =
     | AddRoomAction
     | RemoveRoomAction
     | SetSelectPlaceIdAction
-    | ResetSelectPlaceIdAction;
+    | ResetSelectPlaceIdAction
+    | AddPlaceAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -77,6 +79,22 @@ export function roomReducer(
                 ...state,
                 selectedPlaceId: null,
             };
+
+        case AddPlaceAction.type: {
+            return {
+                ...state,
+                rooms: state.rooms.map(room => {
+                    if (room.id === action.payload.id) {
+                        return {
+                            ...room,
+                            places: [...room.places, action.payload.place],
+                        };
+                    } else {
+                        return room;
+                    }
+                }),
+            };
+        }
 
         default:
             return state;

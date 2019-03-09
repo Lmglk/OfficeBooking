@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { ModalService } from '../../../modal/services/modal.service';
-import { RoomParameters } from '../../types/RoomParameters';
+import { PlaceParameters } from '../../types/PlaceParameters';
 import { AppState } from '../../types/AppState';
 import { Store } from '@ngrx/store';
-import { TryToSaveRoomAction } from '../../store/actions/TryToSaveRoomAction';
+import { TryToSavePlaceAction } from '../../store/actions/TryToSavePlaceAction';
 
 @Component({
-    selector: 'ob-add-room-modal-container',
+    selector: 'ob-add-place-modal-container',
     template: `
-        <ob-block name="Create room">
+        <ob-block name="Create place">
             <div class="grid">
-                <ob-add-room-modal-content
+                <ob-add-place-modal-content
                     [parameters]="parameters"
                     (onchange)="handleChange($event)"
-                ></ob-add-room-modal-content>
+                ></ob-add-place-modal-content>
                 <div class="actions">
                     <ob-button
                         name="Close"
@@ -46,12 +46,14 @@ import { TryToSaveRoomAction } from '../../store/actions/TryToSaveRoomAction';
         `,
     ],
 })
-export class AddRoomModalContainerComponent {
-    public parameters: RoomParameters = {
+export class AddPlaceModalContainerComponent {
+    public parameters: PlaceParameters = {
         name: '',
-        width: 1,
-        height: 1,
+        equipment: [],
         description: '',
+        isAvailableForBooking: true,
+        x: 1,
+        y: 1,
     };
 
     constructor(
@@ -59,17 +61,12 @@ export class AddRoomModalContainerComponent {
         private readonly modalService: ModalService
     ) {}
 
-    public handleChange(parameters: RoomParameters) {
+    public handleChange(parameters: PlaceParameters) {
         this.parameters = parameters;
     }
 
     public handleCreate() {
-        if (this.parameters.name.trim().length) {
-            this.store.dispatch(new TryToSaveRoomAction(this.parameters));
-            this.modalService.close();
-        } else {
-            console.error('Error! You should enter room name.');
-        }
+        this.store.dispatch(new TryToSavePlaceAction(this.parameters));
     }
 
     public handleClose() {

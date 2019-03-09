@@ -1,6 +1,28 @@
 <div class="grid">
     <ob-block name="Places">
-        <ob-place-list-container></ob-place-list-container>
+        <div class="block-content">
+            <ob-place-list-container></ob-place-list-container>
+
+            <ob-button-plate
+                label="Create place"
+                description="Create new place"
+                (click)="handleCreatePlace()"
+            >
+                <ng-container icon>
+                    <ob-place-icon></ob-place-icon>
+                </ng-container>
+            </ob-button-plate>
+
+            <ob-button-plate
+                label="Back"
+                description="Back to room list"
+                (click)="navigateBack()"
+            >
+                <ng-container icon>
+                    <ob-exit-icon></ob-exit-icon>
+                </ng-container>
+            </ob-button-plate>
+        </div>
     </ob-block>
     <ob-block name="Room scheme"></ob-block>
     <ob-block name="Place info"></ob-block>
