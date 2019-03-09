@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './components/app/app.component';
-import { LoginComponent } from './components/login/login.component';
 import { BasicComponentsModule } from '../basic-components/basic-components.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './configs/router.config';
@@ -19,32 +18,25 @@ import { AppState } from './types/AppState';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { roomReducer } from './store/reducers/room.reducer';
-import { RoomListComponent } from './components/room-list/room-list.component';
+import { ListComponent } from '../basic-components/components/list/list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
-import { RoomInfoComponent } from './components/room-info/room-info.component';
-import { RoomInfoContainerComponent } from './containers/room-info-container/room-info-container.component';
-import { SectionComponent } from './components/section/section.component';
 import { IconsModule } from '../icons/icons.module';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
 import { ModalModule } from '../modal/modal.module';
 import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
 import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
 import { RoomEffects } from './store/effects/room.effects';
-import { RegistrationModule } from '../registration/registration.module';
+import { AuthorizationModule } from '../authorization/authorization.module';
+import { RoomInfoModule } from '../room-info/room-info.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
         HomeComponent,
         HeaderComponent,
         LogoComponent,
         UserMenuComponent,
-        RoomListComponent,
         RoomListContainerComponent,
-        RoomInfoComponent,
-        RoomInfoContainerComponent,
-        SectionComponent,
         ButtonPlateComponent,
         AddRoomModalContainerComponent,
         AddRoomModalContentComponent,
@@ -66,7 +58,8 @@ import { RegistrationModule } from '../registration/registration.module';
         BasicComponentsModule,
         ModalModule,
         IconsModule,
-        RegistrationModule,
+        AuthorizationModule,
+        RoomInfoModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

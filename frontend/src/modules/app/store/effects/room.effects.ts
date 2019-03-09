@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TryToSaveRoomAction } from '../actions/TryToSaveRoomAction';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { RoomService } from '../../services/room.service';
+import { ApiRoomService } from '../../services/api-room.service';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { of } from 'rxjs';
 import { RejectSaveRoomAction } from '../actions/RejectSaveRoomAction';
 import { TryToLoadRoomsAction } from '../actions/TryToLoadRoomsAction';
 import { SetRoomsAction } from '../actions/SetRoomsAction';
-import { RejectLoadRoom } from '../actions/RejectLoadRoom';
+import { RejectLoadRoomAction } from '../actions/RejectLoadRoomAction';
+import { TryToRemoveRoomAction } from '../../../room-info/actions/TryToRemoveRoomAction';
+import { RejectRemoveRoomAction } from '../../../room-info/actions/RejectRemoveRoomAction';
+import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 
 @Injectable()
 export class RoomEffects {
@@ -20,7 +23,7 @@ export class RoomEffects {
                 map(rooms => new SetRoomsAction(rooms)),
                 catchError(() => {
                     console.error('Room load failed');
-                    return of(new RejectLoadRoom());
+                    return of(new RejectLoadRoomAction());
                 })
             )
         )
@@ -37,8 +40,19 @@ export class RoomEffects {
         )
     );
 
+    @Effect()
+    public removeRoom$ = this.actions$.pipe(
+        ofType<TryToRemoveRoomAction>(TryToRemoveRoomAction.type),
+        switchMap(action =>
+            this.roomService.remove(action.payload).pipe(
+                map(() => new RemoveRoomAction(action.payload.id)),
+                catchError(() => of(new RejectRemoveRoomAction()))
+            )
+        )
+    );
+
     constructor(
         private readonly actions$: Actions,
-        private readonly roomService: RoomService
+        private readonly roomService: ApiRoomService
     ) {}
 }

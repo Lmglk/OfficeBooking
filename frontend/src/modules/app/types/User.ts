@@ -1,4 +1,4 @@
-import { UserRole } from '../enums/UserRole';
+import { UserRole } from '../../authorization/enums/UserRole';
 
 export interface User {
     id: number;

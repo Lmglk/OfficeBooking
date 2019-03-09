@@ -5,14 +5,17 @@ import { Observable } from 'rxjs';
 import { Room } from '../../types/Room';
 import { selectRooms } from '../../store/selectors/selectRooms';
 import { selectCurrentRoomId } from '../../store/selectors/selectCurrentRoomId';
+import { SetSelectRoomIdAction } from '../../store/actions/SetSelectRoomIdAction';
 
 @Component({
     selector: 'ob-room-list-container',
     template: `
-        <ob-room-list
-            [rooms]="rooms$ | async"
-            [selectedRoomId]="selectedRoomId$ | async"
-        ></ob-room-list>
+        <ob-list
+            [data]="rooms$ | async"
+            [bindField]="'name'"
+            [selectedValue]="selectedRoomId$ | async"
+            (selected)="selectRoom($event)"
+        ></ob-list>
     `,
 })
 export class RoomListContainerComponent {
@@ -22,5 +25,9 @@ export class RoomListContainerComponent {
     constructor(private readonly store: Store<AppState>) {
         this.rooms$ = this.store.pipe(select(selectRooms));
         this.selectedRoomId$ = this.store.pipe(select(selectCurrentRoomId));
+    }
+
+    public selectRoom(room: Room): void {
+        this.store.dispatch(new SetSelectRoomIdAction(room.id));
     }
 }

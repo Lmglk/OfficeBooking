@@ -5,6 +5,7 @@ import { SetSelectRoomIdAction } from '../actions/SetSelectRoomIdAction';
 import { ResetSelectRoomIdAction } from '../actions/ResetSelectRoomIdAction';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { Room } from '../../types/Room';
+import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
 
 const initialState: RoomState = {
     rooms: [],
@@ -16,7 +17,8 @@ type Action =
     | ResetRoomsAction
     | SetSelectRoomIdAction
     | ResetSelectRoomIdAction
-    | AddRoomAction;
+    | AddRoomAction
+    | RemoveRoomAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -51,6 +53,12 @@ export function roomReducer(
             return {
                 ...state,
                 rooms: [...state.rooms, action.payload as Room],
+            };
+
+        case RemoveRoomAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.filter(room => room.id !== action.payload),
             };
 
         default:
