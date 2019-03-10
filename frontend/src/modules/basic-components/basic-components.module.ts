@@ -6,6 +6,7 @@ import { InputComponent } from './components/input/input.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { ListComponent } from './components/list/list.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -16,6 +17,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
         TextareaComponent,
         ListComponent,
         CheckboxComponent,
+        ButtonPlateComponent,
     ],
     exports: [
         BlockComponent,
@@ -24,6 +26,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
         TextareaComponent,
         ListComponent,
         CheckboxComponent,
+        ButtonPlateComponent,
     ],
 })
 export class BasicComponentsModule {}

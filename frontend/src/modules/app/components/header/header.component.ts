@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AppState } from '../../types/AppState';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectUserName } from '../../store/selectors/selectUserName';
+import { selectUserName } from '../../selectors/selectUserName';
 
 @Component({
     selector: 'ob-header',

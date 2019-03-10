@@ -1,37 +1,38 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
-import { LogoComponent } from '../logo/logo.component';
-import { UserMenuComponent } from '../user-menu/user-menu.component';
+import { PlaceListContainerComponent } from './place-list-container.component';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
-import { userReducer } from '../../reducers/user.reducer';
-import { AppState } from '../../types/AppState';
+import { AppState } from '../../../app/types/AppState';
+import { userReducer } from '../../../app/reducers/user.reducer';
+import { roomReducer } from '../../../app/reducers/room.reducer';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('HeaderComponent', () => {
-    let component: HeaderComponent;
-    let fixture: ComponentFixture<HeaderComponent>;
+describe('PlaceListContainerComponent', () => {
+    let component: PlaceListContainerComponent;
+    let fixture: ComponentFixture<PlaceListContainerComponent>;
     let store: Store<AppState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [HeaderComponent, LogoComponent, UserMenuComponent],
             imports: [
                 StoreModule.forRoot({
                     userState: userReducer,
+                    roomState: roomReducer,
                 } as ActionReducerMap<AppState>),
             ],
             schemas: [NO_ERRORS_SCHEMA],
+            declarations: [PlaceListContainerComponent],
         }).compileComponents();
+    }));
 
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PlaceListContainerComponent);
         store = TestBed.get(Store);
 
         spyOn(store, 'dispatch').and.callThrough();
-
-        fixture = TestBed.createComponent(HeaderComponent);
-        component = fixture.debugElement.componentInstance;
+        component = fixture.componentInstance;
         fixture.detectChanges();
-    }));
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();

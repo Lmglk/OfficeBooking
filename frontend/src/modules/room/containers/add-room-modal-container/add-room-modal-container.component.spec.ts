@@ -1,32 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginContainerComponent } from './login-container.component';
+import { AddRoomModalContainerComponent } from './add-room-modal-container.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
 import { AppState } from '../../../app/types/AppState';
 import { userReducer } from '../../../app/reducers/user.reducer';
-import { BasicComponentsModule } from '../../../basic-components/basic-components.module';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { roomReducer } from '../../../app/reducers/room.reducer';
 
-describe('LoginContainerComponent', () => {
-    let component: LoginContainerComponent;
-    let fixture: ComponentFixture<LoginContainerComponent>;
+describe('AddRoomModalContainerComponent', () => {
+    let component: AddRoomModalContainerComponent;
+    let fixture: ComponentFixture<AddRoomModalContainerComponent>;
     let store: Store<AppState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LoginContainerComponent],
-            schemas: [NO_ERRORS_SCHEMA],
+            declarations: [AddRoomModalContainerComponent],
             imports: [
                 StoreModule.forRoot({
                     userState: userReducer,
+                    roomState: roomReducer,
                 } as ActionReducerMap<AppState>),
-                BasicComponentsModule,
             ],
+            schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LoginContainerComponent);
+        fixture = TestBed.createComponent(AddRoomModalContainerComponent);
         store = TestBed.get(Store);
 
         spyOn(store, 'dispatch').and.callThrough();

@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../components/home/home.component';
+import { RoomLayoutComponent } from '../../room/components/room-layout/room-layout.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { RegistrationContainerComponent } from '../../authorization/containers/registration-container/registration-container.component';
 import { LoginContainerComponent } from '../../authorization/containers/login-container/login-container.component';
 import { LayoutComponent } from '../components/layout/layout.component';
-import { RoomComponent } from '../components/room/room.component';
+import { PlaceLayoutComponent } from '../../place/components/place-layout/place-layout.component';
 
 export const childRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'room', component: RoomComponent },
+    { path: 'room-layout', component: RoomLayoutComponent },
+    { path: 'room', component: PlaceLayoutComponent },
 ];
 
 export const routes: Routes = [
@@ -20,5 +20,5 @@ export const routes: Routes = [
     },
     { path: 'login', component: LoginContainerComponent },
     { path: 'registration', component: RegistrationContainerComponent },
-    { path: '**', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '**', component: RoomLayoutComponent, canActivate: [AuthGuard] },
 ];

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { BasicComponentsModule } from '../../../basic-components/basic-components.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HomeComponent } from '../../../app/components/home/home.component';
+import { RoomLayoutComponent } from '../../../room/components/room-layout/room-layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginComponent', () => {
@@ -12,12 +12,12 @@ describe('LoginComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LoginComponent, HomeComponent],
+            declarations: [LoginComponent, RoomLayoutComponent],
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 RouterTestingModule.withRoutes([
                     { path: 'login', component: LoginComponent },
-                    { path: 'home', component: HomeComponent },
+                    { path: 'room-layout', component: RoomLayoutComponent },
                     { path: '**', component: LoginComponent },
                 ]),
                 BasicComponentsModule,

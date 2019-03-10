@@ -6,14 +6,21 @@ import { BasicComponentsModule } from '../basic-components/basic-components.modu
 import { RouterModule } from '@angular/router';
 import { LoginContainerComponent } from './containers/login-container/login-container.component';
 import { LoginComponent } from './components/login/login.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './effects/user.effects';
 
 @NgModule({
-    imports: [CommonModule, BasicComponentsModule, RouterModule],
     declarations: [
         RegistrationComponent,
         RegistrationContainerComponent,
         LoginContainerComponent,
         LoginComponent,
+    ],
+    imports: [
+        CommonModule,
+        BasicComponentsModule,
+        RouterModule,
+        EffectsModule.forFeature([UserEffects]),
     ],
 })
 export class AuthorizationModule {}

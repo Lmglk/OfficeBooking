@@ -4,8 +4,8 @@ import { RegistrationContainerComponent } from './registration-container.compone
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
 import { AppState } from '../../../app/types/AppState';
-import { userReducer } from '../../../app/store/reducers/user.reducer';
-import { roomReducer } from '../../../app/store/reducers/room.reducer';
+import { userReducer } from '../../../app/reducers/user.reducer';
+import { roomReducer } from '../../../app/reducers/room.reducer';
 
 describe('RegistrationContainerComponent', () => {
     let component: RegistrationContainerComponent;

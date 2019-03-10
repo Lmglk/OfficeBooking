@@ -3,8 +3,8 @@ import { TestBed, inject } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 import { ActionReducerMap, Store, StoreModule } from '@ngrx/store';
 import { AppState } from '../types/AppState';
-import { userReducer } from '../store/reducers/user.reducer';
-import { roomReducer } from '../store/reducers/room.reducer';
+import { userReducer } from '../reducers/user.reducer';
+import { roomReducer } from '../reducers/room.reducer';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthGuard', () => {

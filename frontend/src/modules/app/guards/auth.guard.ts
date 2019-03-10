@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AppState } from '../types/AppState';
 import { select, Store } from '@ngrx/store';
-import { selectUser } from '../store/selectors/selectUser';
+import { selectUser } from '../selectors/selectUser';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
