@@ -18,7 +18,6 @@ import { AppState } from './types/AppState';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { roomReducer } from './store/reducers/room.reducer';
-import { ListComponent } from '../basic-components/components/list/list.component';
 import { RoomListContainerComponent } from './containers/room-list-container/room-list-container.component';
 import { IconsModule } from '../icons/icons.module';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
@@ -28,6 +27,13 @@ import { AddRoomModalContentComponent } from './components/add-room-modal-conten
 import { RoomEffects } from './store/effects/room.effects';
 import { AuthorizationModule } from '../authorization/authorization.module';
 import { RoomInfoModule } from '../room-info/room-info.module';
+import { RoomComponent } from './components/room/room.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { PlaceListContainerComponent } from './containers/place-list-container/place-list-container.component';
+import { AddPlaceModalContainerComponent } from './containers/add-place-modal-container/add-place-modal-container.component';
+import { AddPlaceModalContentComponent } from './components/add-place-modal-content/add-place-modal-content.component';
+import { PlaceEffects } from './store/effects/place.effects';
+import { PlaceInfoModule } from '../place-info/place-info.module';
 
 @NgModule({
     declarations: [
@@ -40,8 +46,16 @@ import { RoomInfoModule } from '../room-info/room-info.module';
         ButtonPlateComponent,
         AddRoomModalContainerComponent,
         AddRoomModalContentComponent,
+        RoomComponent,
+        LayoutComponent,
+        PlaceListContainerComponent,
+        AddPlaceModalContainerComponent,
+        AddPlaceModalContentComponent,
     ],
-    entryComponents: [AddRoomModalContainerComponent],
+    entryComponents: [
+        AddRoomModalContainerComponent,
+        AddPlaceModalContainerComponent,
+    ],
     imports: [
         BrowserModule,
         HttpClientModule,
@@ -54,12 +68,13 @@ import { RoomInfoModule } from '../room-info/room-info.module';
             maxAge: 25,
             logOnly: environment.production,
         }),
-        EffectsModule.forRoot([UserEffects, RoomEffects]),
+        EffectsModule.forRoot([UserEffects, RoomEffects, PlaceEffects]),
         BasicComponentsModule,
         ModalModule,
         IconsModule,
         AuthorizationModule,
         RoomInfoModule,
+        PlaceInfoModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

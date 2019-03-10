@@ -40,7 +40,7 @@ export class AddRoomModalContentComponent {
     public handleDescriptionChange(event: Event) {
         this.onchange.emit({
             ...this.parameters,
-            description: (event.target as HTMLInputElement).value,
+            description: (event.target as HTMLTextAreaElement).value,
         });
     }
 }

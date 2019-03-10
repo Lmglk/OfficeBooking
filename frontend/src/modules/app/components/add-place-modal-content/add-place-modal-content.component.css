@@ -1,0 +1,41 @@
+.grid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-areas:
+        'name name'
+        'equipment equipment'
+        'positionX positionY'
+        'booking-available booking-available'
+        'description description';
+}
+
+.equipment {
+    grid-area: equipment;
+    display: grid;
+    grid-gap: 0.5rem;
+}
+
+.name {
+    grid-area: name;
+}
+
+.positionX {
+    grid-area: positionX;
+}
+
+.positionY {
+    grid-area: positionY;
+}
+
+.booking-available {
+    grid-area: booking-available;
+}
+
+.description {
+    grid-area: description;
+}
+
+.group {
+    display: grid;
+    grid-gap: 0.5rem;
+}

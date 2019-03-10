@@ -1,5 +1,5 @@
 export enum Equipment {
-    COMPUTER = 'computer',
-    PHONE = 'phone',
-    LAN = 'lan',
+    COMPUTER = 'Computer',
+    PHONE = 'Phone',
+    LAN = 'Lan',
 }

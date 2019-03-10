@@ -8,7 +8,7 @@ import { TryToSaveRoomAction } from '../../store/actions/TryToSaveRoomAction';
 @Component({
     selector: 'ob-add-room-modal-container',
     template: `
-        <ob-block name="Add room">
+        <ob-block name="Create room">
             <div class="grid">
                 <ob-add-room-modal-content
                     [parameters]="parameters"

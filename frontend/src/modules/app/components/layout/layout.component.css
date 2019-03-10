@@ -1,0 +1,11 @@
+.grid {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page-content {
+    padding: 2rem;
+    overflow: auto;
+}

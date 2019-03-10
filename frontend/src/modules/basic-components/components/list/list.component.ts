@@ -9,11 +9,11 @@ import { ListItem } from '../../types/ListItem';
 export class ListComponent<T extends ListItem> {
     @Input() data: T[];
     @Input() bindField: keyof T;
-    @Input() selectedValue: T | null;
+    @Input() selectedValueId: ListItem['id'];
 
     @Output() selected: EventEmitter<T | null> = new EventEmitter();
 
-    public handleSelect(value: T) {
+    public handleSelect(value: T): void {
         this.selected.emit(value);
     }
 }

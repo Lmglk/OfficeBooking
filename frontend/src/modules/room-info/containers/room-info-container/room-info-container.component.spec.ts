@@ -6,6 +6,7 @@ import { AppState } from '../../../app/types/AppState';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { userReducer } from '../../../app/store/reducers/user.reducer';
 import { roomReducer } from '../../../app/store/reducers/room.reducer';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RoomInfoContainerComponent', () => {
     let component: RoomInfoContainerComponent;
@@ -15,6 +16,7 @@ describe('RoomInfoContainerComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                RouterTestingModule,
                 StoreModule.forRoot({
                     userState: userReducer,
                     roomState: roomReducer,

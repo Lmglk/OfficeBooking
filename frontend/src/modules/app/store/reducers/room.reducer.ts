@@ -6,10 +6,15 @@ import { ResetSelectRoomIdAction } from '../actions/ResetSelectRoomIdAction';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { Room } from '../../types/Room';
 import { RemoveRoomAction } from '../../../room-info/actions/RemoveRoomAction';
+import { SetSelectPlaceIdAction } from '../actions/SetSelectPlaceIdAction';
+import { ResetSelectPlaceIdAction } from '../actions/ResetSelectPlaceIdAction';
+import { AddPlaceAction } from '../actions/AddPlaceAction';
+import { RemovePlaceAction } from '../../../place-info/actions/RemovePlaceAction';
 
 const initialState: RoomState = {
     rooms: [],
     selectedRoomId: null,
+    selectedPlaceId: null,
 };
 
 type Action =
@@ -18,7 +23,11 @@ type Action =
     | SetSelectRoomIdAction
     | ResetSelectRoomIdAction
     | AddRoomAction
-    | RemoveRoomAction;
+    | RemoveRoomAction
+    | SetSelectPlaceIdAction
+    | ResetSelectPlaceIdAction
+    | AddPlaceAction
+    | RemovePlaceAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -59,6 +68,50 @@ export function roomReducer(
             return {
                 ...state,
                 rooms: state.rooms.filter(room => room.id !== action.payload),
+            };
+
+        case SetSelectPlaceIdAction.type:
+            return {
+                ...state,
+                selectedPlaceId: action.payload,
+            };
+
+        case ResetSelectPlaceIdAction.type:
+            return {
+                ...state,
+                selectedPlaceId: null,
+            };
+
+        case AddPlaceAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.map(room => {
+                    if (room.id === action.payload.id) {
+                        return {
+                            ...room,
+                            places: [...room.places, action.payload.place],
+                        };
+                    } else {
+                        return room;
+                    }
+                }),
+            };
+
+        case RemovePlaceAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.map(room => {
+                    if (room.id === action.payload.roomId) {
+                        return {
+                            ...room,
+                            places: room.places.filter(
+                                place => place.id !== action.payload.placeId
+                            ),
+                        };
+                    } else {
+                        return room;
+                    }
+                }),
             };
 
         default:

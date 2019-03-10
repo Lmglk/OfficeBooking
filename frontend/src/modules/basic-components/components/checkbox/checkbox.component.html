@@ -1,0 +1,19 @@
+<div
+    class="checkbox"
+    [class.active]="checked"
+    [class.disabled]="disabled"
+    (click)="handleCheck($event, checked)"
+>
+    <div class="checkbox-container">
+        <input
+            type="checkbox"
+            value="None"
+            name="check"
+            [id]="id"
+            [checked]="checked"
+            [disabled]="disabled"
+        />
+        <label [for]="id"></label>
+    </div>
+    <div class="title" *ngIf="label">{{ label }}</div>
+</div>

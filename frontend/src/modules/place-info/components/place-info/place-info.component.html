@@ -1,0 +1,24 @@
+<div class="grid" *ngIf="place">
+    <div class="title">{{ place.name }}</div>
+
+    <ob-section name="Equipment">
+        <ul *ngIf="place.equipment.length">
+            <li *ngFor="let item of place.equipment">{{ item }}</li>
+        </ul>
+        <div *ngIf="!place.equipment.length">No equipment</div>
+    </ob-section>
+
+    <ob-section name="Metrics">
+        <div>
+            <div>Is used: {{ place.isUsed ? 'yes' : 'no' }}</div>
+        </div>
+    </ob-section>
+
+    <ob-section name="Description">
+        <div>{{ place.description }}</div>
+    </ob-section>
+
+    <div class="actions">
+        <ob-button name="Remove" (click)="handleRemovePlace()"></ob-button>
+    </div>
+</div>

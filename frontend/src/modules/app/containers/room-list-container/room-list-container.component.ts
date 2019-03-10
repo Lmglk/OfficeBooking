@@ -13,7 +13,7 @@ import { SetSelectRoomIdAction } from '../../store/actions/SetSelectRoomIdAction
         <ob-list
             [data]="rooms$ | async"
             [bindField]="'name'"
-            [selectedValue]="selectedRoomId$ | async"
+            [selectedValueId]="selectedRoomId$ | async"
             (selected)="selectRoom($event)"
         ></ob-list>
     `,
