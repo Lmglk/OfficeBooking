@@ -1,10 +1,13 @@
-<div class="list-container">
-    <div
-        class="item"
-        *ngFor="let item of data"
-        [class.selected]="selectedValueId && selectedValueId === item.id"
-        (click)="handleSelect(item)"
-    >
-        {{ item[bindField] }}
+<div class="wrapper">
+    <ob-search-field (onchange)="changeSearchValue($event)"></ob-search-field>
+    <div class="list-container">
+        <div
+            class="item"
+            *ngFor="let item of (data | filter: bindField:searchValue)"
+            [class.selected]="selectedValueId && selectedValueId === item.id"
+            (click)="handleSelect(item)"
+        >
+            {{ item[bindField] }}
+        </div>
     </div>
 </div>

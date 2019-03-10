@@ -13,7 +13,13 @@ export class ListComponent<T extends ListItem> {
 
     @Output() selected: EventEmitter<T | null> = new EventEmitter();
 
+    public searchValue = '';
+
     public handleSelect(value: T): void {
         this.selected.emit(value);
+    }
+
+    public changeSearchValue(value: string) {
+        this.searchValue = value;
     }
 }

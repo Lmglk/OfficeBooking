@@ -1,0 +1,11 @@
+<div class="search">
+    <div class="icon-container">
+        <ob-search-icon></ob-search-icon>
+    </div>
+    <input
+        type="text"
+        placeholder="Search..."
+        [value]="value"
+        (input)="changeSearchValue($event)"
+    />
+</div>

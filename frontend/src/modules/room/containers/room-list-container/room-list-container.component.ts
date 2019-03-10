@@ -17,6 +17,13 @@ import { SetSelectRoomIdAction } from '../../actions/SetSelectRoomIdAction';
             (selected)="selectRoom($event)"
         ></ob-list>
     `,
+    styles: [
+        `
+            :host {
+                overflow: hidden;
+            }
+        `,
+    ],
 })
 export class RoomListContainerComponent {
     public rooms$: Observable<Room[]>;

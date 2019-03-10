@@ -3,7 +3,7 @@ import { ModalService } from '../../../modal/services/modal.service';
 import { AddRoomModalContainerComponent } from '../../containers/add-room-modal-container/add-room-modal-container.component';
 
 @Component({
-    selector: 'ob-home',
+    selector: 'ob-room',
     templateUrl: './room-layout.component.html',
     styleUrls: ['./room-layout.component.css'],
 })

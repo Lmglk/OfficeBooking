@@ -7,9 +7,12 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { ListComponent } from './components/list/list.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ButtonPlateComponent } from './components/button-plate/button-plate.component';
+import { IconsModule } from '../icons/icons.module';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SearchFieldComponent } from './components/search-field/search-field.component';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, IconsModule],
     declarations: [
         BlockComponent,
         ButtonComponent,
@@ -18,6 +21,8 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
         ListComponent,
         CheckboxComponent,
         ButtonPlateComponent,
+        FilterPipe,
+        SearchFieldComponent,
     ],
     exports: [
         BlockComponent,
@@ -27,6 +32,7 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
         ListComponent,
         CheckboxComponent,
         ButtonPlateComponent,
+        FilterPipe,
     ],
 })
 export class BasicComponentsModule {}

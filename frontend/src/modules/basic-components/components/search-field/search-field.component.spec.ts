@@ -1,23 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SearchFieldComponent } from './search-field.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ListComponent } from './list.component';
-import { ListItem } from '../../types/ListItem';
-import { FilterPipe } from '../../pipes/filter.pipe';
 
-describe('ListComponent', () => {
-    let component: ListComponent<ListItem>;
-    let fixture: ComponentFixture<ListComponent<ListItem>>;
+describe('SearchFieldComponent', () => {
+    let component: SearchFieldComponent;
+    let fixture: ComponentFixture<SearchFieldComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ListComponent, FilterPipe],
+            declarations: [SearchFieldComponent],
             schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ListComponent);
+        fixture = TestBed.createComponent(SearchFieldComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

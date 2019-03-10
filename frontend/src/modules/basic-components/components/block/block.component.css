@@ -1,3 +1,8 @@
+:host {
+    overflow: hidden;
+    box-shadow: 0 0.4rem 0.4rem var(--color-shadow);
+}
+
 .block {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -6,7 +11,6 @@
     border-radius: 0.3rem;
     background-color: var(--color-surface);
     box-sizing: border-box;
-    box-shadow: 0 0.4rem 0.4rem var(--color-shadow);
 }
 
 .header {
@@ -19,4 +23,5 @@
 
 .body {
     padding: 1.6rem;
+    overflow: auto;
 }

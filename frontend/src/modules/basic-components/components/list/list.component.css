@@ -1,7 +1,11 @@
-.list-container {
+.wrapper {
+    display: grid;
+    grid-template-rows: max-content auto;
     height: 100%;
     border: 0.1rem solid var(--color-border);
     border-radius: 0.3rem;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .item {
@@ -22,4 +26,8 @@
 .selected:hover {
     background-color: var(--color-accent);
     color: var(--color-surface);
+}
+
+.list-container {
+    overflow: auto;
 }
