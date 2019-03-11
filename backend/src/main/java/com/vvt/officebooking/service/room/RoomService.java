@@ -1,5 +1,6 @@
 package com.vvt.officebooking.service.room;
 
+import com.vvt.officebooking.controller.UtilService;
 import com.vvt.officebooking.model.entity.room.RoomEntity;
 import com.vvt.officebooking.repository.room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,12 @@ import java.util.List;
 @Service
 public class RoomService {
     private RoomRepository roomRepository;
+    private UtilService utilService;
 
     @Autowired
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, UtilService utilService) {
         this.roomRepository = roomRepository;
+        this.utilService = utilService;
     }
 
     public RoomEntity get(Long id) throws EntityNotFoundException {
@@ -23,10 +26,12 @@ public class RoomService {
     }
 
     public RoomEntity save(RoomEntity room) {
+        utilService.isAdmin();
         return roomRepository.saveAndFlush(room);
     }
 
     public void remove(RoomEntity room) {
+        utilService.isAdmin();
         roomRepository.delete(room);
     }
 

@@ -1,5 +1,6 @@
 package com.vvt.officebooking.service.place;
 
+import com.vvt.officebooking.controller.UtilService;
 import com.vvt.officebooking.model.entity.place.PlaceEntity;
 import com.vvt.officebooking.model.entity.room.RoomEntity;
 import com.vvt.officebooking.repository.place.PlaceRepository;
@@ -14,11 +15,13 @@ import java.util.List;
 public class PlaceService {
     private PlaceRepository placeRepository;
     private RoomService roomService;
+    private UtilService utilService;
 
     @Autowired
-    public PlaceService(PlaceRepository placeRepository, RoomService roomService) {
+    public PlaceService(PlaceRepository placeRepository, RoomService roomService, UtilService utilService) {
         this.placeRepository = placeRepository;
         this.roomService = roomService;
+        this.utilService = utilService;
     }
 
     public PlaceEntity get(Long id) throws EntityNotFoundException {
@@ -27,11 +30,13 @@ public class PlaceService {
     }
 
     public PlaceEntity save(PlaceEntity place, Long idRoom) {
+        utilService.isAdmin();
         place.setRoom(getRoom(idRoom));
         return placeRepository.saveAndFlush(place);
     }
 
     public void remove(PlaceEntity place) {
+        utilService.isAdmin();
         placeRepository.delete(place);
     }
 
