@@ -1,7 +1,9 @@
 package com.vvt.officebooking.service.place;
 
 import com.vvt.officebooking.model.entity.place.PlaceEntity;
+import com.vvt.officebooking.model.entity.room.RoomEntity;
 import com.vvt.officebooking.repository.place.PlaceRepository;
+import com.vvt.officebooking.service.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +13,12 @@ import java.util.List;
 @Service
 public class PlaceService {
     private PlaceRepository placeRepository;
+    private RoomService roomService;
 
     @Autowired
-    public PlaceService(PlaceRepository placeRepository) {
+    public PlaceService(PlaceRepository placeRepository, RoomService roomService) {
         this.placeRepository = placeRepository;
+        this.roomService = roomService;
     }
 
     public PlaceEntity get(Long id) throws EntityNotFoundException {
@@ -22,7 +26,8 @@ public class PlaceService {
                 .orElseThrow(() -> new EntityNotFoundException("id not found"));
     }
 
-    public PlaceEntity save(PlaceEntity place) {
+    public PlaceEntity save(PlaceEntity place, Long idRoom) {
+        place.setRoom(getRoom(idRoom));
         return placeRepository.saveAndFlush(place);
     }
 
@@ -32,5 +37,9 @@ public class PlaceService {
 
     public List<PlaceEntity> list() {
         return placeRepository.findAll();
+    }
+
+    private RoomEntity getRoom(Long idRoom) {
+        return roomService.get(idRoom);
     }
 }

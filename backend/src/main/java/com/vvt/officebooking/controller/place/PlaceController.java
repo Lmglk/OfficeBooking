@@ -31,8 +31,8 @@ public class PlaceController {
 
     @PostMapping(value = "/save")
     @Transactional
-    public ResponseEntity save(@RequestBody @Valid PlaceEntity item) {
-        PlaceEntity newItem = placeService.save(item);
+    public ResponseEntity save(@RequestBody @Valid PlaceEntity item, @RequestParam @Valid Long idRoom) {
+        PlaceEntity newItem = placeService.save(item, idRoom);
         return getItem(newItem);
     }
 
