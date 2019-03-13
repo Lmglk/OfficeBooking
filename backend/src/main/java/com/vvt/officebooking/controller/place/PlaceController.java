@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -29,6 +30,7 @@ public class PlaceController {
         return getItem(item);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping(value = "/save")
     @Transactional
     public ResponseEntity save(@RequestBody @Valid PlaceEntity item, @RequestParam @Valid Long idRoom) {
@@ -36,6 +38,7 @@ public class PlaceController {
         return getItem(newItem);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping(value = "/remove")
     @Transactional
     public void remove(@RequestBody @Valid PlaceEntity item) {
