@@ -26,12 +26,10 @@ public class RoomService {
     }
 
     public RoomEntity save(RoomEntity room) {
-        utilService.isAdmin();
         return roomRepository.saveAndFlush(room);
     }
 
     public void remove(RoomEntity room) {
-        utilService.isAdmin();
         roomRepository.delete(room);
     }
 

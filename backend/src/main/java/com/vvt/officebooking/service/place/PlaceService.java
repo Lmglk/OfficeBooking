@@ -30,13 +30,11 @@ public class PlaceService {
     }
 
     public PlaceEntity save(PlaceEntity place, Long idRoom) {
-        utilService.isAdmin();
         place.setRoom(getRoom(idRoom));
         return placeRepository.saveAndFlush(place);
     }
 
     public void remove(PlaceEntity place) {
-        utilService.isAdmin();
         placeRepository.delete(place);
     }
 
