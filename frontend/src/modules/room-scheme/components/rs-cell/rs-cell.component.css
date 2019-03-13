@@ -1,0 +1,26 @@
+.cell-wrapper {
+    fill: transparent;
+}
+
+.cell {
+    stroke: var(--color-accent);
+    fill: var(--color-accent);
+    transition: all 0.2s ease;
+}
+
+.empty {
+    stroke: var(--color-accent);
+    fill: transparent;
+}
+
+.used {
+    fill: lightcoral;
+}
+
+.isAvailable {
+    fill: #ddd;
+}
+
+.cell:not(.used):hover {
+    fill: var(--color-accent-hover);
+}

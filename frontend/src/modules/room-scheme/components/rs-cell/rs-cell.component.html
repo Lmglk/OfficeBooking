@@ -1,0 +1,20 @@
+<svg>
+    <rect
+        class="cell-wrapper"
+        [attr.x]="cell.x * size"
+        [attr.y]="cell.y * size"
+        [attr.height]="size"
+        [attr.width]="size"
+    ></rect>
+    <rect
+        class="cell"
+        [class.empty]="cell.roomId"
+        [class.used]="cell.isUsed"
+        [class.isAvailable]="cell.isAvailable"
+        [ngStyle]="style"
+        [attr.x]="cell.x * size"
+        [attr.y]="cell.y * size"
+        [attr.height]="size - padding * 2"
+        [attr.width]="size - padding * 2"
+    ></rect>
+</svg>

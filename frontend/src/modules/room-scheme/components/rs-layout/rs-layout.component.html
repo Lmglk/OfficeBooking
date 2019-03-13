@@ -1,0 +1,30 @@
+<div class="grid">
+    <ob-rs-canvas
+        class="canvas"
+        [cells]="cells"
+        [height]="height"
+        [width]="width"
+        [nodeSize]="nodeSize"
+        [padding]="padding"
+    ></ob-rs-canvas>
+    <div class="axis-x">
+        <div
+            class="axis-item"
+            *ngFor="let item of axisX"
+            [style.height]="nodeSize"
+            [style.width]="nodeSize"
+        >
+            {{ item }}
+        </div>
+    </div>
+    <div class="axis-y">
+        <div
+            class="axis-item"
+            *ngFor="let item of axisY"
+            [style.height]="nodeSize"
+            [style.width]="nodeSize"
+        >
+            {{ item }}
+        </div>
+    </div>
+</div>
