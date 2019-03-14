@@ -10,6 +10,7 @@ export class RsCellComponent {
     @Input() cell: Cell;
     @Input() size: number;
     @Input() padding: number;
+    @Input() hovering = true;
 
     public get style() {
         return {

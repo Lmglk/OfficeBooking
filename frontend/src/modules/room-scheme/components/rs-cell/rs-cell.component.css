@@ -24,7 +24,6 @@
     fill: #ddd;
 }
 
-.cell:not(.used):hover,
-.cell:not(.disabled):hover {
+.available.hovering:hover {
     fill: var(--color-accent-hover);
 }

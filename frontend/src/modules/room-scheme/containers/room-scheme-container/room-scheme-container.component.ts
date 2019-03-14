@@ -66,6 +66,6 @@ export class RoomSchemeContainerComponent {
 
         return place.isAvailableForBooking
             ? CellType.AVAILABLE
-            : CellType.DISABLED;
+            : CellType.NOT_AVAILABLE;
     }
 }

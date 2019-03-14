@@ -1,0 +1,14 @@
+<div class="grid">
+    <div>
+        <svg class="marker" [attr.width]="nodeSize" [attr.height]="nodeSize">
+            <g
+                ob-rs-cell
+                [cell]="cell"
+                [size]="nodeSize"
+                [padding]="padding"
+                [hovering]="false"
+            ></g>
+        </svg>
+    </div>
+    <div class="label">{{ label }}</div>
+</div>

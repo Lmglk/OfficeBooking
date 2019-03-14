@@ -8,6 +8,7 @@
     ></rect>
     <rect
         class="cell"
+        [class.hovering]="hovering"
         [ngStyle]="style"
         [ngClass]="cell.type"
         [attr.x]="cell.x * size"
