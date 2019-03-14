@@ -8,10 +8,8 @@
     ></rect>
     <rect
         class="cell"
-        [class.empty]="cell.roomId"
-        [class.used]="cell.isUsed"
-        [class.isAvailable]="cell.isAvailable"
         [ngStyle]="style"
+        [ngClass]="cell.type"
         [attr.x]="cell.x * size"
         [attr.y]="cell.y * size"
         [attr.height]="size - padding * 2"

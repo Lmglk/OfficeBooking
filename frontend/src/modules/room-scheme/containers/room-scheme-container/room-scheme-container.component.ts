@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Cell } from '../../types/Cell';
 import { selectCurrentRoom } from '../../../room/selectors/selectCurrentRoom';
 import { Room } from '../../../app/types/Room';
+import { Place } from '../../../app/types/Place';
+import { CellType } from '../../enums/CellType';
 
 @Component({
     selector: 'ob-room-scheme-container',
@@ -46,13 +48,24 @@ export class RoomSchemeContainerComponent {
                         x: j,
                         y: i,
                         roomId: currentPlace ? currentPlace.id : null,
-                        isUsed: !!(currentPlace && currentPlace.isUsed),
-                        isAvailable: !!(
-                            currentPlace && currentPlace.isAvailableForBooking
-                        ),
+                        type: this.getCellType(currentPlace),
                     },
                 ];
             }
         }
+    }
+
+    private getCellType(place: Place | undefined): CellType {
+        if (!place) {
+            return CellType.EMPTY;
+        }
+
+        if (place.isUsed) {
+            return CellType.USED;
+        }
+
+        return place.isAvailableForBooking
+            ? CellType.AVAILABLE
+            : CellType.DISABLED;
     }
 }

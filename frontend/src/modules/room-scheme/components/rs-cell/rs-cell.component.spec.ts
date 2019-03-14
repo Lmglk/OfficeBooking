@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RsCellComponent } from './rs-cell.component';
+import { CellType } from '../../enums/CellType';
 
 describe('RsCellComponent', () => {
     let component: RsCellComponent;
@@ -19,8 +20,7 @@ describe('RsCellComponent', () => {
             x: 0,
             y: 0,
             roomId: 0,
-            isUsed: false,
-            isAvailable: true,
+            type: CellType.EMPTY,
         };
         component.size = 0;
         component.padding = 0;

@@ -3,9 +3,12 @@
 }
 
 .cell {
+    transition: all 0.2s ease;
+}
+
+.available {
     stroke: var(--color-accent);
     fill: var(--color-accent);
-    transition: all 0.2s ease;
 }
 
 .empty {
@@ -17,10 +20,11 @@
     fill: lightcoral;
 }
 
-.isAvailable {
+.disabled {
     fill: #ddd;
 }
 
-.cell:not(.used):hover {
+.cell:not(.used):hover,
+.cell:not(.disabled):hover {
     fill: var(--color-accent-hover);
 }
