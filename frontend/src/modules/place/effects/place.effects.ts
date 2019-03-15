@@ -19,8 +19,12 @@ export class PlaceEffects {
     public savePlace$ = this.actions$.pipe(
         ofType<TryToSavePlaceAction>(TryToSavePlaceAction.type),
         withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
-        switchMap(([action, roomId]) =>
-            this.placeService.save(action.payload).pipe(
+        switchMap(([action, roomId]) => {
+            if (!roomId) {
+                throw new Error('Expected roomId parameter');
+            }
+
+            return this.placeService.save(roomId, action.payload).pipe(
                 map(
                     place =>
                         roomId &&
@@ -30,11 +34,14 @@ export class PlaceEffects {
                         })
                 ),
                 catchError(() => {
-                    console.error('Place save failed');
-                    return of(new RejectSavePlaceAction());
+                    throw new Error('Place save failed');
                 })
-            )
-        )
+            );
+        }),
+        catchError(error => {
+            console.error(error);
+            return of(new RejectSavePlaceAction());
+        })
     );
 
     @Effect()
