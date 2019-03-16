@@ -10,11 +10,14 @@ import { SetSelectPlaceIdAction } from '../../place/actions/SetSelectPlaceIdActi
 import { ResetSelectPlaceIdAction } from '../../place/actions/ResetSelectPlaceIdAction';
 import { AddPlaceAction } from '../../place/actions/AddPlaceAction';
 import { RemovePlaceAction } from '../../place/actions/RemovePlaceAction';
+import { SetTemporaryRoomAction } from '../../room/actions/SetTemporaryRoomAction';
+import { ResetTemporaryRoomAction } from '../../room/actions/ResetTemporaryRoomAction';
 
 const initialState: RoomState = {
     rooms: [],
     selectedRoomId: null,
     selectedPlaceId: null,
+    temporaryRoom: null,
 };
 
 type Action =
@@ -27,7 +30,9 @@ type Action =
     | SetSelectPlaceIdAction
     | ResetSelectPlaceIdAction
     | AddPlaceAction
-    | RemovePlaceAction;
+    | RemovePlaceAction
+    | SetTemporaryRoomAction
+    | ResetTemporaryRoomAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -112,6 +117,18 @@ export function roomReducer(
                         return room;
                     }
                 }),
+            };
+
+        case SetTemporaryRoomAction.type:
+            return {
+                ...state,
+                temporaryRoom: action.payload,
+            };
+
+        case ResetTemporaryRoomAction.type:
+            return {
+                ...state,
+                temporaryRoom: null,
             };
 
         default:

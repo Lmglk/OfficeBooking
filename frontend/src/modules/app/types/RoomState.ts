@@ -4,4 +4,5 @@ export interface RoomState {
     rooms: Room[];
     selectedRoomId: number | null;
     selectedPlaceId: number | null;
+    temporaryRoom: Room | null;
 }

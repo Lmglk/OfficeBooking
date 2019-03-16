@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TryToSaveRoomAction } from '../actions/TryToSaveRoomAction';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { ApiRoomService } from '../services/api-room.service';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { of } from 'rxjs';
@@ -12,6 +12,13 @@ import { RejectLoadRoomAction } from '../actions/RejectLoadRoomAction';
 import { TryToRemoveRoomAction } from '../actions/TryToRemoveRoomAction';
 import { RejectRemoveRoomAction } from '../actions/RejectRemoveRoomAction';
 import { RemoveRoomAction } from '../actions/RemoveRoomAction';
+import { EditRoomAction } from '../actions/EditRoomAction';
+import { selectCurrentRoom } from '../selectors/selectCurrentRoom';
+import { AppState } from '../../app/types/AppState';
+import { select, Store } from '@ngrx/store';
+import { SetTemporaryRoomAction } from '../actions/SetTemporaryRoomAction';
+import { RejectSetTemporaryRoomAction } from '../actions/RejectSetTemporaryRoomAction';
+import { TryToSaveTemporaryRoomAction } from '../actions/TryToSaveTemporaryRoomAction';
 
 @Injectable()
 export class RoomEffects {
@@ -51,8 +58,32 @@ export class RoomEffects {
         )
     );
 
+    @Effect()
+    public setTemporaryRoom$ = this.actions$.pipe(
+        ofType<EditRoomAction>(EditRoomAction.type),
+        withLatestFrom(this.store.pipe(select(selectCurrentRoom))),
+        map(([aciton, room]) => {
+            if (!room) {
+                throw new Error('Room is not selected');
+            }
+
+            return new SetTemporaryRoomAction(room);
+        }),
+        catchError(error => {
+            console.error(error);
+            return of(new RejectSetTemporaryRoomAction());
+        })
+    );
+
+    @Effect()
+    public updateRoom$ = this.actions$.pipe(
+        ofType<TryToSaveTemporaryRoomAction>(TryToSaveTemporaryRoomAction.type)
+        // todo: sand data to bakend
+    );
+
     constructor(
         private readonly actions$: Actions,
+        private readonly store: Store<AppState>,
         private readonly roomService: ApiRoomService
     ) {}
 }
