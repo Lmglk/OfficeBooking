@@ -1,0 +1,19 @@
+<svg>
+    <rect
+        class="cell-wrapper"
+        [attr.x]="cell.x * size"
+        [attr.y]="cell.y * size"
+        [attr.height]="size"
+        [attr.width]="size"
+    ></rect>
+    <rect
+        class="cell"
+        [class.hovering]="hovering"
+        [ngStyle]="style"
+        [ngClass]="cell.type"
+        [attr.x]="cell.x * size"
+        [attr.y]="cell.y * size"
+        [attr.height]="size - padding * 2"
+        [attr.width]="size - padding * 2"
+    ></rect>
+</svg>

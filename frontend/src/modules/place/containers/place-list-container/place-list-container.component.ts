@@ -17,6 +17,13 @@ import { selectCurrentPlaceId } from '../../selectors/selectCurrentPlaceId';
             (selected)="selectPlace($event)"
         ></ob-list>
     `,
+    styles: [
+        `
+            :host {
+                overflow: hidden;
+            }
+        `,
+    ],
 })
 export class PlaceListContainerComponent {
     public places$: Observable<Place[]>;

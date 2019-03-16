@@ -2,10 +2,12 @@
     <div class="title">{{ place.name }}</div>
 
     <ob-section name="Equipment">
-        <ul *ngIf="place.equipment.length">
+        <ul *ngIf="place.equipment && place.equipment.length">
             <li *ngFor="let item of place.equipment">{{ item }}</li>
         </ul>
-        <div *ngIf="!place.equipment.length">No equipment</div>
+        <div *ngIf="!place.equipment || !place.equipment.length">
+            No equipment
+        </div>
     </ob-section>
 
     <ob-section name="Metrics">

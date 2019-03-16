@@ -1,0 +1,11 @@
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+    width: max-content;
+    grid-gap: 1rem;
+    align-items: center;
+}
+
+.marker {
+    display: block;
+}

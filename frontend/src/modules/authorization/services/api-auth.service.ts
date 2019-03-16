@@ -16,6 +16,6 @@ export class ApiAuthService {
     }
 
     public register(parameters: SendUserParameters): Observable<void> {
-        return this.http.post<void>('api/user/authorization', parameters);
+        return this.http.post<void>('api/user/registration', parameters);
     }
 }

@@ -1,0 +1,37 @@
+.chart {
+    display: grid;
+    grid-column-gap: 1rem;
+    grid-template-areas:
+        'axis-y canvas'
+        '. axis-x'
+        'legend legend';
+}
+
+.canvas {
+    grid-area: canvas;
+}
+
+.axis-x {
+    grid-area: axis-x;
+
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.axis-y {
+    grid-area: axis-y;
+
+    display: grid;
+    grid-auto-flow: row;
+}
+
+.axis-item {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 2rem;
+}

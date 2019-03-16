@@ -11,3 +11,10 @@
     height: 100%;
     grid-gap: 2rem;
 }
+
+.chart {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+}

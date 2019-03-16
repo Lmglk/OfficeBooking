@@ -11,12 +11,12 @@ function createRooms() {
     for (let i = 1; i <= COUNT_SEEDS; i++) {
         const roomWidth = faker.random.number({
             min: 2,
-            max: 5,
+            max: 25,
         });
 
         const roomHeight = faker.random.number({
             min: 2,
-            max: 5,
+            max: 25,
         });
 
         room = [
