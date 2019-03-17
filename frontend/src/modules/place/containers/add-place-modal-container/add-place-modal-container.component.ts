@@ -52,8 +52,8 @@ export class AddPlaceModalContainerComponent {
         equipment: [],
         description: '',
         isAvailableForBooking: true,
-        x: 1,
-        y: 1,
+        x: 0,
+        y: 0,
     };
 
     constructor(
@@ -67,6 +67,7 @@ export class AddPlaceModalContainerComponent {
 
     public handleCreate() {
         this.store.dispatch(new TryToSavePlaceAction(this.parameters));
+        this.modalService.close();
     }
 
     public handleClose() {

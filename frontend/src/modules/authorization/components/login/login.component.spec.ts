@@ -17,7 +17,7 @@ describe('LoginComponent', () => {
             imports: [
                 RouterTestingModule.withRoutes([
                     { path: 'login', component: LoginComponent },
-                    { path: 'room-layout', component: RoomLayoutComponent },
+                    { path: 'home', component: RoomLayoutComponent },
                     { path: '**', component: LoginComponent },
                 ]),
                 BasicComponentsModule,

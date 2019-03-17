@@ -12,12 +12,17 @@ import { AddPlaceAction } from '../../place/actions/AddPlaceAction';
 import { RemovePlaceAction } from '../../place/actions/RemovePlaceAction';
 import { SetTemporaryRoomAction } from '../../room/actions/SetTemporaryRoomAction';
 import { ResetTemporaryRoomAction } from '../../room/actions/ResetTemporaryRoomAction';
+import { UpdateRoomAction } from '../../room/actions/UpdateRoomAction';
+import { UpdatePlaceAction } from '../../place/actions/UpdatePlaceAction';
+import { SetTemporaryPlaceAction } from '../../place/actions/SetTemporaryPlaceAction';
+import { ResetTemporaryPlaceAction } from '../../place/actions/ResetTemporaryPlaceAction';
 
 const initialState: RoomState = {
     rooms: [],
     selectedRoomId: null,
     selectedPlaceId: null,
     temporaryRoom: null,
+    temporaryPlace: null,
 };
 
 type Action =
@@ -26,13 +31,17 @@ type Action =
     | SetSelectRoomIdAction
     | ResetSelectRoomIdAction
     | AddRoomAction
+    | UpdateRoomAction
     | RemoveRoomAction
     | SetSelectPlaceIdAction
     | ResetSelectPlaceIdAction
     | AddPlaceAction
+    | UpdatePlaceAction
     | RemovePlaceAction
     | SetTemporaryRoomAction
-    | ResetTemporaryRoomAction;
+    | ResetTemporaryRoomAction
+    | SetTemporaryPlaceAction
+    | ResetTemporaryPlaceAction;
 
 export function roomReducer(
     state: RoomState = initialState,
@@ -69,6 +78,14 @@ export function roomReducer(
                 rooms: [...state.rooms, action.payload as Room],
             };
 
+        case UpdateRoomAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.map(room =>
+                    room.id === action.payload.id ? action.payload : room
+                ),
+            };
+
         case RemoveRoomAction.type:
             return {
                 ...state,
@@ -95,6 +112,28 @@ export function roomReducer(
                         return {
                             ...room,
                             places: [...room.places, action.payload.place],
+                        };
+                    } else {
+                        return room;
+                    }
+                }),
+            };
+
+        case UpdatePlaceAction.type:
+            return {
+                ...state,
+                rooms: state.rooms.map(room => {
+                    if (room.id === action.payload.id) {
+                        return {
+                            ...room,
+                            places: room.places.map(place =>
+                                place.id === action.payload.place.id
+                                    ? {
+                                          ...place,
+                                          ...action.payload.place,
+                                      }
+                                    : place
+                            ),
                         };
                     } else {
                         return room;
@@ -129,6 +168,18 @@ export function roomReducer(
             return {
                 ...state,
                 temporaryRoom: null,
+            };
+
+        case SetTemporaryPlaceAction.type:
+            return {
+                ...state,
+                temporaryPlace: action.payload,
+            };
+
+        case ResetTemporaryPlaceAction.type:
+            return {
+                ...state,
+                temporaryPlace: null,
             };
 
         default:

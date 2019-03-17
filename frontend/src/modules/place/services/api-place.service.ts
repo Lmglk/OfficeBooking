@@ -23,4 +23,10 @@ export class ApiPlaceService {
     public remove(place: Place): Observable<void> {
         return this.http.post<void>('api/place/remove', place);
     }
+
+    public update(roomId: Room['id'], place: Place): Observable<Place> {
+        return this.http.post<Place>(`api/place/save`, place, {
+            params: new HttpParams().set('idRoom', String(roomId)),
+        });
+    }
 }

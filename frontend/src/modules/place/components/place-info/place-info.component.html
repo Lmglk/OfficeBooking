@@ -17,10 +17,12 @@
     </ob-section>
 
     <ob-section name="Description">
-        <div>{{ place.description }}</div>
+        <div *ngIf="place.description.length">{{ place.description }}</div>
+        <div *ngIf="!place.description.length">No description</div>
     </ob-section>
 
     <div class="actions">
+        <ob-button name="Edit" (click)="openEditPlaceModal()"></ob-button>
         <ob-button name="Remove" (click)="handleRemovePlace()"></ob-button>
     </div>
 </div>

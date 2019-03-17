@@ -26,7 +26,7 @@ export class RoomInfoComponent {
         this.navigateToRoom.emit();
     }
 
-    public editRoom() {
+    public openEditRoomModal() {
         this.modalService.open(EditRoomModalContainerComponent);
     }
 }

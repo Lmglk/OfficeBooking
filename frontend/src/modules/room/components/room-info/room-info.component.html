@@ -8,11 +8,12 @@
     </ob-section>
 
     <ob-section name="Description">
-        <div>{{ room.description }}</div>
+        <div *ngIf="room.description.length">{{ room.description }}</div>
+        <div *ngIf="!room.description.length">No description</div>
     </ob-section>
 
     <div class="actions">
-        <ob-button name="Edit" (click)="editRoom()"></ob-button>
+        <ob-button name="Edit" (click)="openEditRoomModal()"></ob-button>
         <ob-button name="Remove" (click)="handleRemoveRoom()"></ob-button>
         <ob-button name="Go to room" (click)="goToRoom()"></ob-button>
     </div>

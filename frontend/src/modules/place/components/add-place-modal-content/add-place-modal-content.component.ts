@@ -39,7 +39,7 @@ export class AddPlaceModalContentComponent {
     public handleChangePosition(event: Event, field: 'x' | 'y') {
         this.onchange.emit({
             ...this.parameters,
-            [field]: (event.target as HTMLInputElement).valueAsNumber,
+            [field]: (event.target as HTMLInputElement).valueAsNumber - 1,
         });
     }
 

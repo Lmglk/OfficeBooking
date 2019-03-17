@@ -31,7 +31,7 @@ export class UserEffects {
         switchMap(action =>
             this.userService.login(action.payload).pipe(
                 mergeMap(person => {
-                    this.router.navigate(['room-layout']);
+                    this.router.navigate(['home']);
                     return [
                         new SetUserAction(person),
                         new TryToLoadRoomsAction(),

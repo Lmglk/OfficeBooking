@@ -12,6 +12,7 @@ import { PlaceEffects } from './effects/place.effects';
 import { AddPlaceModalContainerComponent } from './containers/add-place-modal-container/add-place-modal-container.component';
 import { AddPlaceModalContentComponent } from './components/add-place-modal-content/add-place-modal-content.component';
 import { RoomSchemeModule } from '../room-scheme/room-scheme.module';
+import { EditPlaceModalContainerComponent } from './containers/edit-place-modal-container/edit-place-modal-container.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { RoomSchemeModule } from '../room-scheme/room-scheme.module';
         PlaceListContainerComponent,
         AddPlaceModalContainerComponent,
         AddPlaceModalContentComponent,
+        EditPlaceModalContainerComponent,
     ],
     imports: [
         EffectsModule.forFeature([PlaceEffects]),
@@ -30,7 +32,10 @@ import { RoomSchemeModule } from '../room-scheme/room-scheme.module';
         IconsModule,
         RoomSchemeModule,
     ],
-    entryComponents: [AddPlaceModalContainerComponent],
+    entryComponents: [
+        AddPlaceModalContainerComponent,
+        EditPlaceModalContainerComponent,
+    ],
     exports: [PlaceLayoutComponent],
 })
 export class PlaceModule {}

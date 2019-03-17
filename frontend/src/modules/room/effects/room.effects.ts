@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TryToSaveRoomAction } from '../actions/TryToSaveRoomAction';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+    catchError,
+    debounceTime,
+    map,
+    mergeMap,
+    switchMap,
+    withLatestFrom,
+} from 'rxjs/operators';
 import { ApiRoomService } from '../services/api-room.service';
 import { AddRoomAction } from '../actions/AddRoomAction';
 import { of } from 'rxjs';
@@ -19,6 +26,9 @@ import { select, Store } from '@ngrx/store';
 import { SetTemporaryRoomAction } from '../actions/SetTemporaryRoomAction';
 import { RejectSetTemporaryRoomAction } from '../actions/RejectSetTemporaryRoomAction';
 import { TryToSaveTemporaryRoomAction } from '../actions/TryToSaveTemporaryRoomAction';
+import { UpdateRoomAction } from '../actions/UpdateRoomAction';
+import { RejectSaveTemporaryRoomAction } from '../actions/RejectSaveTemporaryRoomAction';
+import { ResetTemporaryRoomAction } from '../actions/ResetTemporaryRoomAction';
 
 @Injectable()
 export class RoomEffects {
@@ -39,6 +49,7 @@ export class RoomEffects {
     @Effect()
     public saveRoom$ = this.actions$.pipe(
         ofType<TryToSaveRoomAction>(TryToSaveRoomAction.type),
+        debounceTime(500),
         switchMap(action =>
             this.roomService.save(action.payload).pipe(
                 map(room => new AddRoomAction(room)),
@@ -50,6 +61,7 @@ export class RoomEffects {
     @Effect()
     public removeRoom$ = this.actions$.pipe(
         ofType<TryToRemoveRoomAction>(TryToRemoveRoomAction.type),
+        debounceTime(500),
         switchMap(action =>
             this.roomService.remove(action.payload).pipe(
                 map(() => new RemoveRoomAction(action.payload.id)),
@@ -77,8 +89,22 @@ export class RoomEffects {
 
     @Effect()
     public updateRoom$ = this.actions$.pipe(
-        ofType<TryToSaveTemporaryRoomAction>(TryToSaveTemporaryRoomAction.type)
-        // todo: sand data to bakend
+        ofType<TryToSaveTemporaryRoomAction>(TryToSaveTemporaryRoomAction.type),
+        debounceTime(500),
+        switchMap(action =>
+            this.roomService.update(action.payload).pipe(
+                mergeMap(room => [
+                    new UpdateRoomAction(room),
+                    new ResetTemporaryRoomAction(),
+                ]),
+                catchError(() =>
+                    of([
+                        new ResetTemporaryRoomAction(),
+                        new RejectSaveTemporaryRoomAction(),
+                    ])
+                )
+            )
+        )
     );
 
     constructor(

@@ -26,7 +26,10 @@ import { TryToSaveTemporaryRoomAction } from '../../actions/TryToSaveTemporaryRo
                         [bordered]="true"
                         (click)="handleClose()"
                     ></ob-button>
-                    <ob-button name="Edit" (click)="applyChanges()"></ob-button>
+                    <ob-button
+                        name="Apply"
+                        (click)="applyChanges()"
+                    ></ob-button>
                 </div>
             </div>
         </ob-block>
@@ -89,6 +92,7 @@ export class EditRoomModalContainerComponent implements OnDestroy {
 
     public applyChanges() {
         this.store.dispatch(new TryToSaveTemporaryRoomAction(this.room));
+        this.modalService.close();
     }
 
     public handleClose() {

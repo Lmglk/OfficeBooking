@@ -19,6 +19,6 @@ export class PlaceLayoutComponent {
     }
 
     public navigateBack() {
-        this.router.navigate(['room-layout']);
+        this.router.navigate(['home']);
     }
 }
