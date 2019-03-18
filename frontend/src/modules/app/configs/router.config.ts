@@ -7,7 +7,7 @@ import { LayoutComponent } from '../components/layout/layout.component';
 import { PlaceLayoutComponent } from '../../place/components/place-layout/place-layout.component';
 
 export const childRoutes: Routes = [
-    { path: 'room-layout', component: RoomLayoutComponent },
+    { path: 'home', component: RoomLayoutComponent },
     { path: 'room', component: PlaceLayoutComponent },
 ];
 

@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { RoomEffects } from './effects/room.effects';
 import { AddRoomModalContainerComponent } from './containers/add-room-modal-container/add-room-modal-container.component';
 import { AddRoomModalContentComponent } from './components/add-room-modal-content/add-room-modal-content.component';
+import { EditRoomModalContainerComponent } from './containers/edit-room-modal-container/edit-room-modal-container.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { AddRoomModalContentComponent } from './components/add-room-modal-conten
         RoomListContainerComponent,
         AddRoomModalContainerComponent,
         AddRoomModalContentComponent,
+        EditRoomModalContainerComponent,
     ],
     imports: [
         CommonModule,
@@ -28,7 +30,10 @@ import { AddRoomModalContentComponent } from './components/add-room-modal-conten
         IconsModule,
         EffectsModule.forFeature([RoomEffects]),
     ],
-    entryComponents: [AddRoomModalContainerComponent],
+    entryComponents: [
+        AddRoomModalContainerComponent,
+        EditRoomModalContainerComponent,
+    ],
     exports: [RoomLayoutComponent],
 })
 export class RoomModule {}

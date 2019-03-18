@@ -18,6 +18,10 @@ export class ApiRoomService {
         return this.http.post<Room>('/api/room/save', parameters);
     }
 
+    public update(room: Room): Observable<Room> {
+        return this.http.post<Room>('/api/room/save', room);
+    }
+
     public remove(room: Room): Observable<void> {
         return this.http.post<void>('/api/room/remove', room);
     }

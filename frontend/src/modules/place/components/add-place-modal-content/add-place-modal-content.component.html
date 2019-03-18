@@ -31,7 +31,7 @@
         [type]="inputType.NUMBER"
         [min]="1"
         [step]="1"
-        [value]="parameters.x"
+        [value]="parameters.x + 1"
         (onchange)="handleChangePosition($event, 'x')"
     ></ob-input>
 
@@ -41,7 +41,7 @@
         [type]="inputType.NUMBER"
         [min]="1"
         [step]="1"
-        [value]="parameters.y"
+        [value]="parameters.y + 1"
         (onchange)="handleChangePosition($event, 'y')"
     ></ob-input>
 

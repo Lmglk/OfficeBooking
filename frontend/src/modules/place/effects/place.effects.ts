@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ApiPlaceService } from '../services/api-place.service';
 import { TryToSavePlaceAction } from '../actions/TryToSavePlaceAction';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+    catchError,
+    debounceTime,
+    map,
+    mergeMap,
+    switchMap,
+    tap,
+    withLatestFrom,
+} from 'rxjs/operators';
 import { AddPlaceAction } from '../actions/AddPlaceAction';
 import { RejectSavePlaceAction } from '../actions/RejectSavePlaceAction';
 import { of } from 'rxjs';
@@ -12,12 +20,21 @@ import { selectCurrentRoomId } from '../../room/selectors/selectCurrentRoomId';
 import { TryToRemovePlaceAction } from '../actions/TryToRemovePlaceAction';
 import { RemovePlaceAction } from '../actions/RemovePlaceAction';
 import { RejectRemovePlaceAction } from '../actions/RejectRemovePlaceAction';
+import { EditPlaceAction } from '../actions/EditPlaceAction';
+import { selectCurrentPlace } from '../selectors/selectCurrentPlace';
+import { SetTemporaryPlaceAction } from '../actions/SetTemporaryPlaceAction';
+import { RejectSetTemporaryPlaceAction } from '../actions/RejectSetTemporaryPlaceAction';
+import { TryToSaveTemporaryPlaceAction } from '../actions/TryToSaveTemporaryPlaceAction';
+import { UpdatePlaceAction } from '../actions/UpdatePlaceAction';
+import { RejectSaveTemporaryPlaceAction } from '../actions/RejectSaveTemporaryPlaceAction';
+import { ResetTemporaryPlaceAction } from '../actions/ResetTemporaryPlaceAction';
 
 @Injectable()
 export class PlaceEffects {
     @Effect()
     public savePlace$ = this.actions$.pipe(
         ofType<TryToSavePlaceAction>(TryToSavePlaceAction.type),
+        debounceTime(500),
         withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
         switchMap(([action, roomId]) => {
             if (!roomId) {
@@ -47,6 +64,7 @@ export class PlaceEffects {
     @Effect()
     public removePlace$ = this.actions$.pipe(
         ofType<TryToRemovePlaceAction>(TryToRemovePlaceAction.type),
+        debounceTime(500),
         withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
         switchMap(([action, roomId]) =>
             this.placeService.remove(action.payload).pipe(
@@ -64,6 +82,53 @@ export class PlaceEffects {
                 })
             )
         )
+    );
+
+    @Effect()
+    public setTemporaryPlace$ = this.actions$.pipe(
+        ofType<EditPlaceAction>(EditPlaceAction.type),
+        withLatestFrom(this.store.pipe(select(selectCurrentPlace))),
+        map(([action, place]) => {
+            if (!place) {
+                throw new Error('Place is not selected');
+            }
+
+            return new SetTemporaryPlaceAction(place);
+        }),
+        catchError(error => {
+            console.error(error);
+            return of(new RejectSetTemporaryPlaceAction());
+        })
+    );
+
+    @Effect()
+    public updatePlace$ = this.actions$.pipe(
+        ofType<TryToSaveTemporaryPlaceAction>(
+            TryToSaveTemporaryPlaceAction.type
+        ),
+        debounceTime(500),
+        withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
+        switchMap(([action, roomId]) => {
+            if (!roomId) {
+                throw new Error('Place is not selected');
+            }
+
+            return this.placeService
+                .update(roomId, action.payload)
+                .pipe(
+                    mergeMap(place => [
+                        new UpdatePlaceAction({ id: roomId, place: place }),
+                        new ResetTemporaryPlaceAction(),
+                    ])
+                );
+        }),
+        catchError(error => {
+            console.error(error);
+            return of([
+                new RejectSaveTemporaryPlaceAction(),
+                new ResetTemporaryPlaceAction(),
+            ]);
+        })
     );
 
     constructor(
