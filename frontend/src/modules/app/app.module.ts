@@ -22,6 +22,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { PlaceModule } from '../place/place.module';
 import { RoomModule } from '../room/room.module';
 import { EffectsModule } from '@ngrx/effects';
+import { bookingReducer } from './reducers/booking.reducer';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { EffectsModule } from '@ngrx/effects';
         StoreModule.forRoot({
             userState: userReducer,
             roomState: roomReducer,
+            bookingState: bookingReducer,
         } as ActionReducerMap<AppState>),
         StoreDevtoolsModule.instrument({
             maxAge: 25,

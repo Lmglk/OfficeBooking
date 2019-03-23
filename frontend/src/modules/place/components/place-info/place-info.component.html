@@ -21,6 +21,8 @@
         <div *ngIf="!place.description.length">No description</div>
     </ob-section>
 
+    <ob-pb-form-container></ob-pb-form-container>
+
     <div class="actions">
         <ob-button name="Edit" (click)="openEditPlaceModal()"></ob-button>
         <ob-button name="Remove" (click)="handleRemovePlace()"></ob-button>

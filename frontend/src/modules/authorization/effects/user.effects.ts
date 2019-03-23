@@ -11,6 +11,7 @@ import { TryToLoadRoomsAction } from '../../room/actions/TryToLoadRoomsAction';
 import { TryToUserRegister } from '../actions/TryToUserRegister';
 import { SuccessUserRegistration } from '../actions/SuccessUserRegistration';
 import { RejectUserRegistration } from '../actions/RejectUserRegistration';
+import { TryToLoadAllBookingPlaceAction } from '../../place-booking/actions/TryToLoadAllBookingPlaceAction';
 
 @Injectable()
 export class UserEffects {
@@ -35,6 +36,7 @@ export class UserEffects {
                     return [
                         new SetUserAction(person),
                         new TryToLoadRoomsAction(),
+                        new TryToLoadAllBookingPlaceAction(),
                     ];
                 }),
                 catchError(() => {
