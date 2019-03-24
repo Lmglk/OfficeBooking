@@ -27,6 +27,7 @@ import { TryToSaveTemporaryPlaceAction } from '../actions/TryToSaveTemporaryPlac
 import { UpdatePlaceAction } from '../actions/UpdatePlaceAction';
 import { RejectSaveTemporaryPlaceAction } from '../actions/RejectSaveTemporaryPlaceAction';
 import { ResetTemporaryPlaceAction } from '../actions/ResetTemporaryPlaceAction';
+import { NotificationService } from '../../notification/services/notification.service';
 
 @Injectable()
 export class PlaceEffects {
@@ -41,21 +42,22 @@ export class PlaceEffects {
             }
 
             return this.placeService.save(roomId, action.payload).pipe(
-                map(
-                    place =>
-                        roomId &&
-                        new AddPlaceAction({
+                map(place => {
+                    if (roomId) {
+                        this.notification.success('Place successfully saved');
+                        return new AddPlaceAction({
                             id: roomId,
                             place: place,
-                        })
-                ),
+                        });
+                    }
+                }),
                 catchError(() => {
                     throw new Error('Place save failed');
                 })
             );
         }),
         catchError(error => {
-            console.error(error);
+            this.notification.error(error);
             return of(new RejectSavePlaceAction());
         })
     );
@@ -67,16 +69,17 @@ export class PlaceEffects {
         withLatestFrom(this.store.pipe(select(selectCurrentRoomId))),
         switchMap(([action, roomId]) =>
             this.placeService.remove(action.payload).pipe(
-                map(
-                    () =>
-                        roomId &&
-                        new RemovePlaceAction({
+                map(() => {
+                    if (roomId) {
+                        this.notification.success('Place successfully removed');
+                        return new RemovePlaceAction({
                             roomId: roomId,
                             placeId: action.payload.id,
-                        })
-                ),
+                        });
+                    }
+                }),
                 catchError(() => {
-                    console.error('Place remove failed');
+                    this.notification.error('Place remove failed');
                     return of(new RejectRemovePlaceAction());
                 })
             )
@@ -95,7 +98,7 @@ export class PlaceEffects {
             return new SetTemporaryPlaceAction(place);
         }),
         catchError(error => {
-            console.error(error);
+            this.notification.error(error);
             return of(new RejectSetTemporaryPlaceAction());
         })
     );
@@ -112,17 +115,18 @@ export class PlaceEffects {
                 throw new Error('Place is not selected');
             }
 
-            return this.placeService
-                .update(roomId, action.payload)
-                .pipe(
-                    mergeMap(place => [
+            return this.placeService.update(roomId, action.payload).pipe(
+                mergeMap(place => {
+                    this.notification.success('Place successfully saved');
+                    return [
                         new UpdatePlaceAction({ id: roomId, place: place }),
                         new ResetTemporaryPlaceAction(),
-                    ])
-                );
+                    ];
+                })
+            );
         }),
         catchError(error => {
-            console.error(error);
+            this.notification.error(error);
             return of([
                 new RejectSaveTemporaryPlaceAction(),
                 new ResetTemporaryPlaceAction(),
@@ -133,6 +137,7 @@ export class PlaceEffects {
     constructor(
         private readonly actions$: Actions,
         private readonly store: Store<AppState>,
-        private readonly placeService: ApiPlaceService
+        private readonly placeService: ApiPlaceService,
+        private readonly notification: NotificationService
     ) {}
 }

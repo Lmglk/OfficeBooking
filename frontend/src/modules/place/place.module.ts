@@ -14,6 +14,7 @@ import { AddPlaceModalContentComponent } from './components/add-place-modal-cont
 import { RoomSchemeModule } from '../room-scheme/room-scheme.module';
 import { EditPlaceModalContainerComponent } from './containers/edit-place-modal-container/edit-place-modal-container.component';
 import { PlaceBookingModule } from '../place-booking/place-booking.module';
+import { NotificationModule } from '../notification/notification.module';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { PlaceBookingModule } from '../place-booking/place-booking.module';
         IconsModule,
         RoomSchemeModule,
         PlaceBookingModule,
+        NotificationModule,
     ],
     entryComponents: [
         AddPlaceModalContainerComponent,

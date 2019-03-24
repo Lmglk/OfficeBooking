@@ -2,25 +2,38 @@
     display: grid;
     grid-column-gap: 1rem;
     grid-template-areas:
-        'axis-y canvas'
-        '. axis-x'
-        'legend legend';
+        '. axis-top .'
+        'axis-left canvas axis-right'
+        '. axis-bottom .'
+        'legend legend legend';
 }
 
 .canvas {
     grid-area: canvas;
 }
 
-.axis-x {
-    grid-area: axis-x;
+.axis-top {
+    grid-area: axis-top;
+}
 
+.axis-bottom {
+    grid-area: axis-bottom;
+}
+
+.axis-left {
+    grid-area: axis-left;
+}
+
+.axis-right {
+    grid-area: axis-right;
+}
+
+.axis-y {
     display: grid;
     grid-auto-flow: column;
 }
 
-.axis-y {
-    grid-area: axis-y;
-
+.axis-x {
     display: grid;
     grid-auto-flow: row;
 }

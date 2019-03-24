@@ -19,7 +19,7 @@ export class RsLayoutComponent implements OnInit {
     public readonly padding = 5;
 
     public ngOnInit(): void {
-        this.axisX = Array.from(range(1, this.width));
-        this.axisY = Array.from(range(1, this.height));
+        this.axisX = Array.from(range(1, this.height));
+        this.axisY = Array.from(range(1, this.width));
     }
 }
