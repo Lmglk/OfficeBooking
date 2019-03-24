@@ -19,7 +19,7 @@ export class RsLegendItemComponent implements OnChanges {
         this.cell = {
             x: 0,
             y: 0,
-            roomId: null,
+            placeId: null,
             type: CellType.EMPTY,
         };
     }
