@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -34,10 +33,10 @@ public class BookingEntity implements Serializable {
     private Boolean isExpired;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @NotNull
+//    @NotNull
     private PlaceEntity place;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @NotNull
+//    @NotNull
     private User user;
 }
