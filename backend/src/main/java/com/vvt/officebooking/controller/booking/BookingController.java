@@ -31,8 +31,9 @@ public class BookingController {
 
     @PostMapping(value = "/save")
     @Transactional
-    public ResponseEntity save(@RequestBody @Valid BookingEntity item) {
-        BookingEntity newItem = bookingService.save(item);
+    public ResponseEntity save(@RequestBody @Valid BookingEntity item,
+                               @RequestParam @Valid Long idPlace) {
+        BookingEntity newItem = bookingService.save(item, idPlace);
         return getItem(newItem);
     }
 
