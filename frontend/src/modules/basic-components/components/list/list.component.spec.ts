@@ -4,6 +4,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ListComponent } from './list.component';
 import { ListItem } from '../../types/ListItem';
 import { FilterPipe } from '../../pipes/filter.pipe';
+import { SortPipe } from '../../pipes/sort.pipe';
 
 describe('ListComponent', () => {
     let component: ListComponent<ListItem>;
@@ -11,7 +12,7 @@ describe('ListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ListComponent, FilterPipe],
+            declarations: [ListComponent, FilterPipe, SortPipe],
             schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));

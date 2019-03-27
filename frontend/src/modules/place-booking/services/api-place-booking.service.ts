@@ -3,7 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Place } from '../../app/types/Place';
 import { BookParamters } from '../types/BookParamters';
 import { Observable } from 'rxjs';
-import { User } from '../../app/types/User';
 import { Booking } from '../../app/types/Booking';
 
 @Injectable({
@@ -18,19 +17,12 @@ export class ApiPlaceBookingService {
 
     public save(
         placeId: Place['id'],
-        userId: User['id'],
         parameters: BookParamters
     ): Observable<Booking> {
         return this.http.post<Booking>(
             `api/booking/save`,
             {
                 ...parameters,
-                place: {
-                    id: placeId,
-                },
-                user: {
-                    id: userId,
-                },
             },
             {
                 params: new HttpParams().set('idPlace', String(placeId)),

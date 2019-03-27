@@ -1,0 +1,29 @@
+<!--<div class="grid">-->
+<!--<div class="head item">-->
+<!--<div>From date</div>-->
+<!--<div>To date</div>-->
+<!--<div>Approved</div>-->
+<!--</div>-->
+<!--<div class="item" *ngFor="let booking of bookingList">-->
+<!--<div>{{ booking.fromDate | date: 'dd.MM.yyyy' }}</div>-->
+<!--<div>{{ booking.toDate | date: 'dd.MM.yyyy' }}</div>-->
+<!--<div>{{ booking.approved }}</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>From date</td>
+            <td>To date</td>
+            <td>Approved</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of bookingList">
+            <td>{{ booking.fromDate | date: 'dd.MM.yyyy' }}</td>
+            <td>{{ booking.toDate | date: 'dd.MM.yyyy' }}</td>
+            <td>{{ booking.approved }}</td>
+        </tr>
+    </tbody>
+</table>

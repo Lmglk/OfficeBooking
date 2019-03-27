@@ -15,6 +15,15 @@
     --color-shadow: rgba(0, 0, 0, 0.1);
     --color-accent-shadow: rgba(98, 149, 221, 0.25);
     --color-accent-shadow-hover: rgba(98, 149, 221, 0.4);
+
+    --color-red: #f08080;
+    --color-red-hover: #ef5353;
+
+    --color-blue: var(--color-accent);
+    --color-blue-hover: #4b84d4;
+
+    --color-gray: #ddd;
+    --color-gray-hover: #b9b7b7;
 }
 
 @font-face {

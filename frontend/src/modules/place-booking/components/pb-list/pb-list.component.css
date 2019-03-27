@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: var(--color-background);
+}
+
+td {
+    border: 1px solid var(--color-border);
+}

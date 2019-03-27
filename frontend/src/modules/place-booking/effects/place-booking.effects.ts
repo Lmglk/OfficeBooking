@@ -8,7 +8,6 @@ import { of } from 'rxjs';
 import { AppState } from '../../app/types/AppState';
 import { select, Store } from '@ngrx/store';
 import { selectCurrentPlaceId } from '../../place/selectors/selectCurrentPlaceId';
-import { selectUserId } from '../../app/selectors/selectUserId';
 import { TryToLoadAllBookingPlaceAction } from '../actions/TryToLoadAllBookingPlaceAction';
 import { RejectLoadAllBookingPlaceAction } from '../actions/RejectLoadAllBookingPlaceAction';
 import { SetBookingListAction } from '../actions/SetBookingListAction';
@@ -33,17 +32,14 @@ export class PlaceBookingEffects {
     @Effect()
     public save$ = this.actions$.pipe(
         ofType<TryToSaveBookingPlaceAction>(TryToSaveBookingPlaceAction.type),
-        withLatestFrom(
-            this.store.pipe(select(selectCurrentPlaceId)),
-            this.store.pipe(select(selectUserId))
-        ),
-        switchMap(([action, placeId, userId]) => {
-            if (!placeId || !userId) {
+        withLatestFrom(this.store.pipe(select(selectCurrentPlaceId))),
+        switchMap(([action, placeId]) => {
+            if (!placeId) {
                 throw new Error('Place is not selected');
             }
 
             return this.bookingService
-                .save(placeId, userId, action.payload)
+                .save(placeId, action.payload)
                 .pipe(
                     map(bookingItem => new AddBookingItemAction(bookingItem))
                 );

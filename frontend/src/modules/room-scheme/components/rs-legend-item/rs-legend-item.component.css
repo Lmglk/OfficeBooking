@@ -2,7 +2,7 @@
     display: grid;
     grid-auto-flow: column;
     width: max-content;
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
     align-items: center;
 }
 
