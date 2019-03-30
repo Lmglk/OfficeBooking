@@ -19,14 +19,14 @@ export class ApiPlaceBookingService {
         placeId: Place['id'],
         parameters: BookParamters
     ): Observable<Booking> {
-        return this.http.post<Booking>(
-            `api/booking/save`,
-            {
-                ...parameters,
-            },
-            {
-                params: new HttpParams().set('idPlace', String(placeId)),
-            }
-        );
+        return this.http.post<Booking>(`api/booking/save`, parameters, {
+            params: new HttpParams().set('idPlace', String(placeId)),
+        });
+    }
+
+    public update(placeId: Place['id'], booking: Booking): Observable<Booking> {
+        return this.http.post<Booking>(`api/booking/save`, booking, {
+            params: new HttpParams().set('idPlace', String(placeId)),
+        });
     }
 }

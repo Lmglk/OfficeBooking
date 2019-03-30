@@ -12,6 +12,9 @@ import { TryToLoadAllBookingPlaceAction } from '../actions/TryToLoadAllBookingPl
 import { RejectLoadAllBookingPlaceAction } from '../actions/RejectLoadAllBookingPlaceAction';
 import { SetBookingListAction } from '../actions/SetBookingListAction';
 import { AddBookingItemAction } from '../actions/AddBookingItemAction';
+import { TryToUpdateBookingItemAction } from '../actions/TryToUpdateBookingItemAction';
+import { RejectUpdateBookingItemAction } from '../actions/RejectUpdateBookingItemAction';
+import { UpdateBookingItemAction } from '../actions/UpdateBookingItemAction';
 
 @Injectable()
 export class PlaceBookingEffects {
@@ -47,6 +50,27 @@ export class PlaceBookingEffects {
         catchError(error => {
             console.error(error);
             return of(new RejectSaveBookingPlaceAction());
+        })
+    );
+
+    @Effect()
+    public update$ = this.actions$.pipe(
+        ofType<TryToUpdateBookingItemAction>(TryToUpdateBookingItemAction.type),
+        withLatestFrom(this.store.pipe(select(selectCurrentPlaceId))),
+        switchMap(([action, placeId]) => {
+            if (!placeId) {
+                throw new Error('Place is not selected');
+            }
+
+            return this.bookingService
+                .update(placeId, action.payload)
+                .pipe(
+                    map(bookingItem => new UpdateBookingItemAction(bookingItem))
+                );
+        }),
+        catchError(error => {
+            console.error(error);
+            return of(new RejectUpdateBookingItemAction());
         })
     );
 

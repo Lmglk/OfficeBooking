@@ -19,6 +19,9 @@
     --color-red: #f08080;
     --color-red-hover: #ef5353;
 
+    --color-green: #90ee90;
+    --color-green-hover: #36da45;
+
     --color-blue: var(--color-accent);
     --color-blue-hover: #4b84d4;
 

@@ -7,6 +7,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { PlaceBookingEffects } from './effects/place-booking.effects';
 import { PbListComponent } from './components/pb-list/pb-list.component';
 import { PbListContainerComponent } from './containers/pb-list-container.component';
+import { AnswerPipe } from './pipes/answer.pipe';
+import { IconsModule } from '../icons/icons.module';
 
 @NgModule({
     declarations: [
@@ -14,10 +16,12 @@ import { PbListContainerComponent } from './containers/pb-list-container.compone
         PbFormComponent,
         PbListComponent,
         PbListContainerComponent,
+        AnswerPipe,
     ],
     imports: [
         CommonModule,
         BasicComponentsModule,
+        IconsModule,
         EffectsModule.forFeature([PlaceBookingEffects]),
     ],
     exports: [PbFormContainerComponent, PbListContainerComponent],
