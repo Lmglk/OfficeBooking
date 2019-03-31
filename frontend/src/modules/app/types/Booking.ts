@@ -3,8 +3,8 @@ import { Place } from './Place';
 
 export interface Booking {
     id: number;
-    fromDate: Date;
-    toDate: Date;
+    fromDate: number;
+    toDate: number;
     approved: boolean;
     isExpired: boolean;
     place: Place;
