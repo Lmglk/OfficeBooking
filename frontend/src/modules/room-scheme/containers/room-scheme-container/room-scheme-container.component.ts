@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { AppState } from '../../../app/types/AppState';
 import { select, Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { Cell } from '../../types/Cell';
 import { selectCurrentRoom } from '../../../room/selectors/selectCurrentRoom';
 import { Room } from '../../../app/types/Room';
 import { Place } from '../../../app/types/Place';
 import { CellType } from '../../enums/CellType';
 import { SetSelectPlaceIdAction } from '../../../place/actions/SetSelectPlaceIdAction';
+import { Booking } from '../../../app/types/Booking';
+import { selectBookingListForCurrentDate } from '../../../place-booking/selectors/selectBookingListForCurrentDate';
 
 @Component({
     selector: 'ob-room-scheme-container',
@@ -22,19 +24,22 @@ import { SetSelectPlaceIdAction } from '../../../place/actions/SetSelectPlaceIdA
 })
 export class RoomSchemeContainerComponent {
     public cells: Cell[] = [];
+    public bookingList: Booking[] = [];
     public room: Room;
 
-    private roomSizeSubscription: Subscription;
+    private subscription: Subscription;
 
     constructor(private readonly store: Store<AppState>) {
-        this.roomSizeSubscription = this.store
-            .pipe(select(selectCurrentRoom))
-            .subscribe(room => {
-                if (room) {
-                    this.room = room;
-                    this.createCells();
-                }
-            });
+        this.subscription = combineLatest(
+            this.store.pipe(select(selectCurrentRoom)),
+            this.store.pipe(select(selectBookingListForCurrentDate))
+        ).subscribe(([room, bookingList]) => {
+            if (room) {
+                this.room = room;
+                this.bookingList = bookingList;
+                this.createCells();
+            }
+        });
     }
 
     public handleSelectPlace(placeId: Place['id']): void {
@@ -48,25 +53,38 @@ export class RoomSchemeContainerComponent {
                 const currentPlace = this.room.places.find(
                     place => place.y === i && place.x === j
                 );
+
+                const currentBookingItem =
+                    currentPlace &&
+                    this.bookingList.find(
+                        item => item.place.id === currentPlace.id
+                    );
+
                 this.cells = [
                     ...this.cells,
                     {
                         x: j,
                         y: i,
                         placeId: currentPlace ? currentPlace.id : null,
-                        type: this.getCellType(currentPlace),
+                        type: this.getCellType(
+                            currentPlace,
+                            currentBookingItem
+                        ),
                     },
                 ];
             }
         }
     }
 
-    private getCellType(place: Place | undefined): CellType {
+    private getCellType(
+        place: Place | undefined,
+        bookingItem: Booking | undefined
+    ): CellType {
         if (!place) {
             return CellType.EMPTY;
         }
 
-        if (place.isUsed) {
+        if (bookingItem && bookingItem.approved) {
             return CellType.USED;
         }
 
