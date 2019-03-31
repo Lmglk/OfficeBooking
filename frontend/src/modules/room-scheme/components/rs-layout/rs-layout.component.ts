@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cell } from '../../types/Cell';
 import { range } from '../../common/range';
+import { Place } from '../../../app/types/Place';
 
 @Component({
     selector: 'ob-rs-layout',
@@ -12,6 +13,8 @@ export class RsLayoutComponent implements OnInit {
     @Input() height: number;
     @Input() width: number;
 
+    @Output() selectPlace: EventEmitter<Place['id']> = new EventEmitter();
+
     public axisX: number[];
     public axisY: number[];
 
@@ -19,7 +22,11 @@ export class RsLayoutComponent implements OnInit {
     public readonly padding = 5;
 
     public ngOnInit(): void {
-        this.axisX = Array.from(range(1, this.width));
-        this.axisY = Array.from(range(1, this.height));
+        this.axisX = Array.from(range(1, this.height));
+        this.axisY = Array.from(range(1, this.width));
+    }
+
+    public handleSelectPlace(placeId: Place['id']): void {
+        this.selectPlace.emit(placeId);
     }
 }

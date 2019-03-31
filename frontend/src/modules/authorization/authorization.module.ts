@@ -8,6 +8,7 @@ import { LoginContainerComponent } from './containers/login-container/login-cont
 import { LoginComponent } from './components/login/login.component';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './effects/user.effects';
+import { NotificationModule } from '../notification/notification.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { UserEffects } from './effects/user.effects';
         CommonModule,
         BasicComponentsModule,
         RouterModule,
+        NotificationModule,
         EffectsModule.forFeature([UserEffects]),
     ],
 })

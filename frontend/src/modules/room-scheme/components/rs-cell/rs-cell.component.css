@@ -7,8 +7,8 @@
 }
 
 .available {
-    stroke: var(--color-accent);
-    fill: var(--color-accent);
+    stroke: var(--color-blue);
+    fill: var(--color-blue);
 }
 
 .empty {
@@ -17,13 +17,22 @@
 }
 
 .used {
-    fill: lightcoral;
+    fill: var(--color-red);
+}
+
+.used:hover {
+    fill: var(--color-red-hover);
 }
 
 .disabled {
-    fill: #ddd;
+    fill: var(--color-gray);
+}
+
+.disabled:hover {
+    fill: var(--color-gray-hover);
 }
 
 .available.hovering:hover {
-    fill: var(--color-accent-hover);
+    stroke: var(--color-blue-hover);
+    fill: var(--color-blue-hover);
 }

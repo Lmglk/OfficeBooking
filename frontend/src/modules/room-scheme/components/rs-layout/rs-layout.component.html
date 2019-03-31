@@ -7,8 +7,10 @@
             [width]="width"
             [nodeSize]="nodeSize"
             [padding]="padding"
+            (selectPlace)="handleSelectPlace($event)"
         ></ob-rs-canvas>
-        <div class="axis-x">
+
+        <div class="axis-x axis-left">
             <div
                 class="axis-item"
                 *ngFor="let item of axisX"
@@ -18,7 +20,30 @@
                 {{ item }}
             </div>
         </div>
-        <div class="axis-y">
+
+        <div class="axis-x axis-right">
+            <div
+                class="axis-item"
+                *ngFor="let item of axisX"
+                [style.height.px]="nodeSize"
+                [style.width.px]="nodeSize"
+            >
+                {{ item }}
+            </div>
+        </div>
+
+        <div class="axis-y axis-top">
+            <div
+                class="axis-item"
+                *ngFor="let item of axisY"
+                [style.height.px]="nodeSize"
+                [style.width.px]="nodeSize"
+            >
+                {{ item }}
+            </div>
+        </div>
+
+        <div class="axis-y axis-bottom">
             <div
                 class="axis-item"
                 *ngFor="let item of axisY"

@@ -11,6 +11,8 @@ import { TryToLoadRoomsAction } from '../../room/actions/TryToLoadRoomsAction';
 import { TryToUserRegister } from '../actions/TryToUserRegister';
 import { SuccessUserRegistration } from '../actions/SuccessUserRegistration';
 import { RejectUserRegistration } from '../actions/RejectUserRegistration';
+import { TryToLoadAllBookingPlaceAction } from '../../place-booking/actions/TryToLoadAllBookingPlaceAction';
+import { NotificationService } from '../../notification/services/notification.service';
 
 @Injectable()
 export class UserEffects {
@@ -19,8 +21,15 @@ export class UserEffects {
         ofType<TryToUserRegister>(TryToUserRegister.type),
         switchMap(action =>
             this.userService.register(action.payload).pipe(
-                map(() => new SuccessUserRegistration()),
-                catchError(() => of(new RejectUserRegistration()))
+                map(() => {
+                    this.notification.success('User registered successfully');
+                    this.router.navigate(['login']);
+                    return new SuccessUserRegistration();
+                }),
+                catchError(() => {
+                    this.notification.error('Failed to register user');
+                    return of(new RejectUserRegistration());
+                })
             )
         )
     );
@@ -35,10 +44,11 @@ export class UserEffects {
                     return [
                         new SetUserAction(person),
                         new TryToLoadRoomsAction(),
+                        new TryToLoadAllBookingPlaceAction(),
                     ];
                 }),
                 catchError(() => {
-                    console.error('User load failed');
+                    this.notification.error('Access denied');
                     return of(new RejectLoginActionAction());
                 })
             )
@@ -48,6 +58,7 @@ export class UserEffects {
     constructor(
         private readonly actions$: Actions,
         private readonly router: Router,
-        private readonly userService: ApiAuthService
+        private readonly userService: ApiAuthService,
+        private readonly notification: NotificationService
     ) {}
 }

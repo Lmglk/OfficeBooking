@@ -1,0 +1,50 @@
+<table class="table">
+    <thead>
+        <tr>
+            <td>From date</td>
+            <td>To date</td>
+            <td>Approved</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody *ngIf="bookingList.length">
+        <tr *ngFor="let booking of bookingList">
+            <td>{{ booking.fromDate | date: 'dd.MM.yyyy' }}</td>
+            <td>{{ booking.toDate | date: 'dd.MM.yyyy' }}</td>
+            <td>
+                <div class="content-center">
+                    <div class="icon-container accept" *ngIf="booking.approved">
+                        <ob-check-icon></ob-check-icon>
+                    </div>
+
+                    <div
+                        class="icon-container reject"
+                        *ngIf="!booking.approved"
+                    >
+                        <ob-remove-icon></ob-remove-icon>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="content-center">
+                    <ob-button
+                        name="Accept"
+                        *ngIf="!booking.approved"
+                        (click)="handleUpdateBooking(booking, true)"
+                    ></ob-button>
+                    <ob-button
+                        name="Reject"
+                        *ngIf="booking.approved"
+                        (click)="handleUpdateBooking(booking, false)"
+                    ></ob-button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+
+    <tbody *ngIf="!bookingList.length">
+        <tr>
+            <td colspan="4">List of booking is empty</td>
+        </tr>
+    </tbody>
+</table>

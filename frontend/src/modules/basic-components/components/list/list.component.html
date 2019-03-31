@@ -3,7 +3,11 @@
     <div class="list-container">
         <div
             class="item"
-            *ngFor="let item of (data | filter: bindField:searchValue)"
+            *ngFor="
+                let item of (data
+                    | filter: bindField:searchValue
+                    | sort: bindField)
+            "
             [class.selected]="selectedValueId && selectedValueId === item.id"
             (click)="handleSelect(item)"
         >

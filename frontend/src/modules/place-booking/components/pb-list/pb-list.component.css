@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: var(--color-background);
+}
+
+tr {
+    height: 3.2rem;
+}
+
+td {
+    border: 1px solid var(--color-border);
+}
+
+.icon-container {
+    width: 1.6rem;
+    height: 1.6rem;
+    color: var(--color-gray);
+    transition: color 0.2s ease;
+}
+
+.accept {
+    color: var(--color-green-hover);
+}
+
+.reject {
+    color: var(--color-red-hover);
+}
+
+.content-center {
+    display: grid;
+    justify-items: center;
+}

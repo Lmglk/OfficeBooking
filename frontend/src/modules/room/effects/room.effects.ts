@@ -29,6 +29,7 @@ import { TryToSaveTemporaryRoomAction } from '../actions/TryToSaveTemporaryRoomA
 import { UpdateRoomAction } from '../actions/UpdateRoomAction';
 import { RejectSaveTemporaryRoomAction } from '../actions/RejectSaveTemporaryRoomAction';
 import { ResetTemporaryRoomAction } from '../actions/ResetTemporaryRoomAction';
+import { NotificationService } from '../../notification/services/notification.service';
 
 @Injectable()
 export class RoomEffects {
@@ -39,7 +40,7 @@ export class RoomEffects {
             this.roomService.getRoomList().pipe(
                 map(rooms => new SetRoomsAction(rooms)),
                 catchError(() => {
-                    console.error('Room load failed');
+                    this.notification.error('Room load failed');
                     return of(new RejectLoadRoomAction());
                 })
             )
@@ -52,8 +53,14 @@ export class RoomEffects {
         debounceTime(500),
         switchMap(action =>
             this.roomService.save(action.payload).pipe(
-                map(room => new AddRoomAction(room)),
-                catchError(() => of(new RejectSaveRoomAction()))
+                map(room => {
+                    this.notification.success('Place successfully saved');
+                    return new AddRoomAction(room);
+                }),
+                catchError(() => {
+                    this.notification.error('Room save failed');
+                    return of(new RejectSaveRoomAction());
+                })
             )
         )
     );
@@ -64,8 +71,14 @@ export class RoomEffects {
         debounceTime(500),
         switchMap(action =>
             this.roomService.remove(action.payload).pipe(
-                map(() => new RemoveRoomAction(action.payload.id)),
-                catchError(() => of(new RejectRemoveRoomAction()))
+                map(() => {
+                    this.notification.success('Room successfully removed');
+                    return new RemoveRoomAction(action.payload.id);
+                }),
+                catchError(() => {
+                    this.notification.error('Room remove failed');
+                    return of(new RejectRemoveRoomAction());
+                })
             )
         )
     );
@@ -82,7 +95,7 @@ export class RoomEffects {
             return new SetTemporaryRoomAction(room);
         }),
         catchError(error => {
-            console.error(error);
+            this.notification.error(error);
             return of(new RejectSetTemporaryRoomAction());
         })
     );
@@ -93,16 +106,20 @@ export class RoomEffects {
         debounceTime(500),
         switchMap(action =>
             this.roomService.update(action.payload).pipe(
-                mergeMap(room => [
-                    new UpdateRoomAction(room),
-                    new ResetTemporaryRoomAction(),
-                ]),
-                catchError(() =>
-                    of([
+                mergeMap(room => {
+                    this.notification.success('Room successfully updated');
+                    return [
+                        new UpdateRoomAction(room),
+                        new ResetTemporaryRoomAction(),
+                    ];
+                }),
+                catchError(() => {
+                    this.notification.error('Room update failed');
+                    return of([
                         new ResetTemporaryRoomAction(),
                         new RejectSaveTemporaryRoomAction(),
-                    ])
-                )
+                    ]);
+                })
             )
         )
     );
@@ -110,6 +127,7 @@ export class RoomEffects {
     constructor(
         private readonly actions$: Actions,
         private readonly store: Store<AppState>,
-        private readonly roomService: ApiRoomService
+        private readonly roomService: ApiRoomService,
+        private readonly notification: NotificationService
     ) {}
 }

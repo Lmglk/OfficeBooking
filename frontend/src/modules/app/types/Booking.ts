@@ -1,8 +1,12 @@
+import { User } from './User';
+import { Place } from './Place';
+
 export interface Booking {
     id: number;
-    from: Date;
-    to: Date;
+    fromDate: Date;
+    toDate: Date;
     approved: boolean;
-    placeId: number;
-    userId: number;
+    isExpired: boolean;
+    place: Place;
+    user: User;
 }

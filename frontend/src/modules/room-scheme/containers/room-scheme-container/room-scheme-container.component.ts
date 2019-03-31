@@ -7,6 +7,7 @@ import { selectCurrentRoom } from '../../../room/selectors/selectCurrentRoom';
 import { Room } from '../../../app/types/Room';
 import { Place } from '../../../app/types/Place';
 import { CellType } from '../../enums/CellType';
+import { SetSelectPlaceIdAction } from '../../../place/actions/SetSelectPlaceIdAction';
 
 @Component({
     selector: 'ob-room-scheme-container',
@@ -15,6 +16,7 @@ import { CellType } from '../../enums/CellType';
             [cells]="cells"
             [height]="room.height"
             [width]="room.width"
+            (selectPlace)="handleSelectPlace($event)"
         ></ob-rs-layout>
     `,
 })
@@ -35,6 +37,10 @@ export class RoomSchemeContainerComponent {
             });
     }
 
+    public handleSelectPlace(placeId: Place['id']): void {
+        this.store.dispatch(new SetSelectPlaceIdAction(placeId));
+    }
+
     private createCells() {
         this.cells = [];
         for (let i = 0; i < this.room.height; i++) {
@@ -47,7 +53,7 @@ export class RoomSchemeContainerComponent {
                     {
                         x: j,
                         y: i,
-                        roomId: currentPlace ? currentPlace.id : null,
+                        placeId: currentPlace ? currentPlace.id : null,
                         type: this.getCellType(currentPlace),
                     },
                 ];

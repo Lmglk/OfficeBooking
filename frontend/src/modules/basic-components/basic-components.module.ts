@@ -10,6 +10,7 @@ import { ButtonPlateComponent } from './components/button-plate/button-plate.com
 import { IconsModule } from '../icons/icons.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
     imports: [CommonModule, IconsModule],
@@ -23,6 +24,7 @@ import { SearchFieldComponent } from './components/search-field/search-field.com
         ButtonPlateComponent,
         FilterPipe,
         SearchFieldComponent,
+        SortPipe,
     ],
     exports: [
         BlockComponent,

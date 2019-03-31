@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cell } from '../../types/Cell';
+import { Place } from '../../../app/types/Place';
 
 @Component({
     selector: 'ob-rs-canvas',
@@ -12,4 +13,10 @@ export class RsCanvasComponent {
     @Input() width: number;
     @Input() nodeSize: number;
     @Input() padding: number;
+
+    @Output() selectPlace: EventEmitter<Place['id']> = new EventEmitter();
+
+    public handleSelectPlace(placeId: Place['id']): void {
+        this.selectPlace.emit(placeId);
+    }
 }
