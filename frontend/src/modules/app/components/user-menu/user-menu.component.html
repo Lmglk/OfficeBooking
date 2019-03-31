@@ -1,4 +1,13 @@
-<div class="grid">
-    <div class="avatar"><ob-user-icon></ob-user-icon></div>
-    <div class="name">{{ userName }}</div>
-</div>
+<ob-popup [width]="menuWidth">
+    <div class="grid" marker #menu>
+        <div class="avatar"><ob-user-icon></ob-user-icon></div>
+        <div class="name">{{ userName }}</div>
+        <div class="icon-container">
+            <ob-arrow-down></ob-arrow-down>
+        </div>
+    </div>
+    <div class="list">
+        <div class="item">Edit profile</div>
+        <div class="item" (click)="handleLogout()">Logout</div>
+    </div>
+</ob-popup>

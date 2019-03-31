@@ -5,11 +5,12 @@
 .grid {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-gap: 1rem;
     height: 100%;
     padding-left: 2rem;
     box-shadow: -0.1rem 0 0 0 var(--color-border);
+    user-select: none;
 }
 
 .avatar {
@@ -22,4 +23,21 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.icon-container {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: -0.3rem;
+}
+
+.item {
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.item:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-surface);
 }
