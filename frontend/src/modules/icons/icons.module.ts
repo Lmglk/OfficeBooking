@@ -7,6 +7,7 @@ import { ExitIconComponent } from './components/exit-icon/exit-icon.component';
 import { SearchIconComponent } from './components/search-icon/search-icon.component';
 import { CheckIconComponent } from './components/check-icon/check-icon.component';
 import { RemoveIconComponent } from './components/remove-icon/remove-icon.component';
+import { ArrowDownComponent } from './components/arrow-down/arrow-down.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -18,6 +19,7 @@ import { RemoveIconComponent } from './components/remove-icon/remove-icon.compon
         SearchIconComponent,
         CheckIconComponent,
         RemoveIconComponent,
+        ArrowDownComponent,
     ],
     exports: [
         UserIconComponent,
@@ -27,6 +29,7 @@ import { RemoveIconComponent } from './components/remove-icon/remove-icon.compon
         SearchIconComponent,
         CheckIconComponent,
         RemoveIconComponent,
+        ArrowDownComponent,
     ],
 })
 export class IconsModule {}

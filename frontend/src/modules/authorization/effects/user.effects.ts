@@ -13,6 +13,13 @@ import { SuccessUserRegistration } from '../actions/SuccessUserRegistration';
 import { RejectUserRegistration } from '../actions/RejectUserRegistration';
 import { TryToLoadAllBookingPlaceAction } from '../../place-booking/actions/TryToLoadAllBookingPlaceAction';
 import { NotificationService } from '../../notification/services/notification.service';
+import { LogoutAction } from '../actions/LogoutAction';
+import { SuccessLogoutAction } from '../actions/SuccessLogoutAction';
+import { ResetUserAction } from '../actions/ResetUserAction';
+import { ResetSelectPlaceIdAction } from '../../place/actions/ResetSelectPlaceIdAction';
+import { ResetSelectRoomIdAction } from '../../room/actions/ResetSelectRoomIdAction';
+import { ResetRoomsAction } from '../../room/actions/ResetRoomsAction';
+import { ResetBookingListAction } from '../../place-booking/actions/ResetBookingListAction';
 
 @Injectable()
 export class UserEffects {
@@ -53,6 +60,22 @@ export class UserEffects {
                 })
             )
         )
+    );
+
+    @Effect()
+    public logout$ = this.actions$.pipe(
+        ofType(LogoutAction.type),
+        mergeMap(() => {
+            this.router.navigate(['login']);
+            return [
+                new ResetUserAction(),
+                new ResetSelectPlaceIdAction(),
+                new ResetSelectRoomIdAction(),
+                new ResetRoomsAction(),
+                new ResetBookingListAction(),
+                new SuccessLogoutAction(),
+            ];
+        })
     );
 
     constructor(

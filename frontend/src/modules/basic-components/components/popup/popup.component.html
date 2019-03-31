@@ -1,0 +1,13 @@
+<div class="marker" (click)="handleOpenPopup()">
+    <ng-content select="[marker]"></ng-content>
+</div>
+<div
+    class="popup"
+    *ngIf="isOpenPopup"
+    [style.left.px]="x"
+    [style.top.px]="y"
+    [style.height.px]="height"
+    [style.width.px]="width"
+>
+    <ng-content></ng-content>
+</div>

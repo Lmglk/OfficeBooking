@@ -11,6 +11,7 @@ import { IconsModule } from '../icons/icons.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { SortPipe } from './pipes/sort.pipe';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
     imports: [CommonModule, IconsModule],
@@ -22,8 +23,9 @@ import { SortPipe } from './pipes/sort.pipe';
         ListComponent,
         CheckboxComponent,
         ButtonPlateComponent,
-        FilterPipe,
         SearchFieldComponent,
+        PopupComponent,
+        FilterPipe,
         SortPipe,
     ],
     exports: [
@@ -34,6 +36,7 @@ import { SortPipe } from './pipes/sort.pipe';
         ListComponent,
         CheckboxComponent,
         ButtonPlateComponent,
+        PopupComponent,
         FilterPipe,
     ],
 })

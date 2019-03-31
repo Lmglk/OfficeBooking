@@ -1,0 +1,18 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
+.marker {
+    display: contents;
+    cursor: pointer;
+}
+
+.popup {
+    position: absolute;
+    border-radius: 0.3rem;
+    background-color: var(--color-surface);
+    box-shadow: 0 0.4rem 0.4rem var(--color-shadow);
+    overflow: auto;
+    z-index: 2;
+}
