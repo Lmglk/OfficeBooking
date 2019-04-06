@@ -36,7 +36,7 @@ public class BookingEntity implements Serializable {
 //    @NotNull
     private PlaceEntity place;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @NotNull
     private User user;
 }

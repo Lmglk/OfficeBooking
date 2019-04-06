@@ -8,6 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -36,7 +37,7 @@ public class User implements Serializable {
     }
 
 
-    @OneToOne(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private BookingEntity booking;
+    private List<BookingEntity> booking;
 }
