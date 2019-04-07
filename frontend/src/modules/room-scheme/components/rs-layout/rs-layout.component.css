@@ -6,6 +6,7 @@
         'axis-left canvas axis-right'
         '. axis-bottom .'
         'legend legend legend';
+    width: max-content;
 }
 
 .canvas {
@@ -31,11 +32,13 @@
 .axis-y {
     display: grid;
     grid-auto-flow: column;
+    width: min-content;
 }
 
 .axis-x {
     display: grid;
     grid-auto-flow: row;
+    width: min-content;
 }
 
 .axis-item {
@@ -47,4 +50,5 @@
 .grid {
     display: grid;
     grid-gap: 2rem;
+    justify-items: center;
 }
