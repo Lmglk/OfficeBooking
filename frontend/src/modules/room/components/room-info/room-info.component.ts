@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Room } from '../../../app/types/Room';
 import { ModalService } from '../../../modal/services/modal.service';
 import { EditRoomModalContainerComponent } from '../../containers/edit-room-modal-container/edit-room-modal-container.component';
+import { Role } from '../../../app/enums/Role';
 
 @Component({
     selector: 'ob-room-info',
@@ -9,12 +10,15 @@ import { EditRoomModalContainerComponent } from '../../containers/edit-room-moda
     styleUrls: ['./room-info.component.css'],
 })
 export class RoomInfoComponent {
-    @Input() room: Room;
-    @Input() usedPlaces: number;
-    @Input() availablePlacesForBooking: number;
+    public readonly role = Role;
 
-    @Output() remove: EventEmitter<Room> = new EventEmitter();
-    @Output() navigateToRoom: EventEmitter<void> = new EventEmitter();
+    @Input() public room: Room;
+    @Input() public usedPlaces: number;
+    @Input() public availablePlacesForBooking: number;
+    @Input() public userRole: Role;
+
+    @Output() public remove: EventEmitter<Room> = new EventEmitter();
+    @Output() public navigateToRoom: EventEmitter<void> = new EventEmitter();
 
     constructor(private readonly modalService: ModalService) {}
 

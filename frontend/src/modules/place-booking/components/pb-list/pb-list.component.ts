@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Booking } from '../../../app/types/Booking';
+import { Role } from '../../../app/enums/Role';
 
 @Component({
     selector: 'ob-pb-list',
@@ -7,14 +8,21 @@ import { Booking } from '../../../app/types/Booking';
     styleUrls: ['./pb-list.component.css'],
 })
 export class PbListComponent {
-    @Input() bookingList: Booking[] = [];
+    public readonly role = Role;
 
-    @Output() update: EventEmitter<Booking> = new EventEmitter();
+    @Input() public bookingList: Booking[] = [];
+    @Input() public userRole: Role;
+
+    @Output() public update: EventEmitter<Booking> = new EventEmitter();
 
     public handleUpdateBooking(booking: Booking, status: boolean) {
         this.update.emit({
             ...booking,
             approved: status,
         });
+    }
+
+    public getCountColsByRole(role: Role): number {
+        return role === Role.ADMIN ? 4 : 3;
     }
 }
