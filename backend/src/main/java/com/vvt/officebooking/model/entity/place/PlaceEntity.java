@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 
 @Getter
 @Setter
@@ -28,6 +29,9 @@ public class PlaceEntity implements Serializable {
 
     @Column
     private String description;
+
+    @Column
+    private HashSet<Equipment> equipments = new HashSet<>();
 
     @Column
     @NotNull
