@@ -3,7 +3,10 @@ package com.vvt.officebooking.model.entity.place;
 import com.vvt.officebooking.model.entity.user.SystemEnum;
 import lombok.Getter;
 
+import javax.persistence.Convert;
+
 @Getter
+@Convert(converter = EquipmentConverter.class)
 public enum Equipment implements SystemEnum {
     PC("0", "Computer"),
     PHONE("1", "Phone"),
