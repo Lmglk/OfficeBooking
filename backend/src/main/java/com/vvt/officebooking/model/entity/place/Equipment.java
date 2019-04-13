@@ -8,9 +8,9 @@ import javax.persistence.Convert;
 @Getter
 @Convert(converter = EquipmentConverter.class)
 public enum Equipment implements SystemEnum {
-    PC("0", "Computer"),
-    PHONE("1", "Phone"),
-    LAN("2", "Ethernet");
+    Computer("0", "Computer"),
+    Phone("1", "Phone"),
+    Lan("2", "Lan");
 
     private final String code;
     private final String description;
