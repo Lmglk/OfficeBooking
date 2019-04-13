@@ -8,6 +8,7 @@ import { SearchIconComponent } from './components/search-icon/search-icon.compon
 import { CheckIconComponent } from './components/check-icon/check-icon.component';
 import { RemoveIconComponent } from './components/remove-icon/remove-icon.component';
 import { ArrowDownComponent } from './components/arrow-down/arrow-down.component';
+import { WarningIconComponent } from './components/warning-icon/warning-icon.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -20,6 +21,7 @@ import { ArrowDownComponent } from './components/arrow-down/arrow-down.component
         CheckIconComponent,
         RemoveIconComponent,
         ArrowDownComponent,
+        WarningIconComponent,
     ],
     exports: [
         UserIconComponent,
@@ -30,6 +32,7 @@ import { ArrowDownComponent } from './components/arrow-down/arrow-down.component
         CheckIconComponent,
         RemoveIconComponent,
         ArrowDownComponent,
+        WarningIconComponent,
     ],
 })
 export class IconsModule {}
