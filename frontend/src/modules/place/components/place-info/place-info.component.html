@@ -2,10 +2,10 @@
     <div class="title">{{ place.name }}</div>
 
     <ob-section name="Equipment">
-        <ul *ngIf="place.equipment && place.equipment.length">
-            <li *ngFor="let item of place.equipment">{{ item }}</li>
+        <ul *ngIf="place.equipments && place.equipments.length">
+            <li *ngFor="let item of place.equipments">{{ item }}</li>
         </ul>
-        <div *ngIf="!place.equipment || !place.equipment.length">
+        <div *ngIf="!place.equipments || !place.equipments.length">
             No equipment
         </div>
     </ob-section>
@@ -28,12 +28,12 @@
         <ob-button
             name="Edit"
             (click)="openEditPlaceModal()"
-            *ngIf="(userRole$ | async) === role.ADMIN"
+            *ngIf="userRole === role.ADMIN"
         ></ob-button>
         <ob-button
             name="Remove"
             (click)="handleRemovePlace()"
-            *ngIf="(userRole$ | async) === role.ADMIN"
+            *ngIf="userRole === role.ADMIN"
         ></ob-button>
     </div>
 </div>

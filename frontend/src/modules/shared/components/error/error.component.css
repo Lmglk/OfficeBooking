@@ -1,0 +1,12 @@
+.error {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+}
+
+.icon-container {
+    height: 1.2rem;
+    width: 1.2rem;
+    color: var(--color-red);
+}
