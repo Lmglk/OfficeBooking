@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../modal/services/modal.service';
 import { RoomParameters } from '../../types/RoomParameters';
 import { AppState } from '../../../app/types/AppState';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { TryToSaveRoomAction } from '../../actions/TryToSaveRoomAction';
+import { Subscription } from 'rxjs';
+import { selectRooms } from '../../selectors/selectRooms';
+import { Room } from '../../../app/types/Room';
+import { RoomValidationService } from '../../services/room-validation.service';
 
 @Component({
     selector: 'ob-add-room-modal-container',
@@ -14,13 +18,24 @@ import { TryToSaveRoomAction } from '../../actions/TryToSaveRoomAction';
                     [parameters]="parameters"
                     (onchange)="handleChange($event)"
                 ></ob-add-room-modal-content>
-                <div class="actions">
-                    <ob-button
-                        name="Close"
-                        (click)="handleClose()"
-                        [bordered]="true"
-                    ></ob-button>
-                    <ob-button name="Add" (click)="handleCreate()"></ob-button>
+
+                <div class="modal-footer">
+                    <div class="error-container">
+                        <ob-error [message]="error"></ob-error>
+                    </div>
+
+                    <div class="actions">
+                        <ob-button
+                            name="Close"
+                            (click)="handleClose()"
+                            [bordered]="true"
+                        ></ob-button>
+                        <ob-button
+                            name="Add"
+                            [disabled]="error"
+                            (click)="handleCreate()"
+                        ></ob-button>
+                    </div>
                 </div>
             </div>
         </ob-block>
@@ -37,30 +52,54 @@ import { TryToSaveRoomAction } from '../../actions/TryToSaveRoomAction';
                 grid-gap: 2rem;
             }
 
+            .modal-footer {
+                display: grid;
+                grid-auto-flow: column;
+                align-items: center;
+                grid-template-columns: 1fr auto;
+            }
+
             .actions {
                 display: grid;
                 grid-auto-flow: column;
                 grid-gap: 1rem;
                 justify-self: end;
             }
+
+            .error-container {
+                font-size: 1.2rem;
+                color: var(--color-text);
+            }
         `,
     ],
 })
-export class AddRoomModalContainerComponent {
+export class AddRoomModalContainerComponent implements OnDestroy {
     public parameters: RoomParameters = {
-        name: '',
+        name: 'New room',
         width: 1,
         height: 1,
         description: '',
     };
 
+    public error = '';
+
+    private rooms: Room[];
+    private roomSubscription: Subscription;
+
     constructor(
         private readonly store: Store<AppState>,
-        private readonly modalService: ModalService
-    ) {}
+        private readonly modalService: ModalService,
+        private readonly validationService: RoomValidationService
+    ) {
+        this.roomSubscription = this.store
+            .pipe(select(selectRooms))
+            .subscribe(rooms => (this.rooms = rooms));
+    }
 
     public handleChange(parameters: RoomParameters) {
         this.parameters = parameters;
+
+        this.error = this.validationService.validate(parameters, this.rooms);
     }
 
     public handleCreate() {
@@ -74,5 +113,9 @@ export class AddRoomModalContainerComponent {
 
     public handleClose() {
         this.modalService.close();
+    }
+
+    public ngOnDestroy(): void {
+        this.roomSubscription.unsubscribe();
     }
 }

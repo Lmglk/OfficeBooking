@@ -1,5 +1,11 @@
 .grid {
     display: grid;
+    grid-template-rows: max-content 2rem;
+    grid-gap: 0.5rem;
+}
+
+.form {
+    display: grid;
     grid-auto-flow: column;
     grid-gap: 1rem;
     align-items: end;

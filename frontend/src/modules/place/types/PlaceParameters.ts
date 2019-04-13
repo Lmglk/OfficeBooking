@@ -2,7 +2,7 @@ import { Equipment } from '../../app/enums/Equipment';
 
 export interface PlaceParameters {
     name: string;
-    equipment: Equipment[];
+    equipments: Equipment[];
     description: string;
     isAvailableForBooking: boolean;
     x: number;

@@ -23,16 +23,16 @@ export class AddPlaceModalContentComponent {
         });
     }
 
-    public handleChangeEquipment(value: boolean, equipment: Equipment) {
-        const findValue = this.parameters.equipment.find(
-            item => item === equipment
+    public handleChangeEquipment(value: boolean, equipments: Equipment) {
+        const findValue = this.parameters.equipments.find(
+            item => item === equipments
         );
 
         this.onchange.emit({
             ...this.parameters,
-            equipment: findValue
-                ? this.parameters.equipment.filter(item => item !== equipment)
-                : [...this.parameters.equipment, equipment],
+            equipments: findValue
+                ? this.parameters.equipments.filter(item => item !== equipments)
+                : [...this.parameters.equipments, equipments],
         });
     }
 
