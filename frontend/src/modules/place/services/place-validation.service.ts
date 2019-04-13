@@ -22,11 +22,11 @@ export class PlaceValidationService {
         return '';
     }
 
-    public checkPlaceName(name: string, places: Place[]): boolean {
+    private checkPlaceName(name: string, places: Place[]): boolean {
         return places.some(item => item.name === name);
     }
 
-    public checkCoordinates(x: number, y: number, places: Place[]): boolean {
+    private checkCoordinates(x: number, y: number, places: Place[]): boolean {
         return places.some(item => item.x === x && item.y === y);
     }
 }

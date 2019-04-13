@@ -10,6 +10,8 @@ import { RoomParameters } from '../../types/RoomParameters';
 import { ResetTemporaryRoomAction } from '../../actions/ResetTemporaryRoomAction';
 import { SetTemporaryRoomAction } from '../../actions/SetTemporaryRoomAction';
 import { TryToSaveTemporaryRoomAction } from '../../actions/TryToSaveTemporaryRoomAction';
+import { selectRooms } from '../../selectors/selectRooms';
+import { RoomValidationService } from '../../services/room-validation.service';
 
 @Component({
     selector: 'ob-edit-room-modal-container',
@@ -20,16 +22,24 @@ import { TryToSaveTemporaryRoomAction } from '../../actions/TryToSaveTemporaryRo
                     [parameters]="parameters"
                     (onchange)="handleChange($event)"
                 ></ob-add-room-modal-content>
-                <div class="actions">
-                    <ob-button
-                        name="Close"
-                        [bordered]="true"
-                        (click)="handleClose()"
-                    ></ob-button>
-                    <ob-button
-                        name="Apply"
-                        (click)="applyChanges()"
-                    ></ob-button>
+
+                <div class="modal-footer">
+                    <div class="error-container">
+                        <ob-error [message]="error"></ob-error>
+                    </div>
+
+                    <div class="actions">
+                        <ob-button
+                            name="Close"
+                            [bordered]="true"
+                            (click)="handleClose()"
+                        ></ob-button>
+                        <ob-button
+                            name="Apply"
+                            [disabled]="error"
+                            (click)="applyChanges()"
+                        ></ob-button>
+                    </div>
                 </div>
             </div>
         </ob-block>
@@ -41,9 +51,11 @@ import { TryToSaveTemporaryRoomAction } from '../../actions/TryToSaveTemporaryRo
                 width: 40rem;
             }
 
-            .grid {
+            .modal-footer {
                 display: grid;
-                grid-gap: 2rem;
+                grid-auto-flow: column;
+                align-items: center;
+                grid-template-columns: 1fr auto;
             }
 
             .actions {
@@ -52,21 +64,30 @@ import { TryToSaveTemporaryRoomAction } from '../../actions/TryToSaveTemporaryRo
                 grid-gap: 1rem;
                 justify-self: end;
             }
+
+            .error-container {
+                font-size: 1.2rem;
+                color: var(--color-text);
+            }
         `,
     ],
 })
 export class EditRoomModalContainerComponent implements OnDestroy {
     public parameters: RoomParameters;
+    public error = '';
 
     private room: Room;
-    private roomSubscription: Subscription;
+    private rooms: Room[];
+    private currentRoomSubscription: Subscription;
+    private roomsSubscription: Subscription;
 
     constructor(
         private readonly store: Store<AppState>,
-        private readonly modalService: ModalService
+        private readonly modalService: ModalService,
+        private readonly validationService: RoomValidationService
     ) {
         this.store.dispatch(new EditRoomAction());
-        this.roomSubscription = this.store
+        this.currentRoomSubscription = this.store
             .pipe(select(selectTemporaryRoom))
             .subscribe(room => {
                 if (room) {
@@ -79,6 +100,10 @@ export class EditRoomModalContainerComponent implements OnDestroy {
                     };
                 }
             });
+
+        this.roomsSubscription = this.store
+            .pipe(select(selectRooms))
+            .subscribe(rooms => (this.rooms = rooms));
     }
 
     public handleChange(parameters: RoomParameters) {
@@ -88,6 +113,8 @@ export class EditRoomModalContainerComponent implements OnDestroy {
                 ...parameters,
             })
         );
+
+        this.error = this.validationService.validate(parameters, this.rooms);
     }
 
     public applyChanges() {
@@ -101,6 +128,7 @@ export class EditRoomModalContainerComponent implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.roomSubscription.unsubscribe();
+        this.currentRoomSubscription.unsubscribe();
+        this.roomsSubscription.unsubscribe();
     }
 }
