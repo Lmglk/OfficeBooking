@@ -8,6 +8,7 @@ import { Place } from '../../../app/types/Place';
 import { Subscription } from 'rxjs';
 import { selectPlaces } from '../../selectors/selectPlaces';
 import { select } from '@ngrx/store';
+import { PlaceValidationService } from '../../services/place-validation.service';
 
 @Component({
     selector: 'ob-add-place-modal-container',
@@ -74,7 +75,7 @@ import { select } from '@ngrx/store';
 })
 export class AddPlaceModalContainerComponent implements OnDestroy {
     public parameters: PlaceParameters = {
-        name: '',
+        name: 'New place',
         equipments: [],
         description: '',
         isAvailableForBooking: true,
@@ -90,7 +91,8 @@ export class AddPlaceModalContainerComponent implements OnDestroy {
 
     constructor(
         private readonly store: Store<AppState>,
-        private readonly modalService: ModalService
+        private readonly modalService: ModalService,
+        private readonly validationService: PlaceValidationService
     ) {
         this.placeSubscription = this.store
             .pipe(select(selectPlaces))
@@ -98,18 +100,9 @@ export class AddPlaceModalContainerComponent implements OnDestroy {
     }
 
     public handleChange(parameters: PlaceParameters) {
-        if (this.checkPlaceName(parameters.name)) {
-            this.error = 'Place with same name already exist';
-            return;
-        }
-
-        if (this.checkCoordinates(parameters.x, parameters.y)) {
-            this.error = 'Place with same coordinated already exist';
-            return;
-        }
-
-        this.error = '';
         this.parameters = parameters;
+
+        this.error = this.validationService.validate(parameters, this.places);
     }
 
     public handleCreate() {
@@ -123,13 +116,5 @@ export class AddPlaceModalContainerComponent implements OnDestroy {
 
     public ngOnDestroy(): void {
         this.placeSubscription.unsubscribe();
-    }
-
-    private checkPlaceName(name: string): boolean {
-        return this.places.some(item => item.name === name);
-    }
-
-    private checkCoordinates(x: number, y: number): boolean {
-        return this.places.some(item => item.x === x && item.y === y);
     }
 }

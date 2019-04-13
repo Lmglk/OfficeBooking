@@ -11,6 +11,7 @@ import { TryToSaveTemporaryPlaceAction } from '../../actions/TryToSaveTemporaryP
 import { ModalService } from '../../../modal/services/modal.service';
 import { ResetTemporaryPlaceAction } from '../../actions/ResetTemporaryPlaceAction';
 import { selectPlaces } from '../../selectors/selectPlaces';
+import { PlaceValidationService } from '../../services/place-validation.service';
 
 @Component({
     selector: 'ob-edit-place-modal-container',
@@ -88,7 +89,8 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
 
     constructor(
         private readonly store: Store<AppState>,
-        private readonly modalService: ModalService
+        private readonly modalService: ModalService,
+        private readonly validationService: PlaceValidationService
     ) {
         this.store.dispatch(new EditPlaceAction());
         this.currentPlaceSubscription = this.store
@@ -113,25 +115,15 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
     }
 
     public handleChange(parameters: PlaceParameters) {
-        const places = this.places.filter(item => item.id !== this.place.id);
-
-        if (this.checkPlaceName(parameters.name, places)) {
-            this.error = 'Place with same name already exist';
-            return;
-        }
-
-        if (this.checkCoordinates(parameters.x, parameters.y, places)) {
-            this.error = 'Place with same coordinated already exist';
-            return;
-        }
-
-        this.error = '';
         this.store.dispatch(
             new SetTemporaryPlaceAction({
                 ...this.place,
                 ...parameters,
             })
         );
+
+        const places = this.places.filter(item => item.id !== this.place.id);
+        this.error = this.validationService.validate(parameters, places);
     }
 
     public applyChanges() {
@@ -147,13 +139,5 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
     public ngOnDestroy(): void {
         this.currentPlaceSubscription.unsubscribe();
         this.placesSubscription.unsubscribe();
-    }
-
-    private checkPlaceName(name: string, places: Place[]): boolean {
-        return places.some(item => item.name === name);
-    }
-
-    private checkCoordinates(x: number, y: number, places: Place[]): boolean {
-        return places.some(item => item.x === x && item.y === y);
     }
 }
