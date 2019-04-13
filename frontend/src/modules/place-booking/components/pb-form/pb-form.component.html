@@ -1,19 +1,25 @@
 <div class="grid">
-    <ob-input
-        label="From"
-        [type]="inputType.DATE"
-        [value]="getTime(parameters.fromDate)"
-        (onchange)="handleChange($event, 'fromDate')"
-    ></ob-input>
-    <ob-input
-        label="To"
-        [type]="inputType.DATE"
-        [value]="getTime(parameters.toDate)"
-        (onchange)="handleChange($event, 'toDate')"
-    ></ob-input>
-    <ob-button
-        class="book-button"
-        name="Book"
-        (click)="handleSubmit()"
-    ></ob-button>
+    <div class="form">
+        <ob-input
+            label="From"
+            [type]="inputType.DATE"
+            [value]="getTime(parameters.fromDate)"
+            (onchange)="handleChange($event, 'fromDate')"
+        ></ob-input>
+        <ob-input
+            label="To"
+            [type]="inputType.DATE"
+            [value]="getTime(parameters.toDate)"
+            (onchange)="handleChange($event, 'toDate')"
+        ></ob-input>
+        <ob-button
+            class="book-button"
+            name="Book"
+            [disabled]="error"
+            (click)="handleSubmit()"
+        ></ob-button>
+    </div>
+    <div>
+        <ob-error [message]="error"></ob-error>
+    </div>
 </div>

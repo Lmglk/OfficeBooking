@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputType } from '../../../basic-components/enums/InputType';
 import { BookParamters } from '../../types/BookParamters';
 
@@ -11,6 +11,7 @@ export class PbFormComponent {
     public readonly inputType = InputType;
 
     @Input() public parameters: BookParamters;
+    @Input() public error: string;
 
     @Output() public onchange: EventEmitter<BookParamters> = new EventEmitter();
     @Output() public submit: EventEmitter<void> = new EventEmitter();
