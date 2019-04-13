@@ -13,8 +13,16 @@
     </ob-section>
 
     <div class="actions">
-        <ob-button name="Edit" (click)="openEditRoomModal()"></ob-button>
-        <ob-button name="Remove" (click)="handleRemoveRoom()"></ob-button>
+        <ob-button
+            name="Edit"
+            (click)="openEditRoomModal()"
+            *ngIf="userRole === role.ADMIN"
+        ></ob-button>
+        <ob-button
+            name="Remove"
+            (click)="handleRemoveRoom()"
+            *ngIf="userRole === role.ADMIN"
+        ></ob-button>
         <ob-button name="Go to room" (click)="goToRoom()"></ob-button>
     </div>
 </div>

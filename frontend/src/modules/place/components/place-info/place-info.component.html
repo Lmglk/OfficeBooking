@@ -25,7 +25,15 @@
     <ob-pb-list-container></ob-pb-list-container>
 
     <div class="actions">
-        <ob-button name="Edit" (click)="openEditPlaceModal()"></ob-button>
-        <ob-button name="Remove" (click)="handleRemovePlace()"></ob-button>
+        <ob-button
+            name="Edit"
+            (click)="openEditPlaceModal()"
+            *ngIf="(userRole$ | async) === role.ADMIN"
+        ></ob-button>
+        <ob-button
+            name="Remove"
+            (click)="handleRemovePlace()"
+            *ngIf="(userRole$ | async) === role.ADMIN"
+        ></ob-button>
     </div>
 </div>

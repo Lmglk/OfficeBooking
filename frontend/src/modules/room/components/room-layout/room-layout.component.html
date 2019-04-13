@@ -3,6 +3,7 @@
         <div class="block-content">
             <ob-room-list-container></ob-room-list-container>
             <ob-button-plate
+                *ngIf="(userRole$ | async) === role.ADMIN"
                 label="Create room"
                 description="Create new room"
                 (click)="handleCreateRoom()"

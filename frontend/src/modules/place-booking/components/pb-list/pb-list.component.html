@@ -4,7 +4,7 @@
             <td>From date</td>
             <td>To date</td>
             <td>Approved</td>
-            <td>Actions</td>
+            <td *ngIf="userRole === role.ADMIN">Actions</td>
         </tr>
     </thead>
     <tbody *ngIf="bookingList.length">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </td>
-            <td>
+            <td *ngIf="userRole === role.ADMIN">
                 <div class="content-center">
                     <ob-button
                         name="Accept"
@@ -44,7 +44,9 @@
 
     <tbody *ngIf="!bookingList.length">
         <tr>
-            <td colspan="4">List of booking is empty</td>
+            <td [attr.colspan]="getCountColsByRole(userRole)">
+                List of booking is empty
+            </td>
         </tr>
     </tbody>
 </table>
