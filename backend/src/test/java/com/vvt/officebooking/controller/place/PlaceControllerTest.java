@@ -42,7 +42,7 @@ public class PlaceControllerTest {
         this.mockMvc = standaloneSetup(controller).build();
 
         // Mock one of the service methods
-        when(service.list()).thenReturn(getRoomList());
+        when(service.list()).thenReturn(getPlaceList());
         when(service.save(any(PlaceEntity.class), any())).thenReturn(getPlace("A"));
         when(service.get(any(Long.class))).thenReturn(getPlace("A"));
     }
@@ -129,7 +129,8 @@ public class PlaceControllerTest {
         Assert.assertEquals(expectedObj.getY(), actualObj.getY());
     }
 
-    private List<PlaceEntity> getRoomList() {
+
+    private List<PlaceEntity> getPlaceList() {
         PlaceEntity place0 = getPlace("A");
         PlaceEntity place1 = getPlace("B");
 
@@ -144,7 +145,6 @@ public class PlaceControllerTest {
         obj.setX(1);
         obj.setY(2);
         return obj;
-
     }
 
     private PlaceEntity getBadPlace(String name) {
