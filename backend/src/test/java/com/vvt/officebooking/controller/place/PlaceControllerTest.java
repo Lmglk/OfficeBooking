@@ -1,8 +1,10 @@
 package com.vvt.officebooking.controller.place;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vvt.officebooking.controller.messages.RequestMessage;
 import com.vvt.officebooking.model.entity.place.PlaceEntity;
 import com.vvt.officebooking.service.place.PlaceService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -45,15 +48,45 @@ public class PlaceControllerTest {
     }
 
     @Test
-    public void get() {
+    public void get() throws Exception {
+        PlaceEntity expectedObj = getPlace("A");
+        RequestMessage requestMessage = new RequestMessage();
+        requestMessage.setId(123L);
+        MockHttpServletResponse response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/place/get")
+                        .content(mapper.writeValueAsBytes(requestMessage))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+
+        String contentStr = response.getContentAsString();
+        PlaceEntity actualObj = mapper.readValue(contentStr, PlaceEntity.class);
+        assertObj(expectedObj, actualObj);
     }
 
     @Test
-    public void save() {
+    public void save() throws Exception {
+        PlaceEntity expectedObj = getPlace("A");
+        MockHttpServletResponse response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/place/save?idRoom=102")
+                        .content(mapper.writeValueAsBytes(expectedObj))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+
+        String contentStr = response.getContentAsString();
+        PlaceEntity actualObj = mapper.readValue(contentStr, PlaceEntity.class);
+        assertObj(expectedObj, actualObj);
     }
 
     @Test
-    public void remove() {
+    public void remove() throws Exception {
+        PlaceEntity expectedObj = getPlace("A");
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/place/remove")
+                        .content(mapper.writeValueAsBytes(expectedObj))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -75,6 +108,28 @@ public class PlaceControllerTest {
                 );
     }
 
+
+    @Test
+    public void shouldNotSave() throws Exception {
+        PlaceEntity expectedObj = getBadPlace("A");
+        when(service.save(any(PlaceEntity.class), any())).thenReturn(expectedObj);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/place/save?idRoom=102")
+                        .content(mapper.writeValueAsBytes(expectedObj))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isBadRequest())
+                .andReturn().getResponse();
+    }
+
+    private void assertObj(PlaceEntity expectedObj, PlaceEntity actualObj) {
+        Assert.assertEquals(expectedObj.getId(), actualObj.getId());
+        Assert.assertEquals(expectedObj.getName(), actualObj.getName());
+        Assert.assertEquals(expectedObj.getIsAvailableForBooking(), actualObj.getIsAvailableForBooking());
+        Assert.assertEquals(expectedObj.getX(), actualObj.getX());
+        Assert.assertEquals(expectedObj.getY(), actualObj.getY());
+    }
+
     private List<PlaceEntity> getRoomList() {
         PlaceEntity place0 = getPlace("A");
         PlaceEntity place1 = getPlace("B");
@@ -91,5 +146,12 @@ public class PlaceControllerTest {
         obj.setY(2);
         return obj;
 
+    }
+
+
+    private PlaceEntity getBadPlace(String name) {
+        PlaceEntity place = getPlace(name);
+        place.setId(null);
+        return place;
     }
 }

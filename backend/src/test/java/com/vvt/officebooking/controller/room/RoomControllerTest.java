@@ -24,7 +24,6 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -102,16 +101,12 @@ public class RoomControllerTest {
         RoomEntity expectedRoom = getBadRoom("A", "a");
         when(service.save(any(RoomEntity.class))).thenReturn(expectedRoom);
 
-        MockHttpServletResponse response = mockMvc.perform(
+        mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/room/save")
                         .content(mapper.writeValueAsBytes(expectedRoom))
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isBadRequest())
-                .andDo(print())
                 .andReturn().getResponse();
-
-        String contentStr = response.getContentAsString();
-        System.out.println(contentStr);
     }
 
     @Test
