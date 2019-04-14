@@ -3,6 +3,7 @@ package com.vvt.officebooking.controller.user;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vvt.officebooking.model.entity.user.User;
 import com.vvt.officebooking.service.user.UserService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -39,6 +41,7 @@ public class UsersControllerTest {
 
         // Mock one of the service methods
         when(service.list()).thenReturn(getUserList());
+        when(service.create(any(User.class))).thenReturn(getUser("emailTest", "passwordTest"));
 //        when(service.save(any(PlaceEntity.class), any())).thenReturn(getPlace("A"));
 //        when(service.get(any(Long.class))).thenReturn(getPlace("A"));
     }
@@ -48,7 +51,13 @@ public class UsersControllerTest {
     }
 
     @Test
-    public void register() {
+    public void register() throws Exception {
+        User expectedObj = getUser("emailTest", "passwordTest");
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/user/registration")
+                        .content(mapper.writeValueAsBytes(expectedObj))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -82,6 +91,11 @@ public class UsersControllerTest {
                 );
     }
 
+    private void assertObj(User expectedObj, User actualObj) {
+        Assert.assertEquals(expectedObj.getId(), actualObj.getId());
+        Assert.assertEquals(expectedObj.getEmail(), actualObj.getEmail());
+        Assert.assertEquals(expectedObj.getPassword(), actualObj.getPassword());
+    }
 
     private List<User> getUserList() {
         User user0 = getUser("i.ivanov@gmail.com", "qwerty123");

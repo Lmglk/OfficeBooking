@@ -129,7 +129,6 @@ public class PlaceControllerTest {
         Assert.assertEquals(expectedObj.getY(), actualObj.getY());
     }
 
-
     private List<PlaceEntity> getPlaceList() {
         PlaceEntity place0 = getPlace("A");
         PlaceEntity place1 = getPlace("B");
