@@ -1,9 +1,9 @@
-package com.vvt.officebooking.controller.place;
+package com.vvt.officebooking.controller.booking;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vvt.officebooking.controller.messages.RequestMessage;
-import com.vvt.officebooking.model.entity.place.PlaceEntity;
-import com.vvt.officebooking.service.place.PlaceService;
+import com.vvt.officebooking.model.entity.booking.BookingEntity;
+import com.vvt.officebooking.service.booking.BookingService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,61 +29,61 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 @WebAppConfiguration
-public class PlaceControllerTest {
+public class BookingControllerTest {
     private MockMvc mockMvc;
     private ObjectMapper mapper = new ObjectMapper();
     @Mock
-    private PlaceService service;
+    private BookingService service;
     @InjectMocks
-    private PlaceController controller;
+    private BookingController controller;
 
     @Before
     public void setup() {
         this.mockMvc = standaloneSetup(controller).build();
 
         // Mock one of the service methods
-        when(service.list()).thenReturn(getRoomList());
-        when(service.save(any(PlaceEntity.class), any())).thenReturn(getPlace("A"));
-        when(service.get(any(Long.class))).thenReturn(getPlace("A"));
+        when(service.list()).thenReturn(getBookingList());
+        when(service.save(any(BookingEntity.class), any())).thenReturn(getBooking(1L));
+        when(service.get(any(Long.class))).thenReturn(getBooking(1L));
     }
 
     @Test
     public void get() throws Exception {
-        PlaceEntity expectedObj = getPlace("A");
+        BookingEntity expectedObj = getBooking(1L);
         RequestMessage requestMessage = new RequestMessage();
-        requestMessage.setId(123L);
+        requestMessage.setId(1L);
         MockHttpServletResponse response = mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/place/get")
+                MockMvcRequestBuilders.post("/api/booking/get")
                         .content(mapper.writeValueAsBytes(requestMessage))
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
         String contentStr = response.getContentAsString();
-        PlaceEntity actualObj = mapper.readValue(contentStr, PlaceEntity.class);
+        BookingEntity actualObj = mapper.readValue(contentStr, BookingEntity.class);
         assertObj(expectedObj, actualObj);
     }
 
     @Test
     public void save() throws Exception {
-        PlaceEntity expectedObj = getPlace("A");
+        BookingEntity expectedObj = getBooking(1L);
         MockHttpServletResponse response = mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/place/save?idRoom=102")
+                MockMvcRequestBuilders.post("/api/booking/save?idPlace=88")
                         .content(mapper.writeValueAsBytes(expectedObj))
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
         String contentStr = response.getContentAsString();
-        PlaceEntity actualObj = mapper.readValue(contentStr, PlaceEntity.class);
+        BookingEntity actualObj = mapper.readValue(contentStr, BookingEntity.class);
         assertObj(expectedObj, actualObj);
     }
 
     @Test
     public void remove() throws Exception {
-        PlaceEntity expectedObj = getPlace("A");
+        BookingEntity expectedObj = getBooking(1L);
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/place/remove")
+                MockMvcRequestBuilders.post("/api/booking/remove")
                         .content(mapper.writeValueAsBytes(expectedObj))
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
@@ -92,64 +92,46 @@ public class PlaceControllerTest {
     @Test
     public void list() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/place/all"))
+                MockMvcRequestBuilders.get("/api/booking/all"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$[0].id", is(123)))
-                .andExpect(jsonPath("$[0].name", is("A")))
-                .andExpect(jsonPath("$[0].isAvailableForBooking", is(true)))
-                .andExpect(jsonPath("$[0].x", is(1)))
-                .andExpect(jsonPath("$[0].y", is(2)))
-                .andExpect(jsonPath("$[1].id", is(123)))
-                .andExpect(jsonPath("$[1].name", is("B")))
-                .andExpect(jsonPath("$[1].isAvailableForBooking", is(true)))
-                .andExpect(jsonPath("$[1].x", is(1)))
-                .andExpect(jsonPath("$[1].y", is(2))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[1].id", is(2))
                 );
     }
 
+
     @Test
     public void shouldNotSave() throws Exception {
-        PlaceEntity expectedObj = getBadPlace("A");
-        when(service.save(any(PlaceEntity.class), any())).thenReturn(expectedObj);
+        BookingEntity expectedObj = getBadBooking();
+        when(service.save(any(BookingEntity.class), any())).thenReturn(expectedObj);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/place/save?idRoom=102")
+                MockMvcRequestBuilders.post("/api/booking/save?idPlace=88")
                         .content(mapper.writeValueAsBytes(expectedObj))
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isBadRequest())
                 .andReturn().getResponse();
     }
 
-    private void assertObj(PlaceEntity expectedObj, PlaceEntity actualObj) {
+    private void assertObj(BookingEntity expectedObj, BookingEntity actualObj) {
         Assert.assertEquals(expectedObj.getId(), actualObj.getId());
-        Assert.assertEquals(expectedObj.getName(), actualObj.getName());
-        Assert.assertEquals(expectedObj.getIsAvailableForBooking(), actualObj.getIsAvailableForBooking());
-        Assert.assertEquals(expectedObj.getX(), actualObj.getX());
-        Assert.assertEquals(expectedObj.getY(), actualObj.getY());
     }
 
-    private List<PlaceEntity> getRoomList() {
-        PlaceEntity place0 = getPlace("A");
-        PlaceEntity place1 = getPlace("B");
+    private List<BookingEntity> getBookingList() {
+        BookingEntity booking0 = getBooking(1L);
+        BookingEntity booking1 = getBooking(2L);
 
-        return new ArrayList<>(Arrays.asList(place0, place1));
+        return new ArrayList<>(Arrays.asList(booking0, booking1));
     }
 
-    private PlaceEntity getPlace(String name) {
-        PlaceEntity obj = new PlaceEntity();
-        obj.setId(123L);
-        obj.setName(name);
-        obj.setIsAvailableForBooking(true);
-        obj.setX(1);
-        obj.setY(2);
+    private BookingEntity getBooking(Long id) {
+        BookingEntity obj = new BookingEntity();
+        obj.setId(id);
         return obj;
-
     }
 
-    private PlaceEntity getBadPlace(String name) {
-        PlaceEntity place = getPlace(name);
-        place.setId(null);
-        return place;
+    private BookingEntity getBadBooking() {
+        return new BookingEntity();
     }
 }
