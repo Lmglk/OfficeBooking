@@ -42,8 +42,6 @@ public class UsersControllerTest {
         // Mock one of the service methods
         when(service.list()).thenReturn(getUserList());
         when(service.create(any(User.class))).thenReturn(getUser("emailTest", "passwordTest"));
-//        when(service.save(any(PlaceEntity.class), any())).thenReturn(getPlace("A"));
-//        when(service.get(any(Long.class))).thenReturn(getPlace("A"));
     }
 
     @Test
