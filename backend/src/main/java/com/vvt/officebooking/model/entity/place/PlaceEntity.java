@@ -11,7 +11,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Getter
 @Setter
@@ -53,7 +55,7 @@ public class PlaceEntity implements Serializable {
     @JsonIgnore
     private RoomEntity room;
 
-    @OneToOne(mappedBy = "place")
+    @OneToMany(mappedBy = "place")
     @JsonIgnore
-    private BookingEntity booking;
+    private List<BookingEntity> booking = new ArrayList<>();
 }

@@ -32,7 +32,7 @@ public class BookingEntity implements Serializable {
     @Column
     private Boolean isExpired;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @NotNull
     private PlaceEntity place;
 
