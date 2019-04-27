@@ -113,5 +113,13 @@
             }
         }
     },
-    "defaultProject": "officeBooking"
+    "defaultProject": "officeBooking",
+    "schematics": {
+        "@ngrx/schematics:component": {
+            "styleext": "css"
+        }
+    },
+    "cli": {
+        "defaultCollection": "@ngrx/schematics"
+    }
 }

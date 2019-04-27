@@ -1,0 +1,30 @@
+<div class="form-container">
+    <ob-input
+        label="Email"
+        [type]="inputType.TEXT"
+        [value]="parameters.email"
+        (onchange)="handleChange($event, 'email')"
+    ></ob-input>
+    <ob-input
+        label="Name"
+        [type]="inputType.TEXT"
+        [value]="parameters.name"
+        (onchange)="handleChange($event, 'name')"
+    ></ob-input>
+    <div class="password-container">
+        <ob-input
+            class="password"
+            label="Password"
+            [type]="inputType.PASSWORD"
+            [value]="parameters.password"
+            (change)="handleChange($event, 'password')"
+        ></ob-input>
+        <ob-input
+            class="confirm-password"
+            label="Confirm password"
+            [type]="inputType.PASSWORD"
+            [value]="parameters.confirmPassword"
+            (change)="handleChange($event, 'confirmPassword')"
+        ></ob-input>
+    </div>
+</div>

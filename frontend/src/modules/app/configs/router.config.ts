@@ -5,10 +5,12 @@ import { RegistrationContainerComponent } from '../../authorization/containers/r
 import { LoginContainerComponent } from '../../authorization/containers/login-container/login-container.component';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { PlaceLayoutComponent } from '../../place/components/place-layout/place-layout.component';
+import { ProfileContainerComponent } from '../../profile/containers/profile-container.component';
 
 export const childRoutes: Routes = [
     { path: 'home', component: RoomLayoutComponent },
     { path: 'room', component: PlaceLayoutComponent },
+    { path: 'profile', component: ProfileContainerComponent },
 ];
 
 export const routes: Routes = [

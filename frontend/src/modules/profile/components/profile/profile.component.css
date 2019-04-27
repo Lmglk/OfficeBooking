@@ -1,0 +1,10 @@
+.form-container {
+    display: grid;
+    grid-gap: 2rem;
+}
+
+.password-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+}

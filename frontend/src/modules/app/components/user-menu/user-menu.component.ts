@@ -8,6 +8,7 @@ import {
 import { AppState } from '../../types/AppState';
 import { Store } from '@ngrx/store';
 import { LogoutAction } from '../../../authorization/actions/LogoutAction';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ob-user-menu',
@@ -21,7 +22,10 @@ export class UserMenuComponent implements AfterViewInit {
 
     public menuWidth = 0;
 
-    constructor(private readonly store: Store<AppState>) {}
+    constructor(
+        private readonly store: Store<AppState>,
+        private readonly router: Router
+    ) {}
 
     public ngAfterViewInit(): void {
         setTimeout(
@@ -31,5 +35,9 @@ export class UserMenuComponent implements AfterViewInit {
 
     public handleLogout() {
         this.store.dispatch(new LogoutAction());
+    }
+
+    public handleOpenProfile() {
+        this.router.navigate(['profile']);
     }
 }
