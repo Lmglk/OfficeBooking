@@ -23,6 +23,7 @@ import { PlaceModule } from '../place/place.module';
 import { RoomModule } from '../room/room.module';
 import { EffectsModule } from '@ngrx/effects';
 import { bookingReducer } from './reducers/booking.reducer';
+import { ProfileModule } from '../profile/profile.module';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import { bookingReducer } from './reducers/booking.reducer';
         AuthorizationModule,
         RoomModule,
         PlaceModule,
+        ProfileModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
