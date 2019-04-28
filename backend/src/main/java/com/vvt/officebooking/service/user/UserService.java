@@ -12,10 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -65,7 +62,7 @@ public class UserService {
     public void update(User updatedUser) {
         User cud = getCurrentUser();
         User user = userRepository.findByIdExact(cud.getId());
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
             changePassword(updatedUser.getPassword());
         }
         if (updatedUser.getName() != null && !updatedUser.getName().isEmpty()) {
