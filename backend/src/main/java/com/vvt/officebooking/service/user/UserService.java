@@ -59,7 +59,7 @@ public class UserService {
     }
 
     @Transactional
-    public void update(User updatedUser) {
+    public User update(User updatedUser) {
         User cud = getCurrentUser();
         User user = userRepository.findByIdExact(cud.getId());
         if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
@@ -69,7 +69,7 @@ public class UserService {
             user.setName(updatedUser.getName());
             cud.setName(updatedUser.getName());
         }
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public String getUserEmail(User to) {
