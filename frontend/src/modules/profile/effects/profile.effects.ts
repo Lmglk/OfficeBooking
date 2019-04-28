@@ -42,7 +42,7 @@ export class ProfileEffects {
                 })
                 .pipe(
                     map(() => {
-                        this.notification.error('User successfully updated');
+                        this.notification.success('User successfully updated');
                         return new SetUserAction({
                             ...user,
                             name: name,
