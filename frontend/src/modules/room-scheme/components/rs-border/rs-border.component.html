@@ -1,0 +1,8 @@
+<div
+    class="grid"
+    [class.horizontal]="!vertical"
+    [class.vertical]="vertical"
+    [ngStyle]="style"
+>
+    <div class="item" *ngFor="let dash of dashes"></div>
+</div>

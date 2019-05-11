@@ -10,6 +10,19 @@
             (selectPlace)="handleSelectPlace($event)"
         ></ob-rs-canvas>
 
+        <ob-rs-border class="border-top" [size]="width"></ob-rs-border>
+        <ob-rs-border class="border-bottom" [size]="width"></ob-rs-border>
+        <ob-rs-border
+            class="border-left"
+            [size]="height"
+            [vertical]="true"
+        ></ob-rs-border>
+        <ob-rs-border
+            class="border-right"
+            [size]="height"
+            [vertical]="true"
+        ></ob-rs-border>
+
         <div class="axis-x axis-left">
             <div
                 class="axis-item"

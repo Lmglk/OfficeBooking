@@ -1,0 +1,21 @@
+.grid {
+    display: grid;
+    grid-gap: 0.5rem;
+    height: 100%;
+}
+
+.horizontal {
+    height: 5px;
+}
+
+.vertical {
+    width: 5px;
+}
+
+.item {
+    background-color: var(--color-gray);
+}
+
+.item:nth-child(even) {
+    background-color: var(--color-blue);
+}

@@ -2,10 +2,12 @@
     display: grid;
     grid-column-gap: 1rem;
     grid-template-areas:
-        '. axis-top .'
-        'axis-left canvas axis-right'
-        '. axis-bottom .'
-        'legend legend legend';
+        '. . axis-top . .'
+        '. . border-top . .'
+        'axis-left border-left canvas border-right axis-right'
+        '. . border-bottom . .'
+        '. . axis-bottom . .'
+        '. legend legend legend .';
     width: max-content;
 }
 
@@ -27,6 +29,22 @@
 
 .axis-right {
     grid-area: axis-right;
+}
+
+.border-top {
+    grid-area: border-top;
+}
+
+.border-bottom {
+    grid-area: border-bottom;
+}
+
+.border-left {
+    grid-area: border-left;
+}
+
+.border-right {
+    grid-area: border-right;
 }
 
 .axis-y {
