@@ -54,7 +54,8 @@ export class BookingValidationService {
     }
 
     private isFutureTime(date: Date): boolean {
-        return date && date.getTime() >= Date.now();
+        const currentDate = new Date().setHours(0, 0, 0, 0);
+        return date && date.getTime() >= currentDate;
     }
 
     private isDateInInterval(

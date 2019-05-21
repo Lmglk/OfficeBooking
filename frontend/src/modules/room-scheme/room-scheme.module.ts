@@ -6,6 +6,7 @@ import { RoomSchemeContainerComponent } from './containers/room-scheme-container
 import { RsCanvasComponent } from './components/rs-canvas/rs-canvas.component';
 import { RsLegendItemComponent } from './components/rs-legend-item/rs-legend-item.component';
 import { RsLegendComponent } from './components/rs-legend/rs-legend.component';
+import { RsBorderComponent } from './components/rs-border/rs-border.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { RsLegendComponent } from './components/rs-legend/rs-legend.component';
         RsCanvasComponent,
         RsLegendItemComponent,
         RsLegendComponent,
+        RsBorderComponent,
     ],
     imports: [CommonModule],
     exports: [RoomSchemeContainerComponent],
