@@ -12,6 +12,8 @@ import { ModalService } from '../../../modal/services/modal.service';
 import { ResetTemporaryPlaceAction } from '../../actions/ResetTemporaryPlaceAction';
 import { selectPlaces } from '../../selectors/selectPlaces';
 import { PlaceValidationService } from '../../services/place-validation.service';
+import { Room } from '../../../app/types/Room';
+import { selectCurrentRoom } from '../../../room/selectors/selectCurrentRoom';
 
 @Component({
     selector: 'ob-edit-place-modal-container',
@@ -83,7 +85,7 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
     public error = '';
 
     private place: Place;
-    private places: Place[];
+    private room: Room;
     private currentPlaceSubscription: Subscription;
     private placesSubscription: Subscription;
 
@@ -110,8 +112,12 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
             });
 
         this.placesSubscription = this.store
-            .pipe(select(selectPlaces))
-            .subscribe(places => (this.places = places));
+            .pipe(select(selectCurrentRoom))
+            .subscribe(currentRoom => {
+                if (currentRoom) {
+                    this.room = currentRoom;
+                }
+            });
     }
 
     public handleChange(parameters: PlaceParameters) {
@@ -122,8 +128,15 @@ export class EditPlaceModalContainerComponent implements OnDestroy {
             })
         );
 
-        const places = this.places.filter(item => item.id !== this.place.id);
-        this.error = this.validationService.validate(parameters, places);
+        const places = this.room.places.filter(
+            item => item.id !== this.place.id
+        );
+        this.error = this.validationService.validate(
+            parameters,
+            places,
+            this.room.width,
+            this.room.height
+        );
     }
 
     public applyChanges() {

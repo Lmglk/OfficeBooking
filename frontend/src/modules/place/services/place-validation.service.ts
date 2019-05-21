@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Place } from '../../app/types/Place';
 import { PlaceParameters } from '../types/PlaceParameters';
+import { Room } from '../../app/types/Room';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PlaceValidationService {
-    public validate(parameters: PlaceParameters, places: Place[]): string {
+    public validate(
+        parameters: PlaceParameters,
+        places: Place[],
+        width: number,
+        height: number
+    ): string {
         if (parameters.name.length === 0) {
             return 'Place name is empty';
+        }
+
+        if (parameters.x > width || parameters.y > height) {
+            return 'Place has incorrect size';
         }
 
         if (this.checkPlaceName(parameters.name, places)) {

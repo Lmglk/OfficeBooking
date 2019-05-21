@@ -4,11 +4,11 @@ import { PlaceParameters } from '../../types/PlaceParameters';
 import { AppState } from '../../../app/types/AppState';
 import { Store } from '@ngrx/store';
 import { TryToSavePlaceAction } from '../../actions/TryToSavePlaceAction';
-import { Place } from '../../../app/types/Place';
 import { Subscription } from 'rxjs';
-import { selectPlaces } from '../../selectors/selectPlaces';
 import { select } from '@ngrx/store';
 import { PlaceValidationService } from '../../services/place-validation.service';
+import { selectCurrentRoom } from '../../../room/selectors/selectCurrentRoom';
+import { Room } from '../../../app/types/Room';
 
 @Component({
     selector: 'ob-add-place-modal-container',
@@ -85,8 +85,7 @@ export class AddPlaceModalContainerComponent implements OnDestroy {
 
     public error = '';
 
-    private places: Place[];
-
+    private currentRoom: Room;
     private placeSubscription: Subscription;
 
     constructor(
@@ -95,14 +94,23 @@ export class AddPlaceModalContainerComponent implements OnDestroy {
         private readonly validationService: PlaceValidationService
     ) {
         this.placeSubscription = this.store
-            .pipe(select(selectPlaces))
-            .subscribe(places => (this.places = places));
+            .pipe(select(selectCurrentRoom))
+            .subscribe(currentRoom => {
+                if (currentRoom) {
+                    this.currentRoom = currentRoom;
+                }
+            });
     }
 
     public handleChange(parameters: PlaceParameters) {
         this.parameters = parameters;
 
-        this.error = this.validationService.validate(parameters, this.places);
+        this.error = this.validationService.validate(
+            parameters,
+            this.currentRoom.places,
+            this.currentRoom.width,
+            this.currentRoom.height
+        );
     }
 
     public handleCreate() {
